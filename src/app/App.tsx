@@ -2,13 +2,13 @@ import { FC } from 'react';
 
 import '../App.css';
 import { Header } from '../layout/Header/Header';
-import { Navigation } from '../layout/Navigation/Navigation';
+import { Main } from '../layout/Main/Main';
 
 const App: FC = () => {
   return (
     <div>
       <Header />
-      <Navigation />
+      <Main />
     </div>
   );
 };
