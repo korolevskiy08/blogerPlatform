@@ -1,12 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
-import imageSvg from '../../common/icons/Image.svg';
+import { useAppDispatch } from '../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../common/hooks/useAppSelector';
 import style from '../../layout/global.module.css';
 
+import { getBlogs } from './blog-reducer';
+import Blog from './Blog/Blog';
 import styles from './Blogs.module.css';
 import { Settings } from './Settings/Settings';
 
 export const Blogs: FC = () => {
+  const dispatch = useAppDispatch();
+  const blogs = useAppSelector(state => state.blogs);
+
+  useEffect(() => {
+    dispatch(getBlogs());
+  }, []);
+
   return (
     <div className={styles.blogsBlock}>
       <div className={style.container}>
@@ -14,26 +24,9 @@ export const Blogs: FC = () => {
           <h2 className={style.title}>Blogs</h2>
         </div>
         <Settings />
-
-        <div className={styles.blogBlock}>
-          <div className={styles.avatarBlogs}>
-            <div>
-              <img src={imageSvg} alt="avatar" className={styles.avatar} />
-            </div>
-          </div>
-          <div className={styles.descriptionBlock}>
-            <div className={styles.titleBlock}>
-              <h3 className={styles.titleBlog}>The best blog in our village</h3>
-            </div>
-            <div>
-              <p className={styles.descriptionText}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci in quas
-                qui sint. Accusantium cum error hic, magnam nisi numquam officia quaerat
-                quam quidem tempora! Cumque eum modi voluptas voluptate.
-              </p>
-            </div>
-          </div>
-        </div>
+        {blogs.blogs.map(el => {
+          return <Blog name={el.name} key={el.id} />;
+        })}
       </div>
     </div>
   );

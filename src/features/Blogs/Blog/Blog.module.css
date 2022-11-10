@@ -1,0 +1,47 @@
+.blogBlock {
+    width: 100%;
+    display: flex;
+}
+
+.avatarBlogs {
+    width: 156px;
+    height: 156px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.avatar {
+    width: 33px;
+    height: 27px;
+}
+
+.titleBlock {
+    height: 25px;
+    padding-bottom: 30px;
+}
+
+.titleBlog {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: black;
+}
+
+.descriptionText{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.descriptionBlock {
+    width: 90%;
+    padding-left: 12px;
+}
