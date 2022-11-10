@@ -1,0 +1,23 @@
+.search {
+    width: 672px;
+    height: 36px;
+    border-color: #DEDBDC;
+    padding-left: 40px;
+}
+
+.searchImg {
+    position: absolute;
+    padding: 10px;
+}
+
+.settingBlock {
+    display: flex;
+    justify-content: space-between;
+}
+
+.select {
+    width: 256px;
+    height: 36px;
+    border-color: #DEDBDC;
+;
+}

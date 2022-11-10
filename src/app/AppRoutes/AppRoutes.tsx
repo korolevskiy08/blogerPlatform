@@ -7,11 +7,9 @@ import { Posts } from '../../features/Posts/Posts';
 
 export const AppRoutes: FC = () => {
   return (
-    <div>
-      <Routes>
-        <Route path="Blogs" element={<Blogs />} />
-        <Route path="Posts" element={<Posts />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="Blogs" element={<Blogs />} />
+      <Route path="Posts" element={<Posts />} />
+    </Routes>
   );
 };

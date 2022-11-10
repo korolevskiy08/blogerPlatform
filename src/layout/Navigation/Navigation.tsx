@@ -1,28 +1,35 @@
 import React, { FC } from 'react';
 
-import { NavLink } from 'react-router-dom';
-
 import blogsSvg from '../../common/icons/Blogs.svg';
 import postsSvg from '../../common/icons/Posts.svg';
 import { Path } from '../../common/Routes';
 
 import style from './Navigation.module.css';
+import { NavigationLink } from './NavLink/NavLink';
 
 export const Navigation: FC = () => {
   return (
-    <div>
+    <div className={style.navBlock}>
       <ul>
         <li>
-          <NavLink className={style.linkBlock} to={Path.Blogs}>
-            <img src={blogsSvg} alt="img" />
-            <p className={style.link}>Blogs</p>
-          </NavLink>
+          <NavigationLink
+            img={blogsSvg}
+            path={Path.Blogs}
+            alt="blogs"
+            text="Blogs"
+            styleLinkTitle={style.link}
+            styleLinkBlock={style.linkBlock}
+          />
         </li>
         <li>
-          <NavLink className={style.linkBlock} to={Path.Posts}>
-            <img src={postsSvg} alt="img" />
-            <p className={style.link}>Posts</p>
-          </NavLink>
+          <NavigationLink
+            img={postsSvg}
+            path={Path.Posts}
+            alt="posts"
+            text="Posts"
+            styleLinkTitle={style.link}
+            styleLinkBlock={style.linkBlock}
+          />
         </li>
       </ul>
     </div>
