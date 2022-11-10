@@ -4,7 +4,7 @@
     background: #faf7f8;
 }
 
-.titleBlock {
+.titleBlogs {
     border-bottom: 1px solid #DEDBDC;
     margin-bottom: 25px;
 }
@@ -19,21 +19,39 @@
 .avatarBlogs {
     width: 156px;
     height: 156px;
-    background: #F8346B;
     border-radius: 50%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.avatar {
+    width: 33px;
+    height: 27px;
+}
+
+.titleBlock {
+    height: 25px;
+    padding-bottom: 30px;
 }
 
 .titleBlog {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 24px;
-    width: 80%;
+    color: black;
 }
 
-.titleBlock {
-
+.descriptionText{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
 }
 
 .descriptionBlock {
