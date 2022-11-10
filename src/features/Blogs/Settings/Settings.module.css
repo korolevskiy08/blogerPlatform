@@ -13,11 +13,13 @@
 .settingBlock {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 24px;
 }
 
 .select {
     width: 256px;
     height: 36px;
     border-color: #DEDBDC;
-;
 }
+
+
