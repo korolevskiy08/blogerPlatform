@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { AnyAction, combineReducers } from 'redux';
-import thunkMiddleware, { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 
-import { blogsReducer } from '../features/Blogs/blog-reducer';
+import { blogSlice } from '../features/BlogItem/blogItem-slice';
+import { blogsSlice } from '../features/Blogs/blogs-slice';
 
 const rootReducer = combineReducers({
-  blogs: blogsReducer,
+  blogs: blogsSlice,
+  blog: blogSlice,
 });
 
 export const store = configureStore({
@@ -15,10 +17,4 @@ export const store = configureStore({
 
 // types
 export type AppRootStateType = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppRootStateType,
-  unknown,
-  AnyAction
->;
 export type AppDispatch = ThunkDispatch<AppRootStateType, unknown, AnyAction>;

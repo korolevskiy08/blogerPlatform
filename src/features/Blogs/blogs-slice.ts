@@ -1,19 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import { blogsAPI, BlogType } from './blog-api';
-
-export const getBlogs = createAsyncThunk(
-  'blogs/getBlog',
-  async (params, { rejectWithValue }) => {
-    const res = await blogsAPI.getBlogs();
-
-    try {
-      return res;
-    } catch (e) {
-      return rejectWithValue(null);
-    }
-  },
-);
+import { BlogType } from './blog-api';
+import { getBlogs } from './blogs-actions';
 
 const slice = createSlice({
   name: 'blogs',
@@ -40,6 +28,6 @@ const slice = createSlice({
   },
 });
 
-export const blogsReducer = slice.reducer;
+export const blogsSlice = slice.reducer;
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';

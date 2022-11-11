@@ -1,6 +1,7 @@
 .blogBlock {
     width: 100%;
-    display: flex;
+    padding: 24px 0 11px 0;
+    border-bottom: 1px solid #DEDBDC;
 }
 
 .avatarBlogs {
@@ -44,4 +45,21 @@
 .descriptionBlock {
     width: 90%;
     padding-left: 12px;
+}
+
+.youTubeBlock {
+    display: flex;
+    align-items: center;
+}
+
+.youTube {
+    padding-right: 10px;
+}
+
+.blogItem {
+    display: flex;
+}
+
+.showButton{
+    text-align: center;
 }

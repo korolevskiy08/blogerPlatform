@@ -1,6 +1,6 @@
 .blogsBlock{
     width: 80%;
-    height: 100vh;
+    height: 100%;
     background: #faf7f8;
 }
 
@@ -9,5 +9,5 @@
     margin-bottom: 25px;
 }
 
-/*blogs*/
+
 
