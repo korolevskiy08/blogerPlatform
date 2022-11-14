@@ -6,16 +6,14 @@ type ButtonType = {
   styleButton?: any;
 };
 
-export const Button: FC<ButtonType> = ({ onclick, title, styleButton }) => {
+export const Button: FC<ButtonType> = ({ onclick, title, styleButton, ...restProps }) => {
   const onclickHandler = (): void => {
     onclick();
   };
 
   return (
-    <div>
-      <button type="button" onClick={onclickHandler} className={styleButton}>
-        {title}
-      </button>
-    </div>
+    <button type="button" onClick={onclickHandler} className={styleButton} {...restProps}>
+      {title}
+    </button>
   );
 };

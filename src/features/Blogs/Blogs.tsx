@@ -21,7 +21,7 @@ export const Blogs: FC = () => {
 
   return (
     <div className={styles.blogsBlock}>
-      <div className={style.container}>
+      <div>
         <div className={styles.titleBlogs}>
           <h2 className={style.title}>Blogs</h2>
         </div>
