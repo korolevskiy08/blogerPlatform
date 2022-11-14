@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -11,10 +11,9 @@ type BlogType = {
   id: string;
   description: string;
   date?: string;
-  buttonComponent?: ReactNode;
 };
 
-const Blog: FC<BlogType> = ({ name, id, description, date, buttonComponent }) => {
+const Blog: FC<BlogType> = ({ name, id, description, date }) => {
   const navigate = useNavigate();
 
   const navigateBlogItem = (event: React.MouseEvent<HTMLElement>): void => {
@@ -54,7 +53,6 @@ const Blog: FC<BlogType> = ({ name, id, description, date, buttonComponent }) =>
           </div>
         </div>
       </div>
-      <div className={styles.showButton}>{buttonComponent}</div>
     </div>
   );
 };

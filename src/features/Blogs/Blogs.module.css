@@ -1,6 +1,6 @@
 .blogsBlock{
     width: 80%;
-    height: 100%;
+    height: 90vh;
     background: #faf7f8;
 }
 
@@ -9,9 +9,6 @@
     margin-bottom: 25px;
 }
 
-.loader {
-    margin-top: 30px;
-    text-align: center;
-}
+
 
 

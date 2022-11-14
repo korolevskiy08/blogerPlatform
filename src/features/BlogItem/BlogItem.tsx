@@ -7,7 +7,6 @@ import { useAppSelector } from '../../common/hooks/useAppSelector';
 import arrowLeft from '../../common/icons/arrow-left.svg';
 import arrowRight from '../../common/icons/arrow_right.svg';
 import imageTitle from '../../common/icons/Image.svg';
-import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 import Blog from '../Blogs/Blog/Blog';
 
@@ -45,7 +44,6 @@ export const BlogItem: FC = () => {
           id={blog.id}
           description={blog.youtubeUrl}
           date={blog.createdAt}
-          buttonComponent={<Button title="show" onclick={() => {}} />}
         />
       </div>
     </div>
