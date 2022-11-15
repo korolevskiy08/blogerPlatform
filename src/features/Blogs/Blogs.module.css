@@ -4,11 +4,6 @@
     flex-grow: 1;
 }
 
-.titleBlogs {
-    border-bottom: 1px solid #DEDBDC;
-    margin-bottom: 25px;
-}
-
 .buttonShowMore {
     display: flex;
     flex-direction: row;

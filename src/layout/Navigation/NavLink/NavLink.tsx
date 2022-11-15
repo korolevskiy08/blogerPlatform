@@ -7,8 +7,8 @@ interface NavigationLinkType {
   path: string;
   alt: string;
   text: string;
-  styleLinkBlock: any;
-  styleLinkTitle: any;
+  activeLink?: any;
+  notActive?: any;
 }
 
 export const NavigationLink: FC<NavigationLinkType> = ({
@@ -16,15 +16,13 @@ export const NavigationLink: FC<NavigationLinkType> = ({
   alt,
   text,
   path,
-  styleLinkBlock,
-  styleLinkTitle,
+  activeLink,
+  notActive,
 }) => {
   return (
-    <div>
-      <NavLink className={styleLinkBlock} to={path}>
-        <img src={img} alt={alt} />
-        <p className={styleLinkTitle}>{text}</p>
-      </NavLink>
-    </div>
+    <NavLink className={({ isActive }) => (!isActive ? notActive : activeLink)} to={path}>
+      <img src={img} alt={alt} />
+      {text}
+    </NavLink>
   );
 };

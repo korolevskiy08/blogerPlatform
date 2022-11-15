@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
+import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
 import Blog from './Blog/Blog';
 import { getBlogs } from './blogs-actions';
@@ -22,9 +23,7 @@ export const Blogs: FC = () => {
 
   return (
     <div className={styles.blogsBlock}>
-      <div className={styles.titleBlogs}>
-        <h2 className={style.title}>Blogs</h2>
-      </div>
+      <TitleComponent title="Blogs" />
       <Settings />
       {blogs.status === 'loading' ? (
         <div className={style.loader}>

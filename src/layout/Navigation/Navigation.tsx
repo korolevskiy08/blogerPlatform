@@ -17,8 +17,8 @@ export const Navigation: FC = () => {
             path={Path.Blogs}
             alt="blogs"
             text="Blogs"
-            styleLinkTitle={style.link}
-            styleLinkBlock={style.linkBlock}
+            notActive={style.link}
+            activeLink={style.activeLink}
           />
         </li>
         <li>
@@ -27,8 +27,8 @@ export const Navigation: FC = () => {
             path={Path.Posts}
             alt="posts"
             text="Posts"
-            styleLinkTitle={style.link}
-            styleLinkBlock={style.linkBlock}
+            notActive={style.linkBlock}
+            activeLink={style.activeLink}
           />
         </li>
       </ul>

@@ -1,0 +1,10 @@
+.postsBlock{
+    background: #faf7f8;
+    padding-left: 25px;
+    flex-grow: 1;
+}
+
+.selectBlock {
+    text-align: right;
+    padding-right: 30px;
+}
