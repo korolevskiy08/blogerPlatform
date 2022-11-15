@@ -7,6 +7,7 @@ import { useAppSelector } from '../../common/hooks/useAppSelector';
 import arrowLeft from '../../common/icons/arrow-left.svg';
 import arrowRight from '../../common/icons/arrow_right.svg';
 import imageTitle from '../../common/icons/Image.svg';
+import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 import Blog from '../Blogs/Blog/Blog';
 
@@ -24,7 +25,7 @@ export const BlogItem: FC = () => {
 
   return (
     <div className={styles.blogBlock}>
-      <div className={style.container}>
+      <div className={styles.containerBlog}>
         <div className={styles.titleBlock}>
           <h2 className={styles.titleBlog}>Blogs</h2>
           <img src={arrowRight} alt="arrowRight" />
@@ -45,6 +46,9 @@ export const BlogItem: FC = () => {
           description={blog.youtubeUrl}
           date={blog.createdAt}
         />
+        <div className={style.buttonBlock}>
+          <Button title="Show more" onclick={() => {}} styleButton={styles.showButton} />
+        </div>
       </div>
     </div>
   );

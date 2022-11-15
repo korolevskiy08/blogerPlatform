@@ -4,6 +4,7 @@ import { CircularProgress } from '@mui/material';
 
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
+import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 
 import Blog from './Blog/Blog';
@@ -21,25 +22,30 @@ export const Blogs: FC = () => {
 
   return (
     <div className={styles.blogsBlock}>
-      <div>
-        <div className={styles.titleBlogs}>
-          <h2 className={style.title}>Blogs</h2>
-        </div>
-        <Settings />
-        {blogs.status === 'loading' ? (
-          <div className={style.loader}>
-            <CircularProgress color="inherit" />
-          </div>
-        ) : (
-          <div>
-            {blogs.blogs.map(el => {
-              return (
-                <Blog name={el.name} key={el.id} id={el.id} description={el.youtubeUrl} />
-              );
-            })}
-          </div>
-        )}
+      <div className={styles.titleBlogs}>
+        <h2 className={style.title}>Blogs</h2>
       </div>
+      <Settings />
+      {blogs.status === 'loading' ? (
+        <div className={style.loader}>
+          <CircularProgress color="inherit" />
+        </div>
+      ) : (
+        <div>
+          {blogs.blogs.map(el => {
+            return (
+              <Blog name={el.name} key={el.id} id={el.id} description={el.youtubeUrl} />
+            );
+          })}
+          <div className={style.buttonBlock}>
+            <Button
+              title="Show more"
+              onclick={() => {}}
+              styleButton={styles.buttonShowMore}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
