@@ -4,10 +4,12 @@ import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 
 import { blogSlice } from '../features/BlogItem/blogItem-slice';
 import { blogsSlice } from '../features/Blogs/blogs-slice';
+import { postsSlice } from '../features/Posts/posts-slice';
 
 const rootReducer = combineReducers({
   blogs: blogsSlice,
   blog: blogSlice,
+  posts: postsSlice,
 });
 
 export const store = configureStore({
