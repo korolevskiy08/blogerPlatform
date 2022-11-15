@@ -26,10 +26,10 @@ export const BlogItem: FC = () => {
   return (
     <div className={styles.blogBlock}>
       <div className={styles.containerBlog}>
-        <div className={styles.titleBlock}>
-          <h2 className={styles.titleBlog}>Blogs</h2>
+        <div className={style.titleBlock}>
+          <h2 className={style.titleBlog}>Blogs</h2>
           <img src={arrowRight} alt="arrowRight" />
-          <h3 className={styles.titleName}>{blog.name}</h3>
+          <h3 className={style.titleName}>{blog.name}</h3>
         </div>
         <div className={styles.backBlogs}>
           <img src={arrowLeft} alt="arrowLeft" />

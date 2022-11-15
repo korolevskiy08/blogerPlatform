@@ -38,6 +38,7 @@ export const Posts: FC = () => {
               <li key={el.id}>
                 <Post
                   key={el.id}
+                  id={el.id}
                   blogName={el.blogName}
                   content={el.content}
                   createdAt={el.createdAt}

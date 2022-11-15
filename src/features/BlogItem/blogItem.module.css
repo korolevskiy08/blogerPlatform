@@ -1,35 +1,15 @@
 .blogBlock {
     background: #faf7f8;
     flex-grow: 1;
-
 }
 
 .containerBlog {
     padding-left: 25px;
 }
 
-.titleBlock{
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #DEDBDC;
-}
 
-.titleBlog {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-}
 
-.titleName {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0.02em;
-}
+
 
 .backBlogs {
     display: flex;
