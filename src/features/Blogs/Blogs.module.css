@@ -5,17 +5,11 @@
 }
 
 .buttonShowMore {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 36px;
     width: 153px;
     height: 36px;
     border: 1px solid #1A1718;
     border-radius: 2px;
     font-family: 'Inter';
-    font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;

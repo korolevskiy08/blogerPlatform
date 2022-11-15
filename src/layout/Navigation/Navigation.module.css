@@ -20,7 +20,7 @@ a {
     text-decoration: none;
 }
 
-li {
+.navBlock li {
     padding-bottom: 10px ;
 }
 
@@ -32,8 +32,8 @@ li img {
     color: #F8346B;
 }
 
-li:hover {
-    border-right: 1px solid #F8346B;
+.navBlock li:hover {
+    border-right: 2px solid #F8346B;
 }
 
 .activeLink {
