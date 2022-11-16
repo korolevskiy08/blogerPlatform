@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
@@ -8,6 +8,7 @@ import arrowLeft from '../../common/icons/arrow-left.svg';
 import arrowRight from '../../common/icons/arrow_right.svg';
 import avatar from '../../common/images/images.jpg';
 import imgPost from '../../common/images/pexels-photo-268533.webp';
+import { Path } from '../../common/Routes';
 import style from '../../layout/global.module.css';
 
 import { getPost } from './postItem-actions';
@@ -17,19 +18,27 @@ export const PostItem: FC = () => {
   const { postId } = useParams();
   const dispatch = useAppDispatch();
   const post = useAppSelector(state => state.post.post);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (postId) dispatch(getPost(postId));
   }, []);
 
+  const navigatePosts = (event: React.MouseEvent<HTMLElement>): void => {
+    event.stopPropagation();
+    navigate(Path.Posts);
+  };
+
   return (
     <div className={styles.postBlock}>
       <div className={style.titleBlock}>
-        <h3 className={style.titleBlog}>Post</h3>
+        <h3 className={style.titleBlog} role="presentation" onClick={navigatePosts}>
+          Posts
+        </h3>
         <img src={arrowRight} alt="arrow right" />
         <p className={style.titleName}>{post.blogName}</p>
       </div>
-      <div className={styles.backPostsBlock}>
+      <div className={styles.backPostsBlock} role="presentation" onClick={navigatePosts}>
         <img src={arrowLeft} alt="arrow left" />
         <p>Back to posts</p>
       </div>

@@ -1,6 +1,7 @@
 .postBlock {
     width: 300px;
     height: 268px;
+    cursor: pointer;
 }
 
 .imgPost {

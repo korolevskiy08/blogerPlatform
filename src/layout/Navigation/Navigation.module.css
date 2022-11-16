@@ -9,7 +9,6 @@
     font-size: 14px;
     line-height: 24px;
     color: black;
-
 }
 
 ul {
@@ -44,6 +43,8 @@ li img {
     line-height: 24px;
     color: #F8346B;
 
-
 }
 
+.activeList {
+    border-right: 2px solid #F8346B;
+}

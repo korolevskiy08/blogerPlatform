@@ -5,13 +5,14 @@ import postsSvg from '../../common/icons/Posts.svg';
 import { Path } from '../../common/Routes';
 
 import style from './Navigation.module.css';
+import styles from './Navigation.module.css';
 import { NavigationLink } from './NavLink/NavLink';
 
 export const Navigation: FC = () => {
   return (
     <div className={style.navBlock}>
       <ul>
-        <li>
+        <li className={styles.activeList}>
           <NavigationLink
             img={blogsSvg}
             path={Path.Blogs}
