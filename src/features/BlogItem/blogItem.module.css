@@ -7,13 +7,9 @@
     padding-left: 25px;
 }
 
-
-
-
-
 .backBlogs {
     display: flex;
-
+    cursor: pointer;
 }
 
 .backBlogsText {
@@ -27,8 +23,8 @@
 }
 
 .titleImage {
-    width: 100%;
-    height: 250px;
+    flex-grow: 1;
+    height: 312px;
     background: white;
     display: flex;
     flex-direction: column;
@@ -37,8 +33,8 @@
 }
 
 .titleImage img {
-    width: 70px;
-    height: 60px;
+    width: 100%;
+    height: 100%;
 }
 
 .showButton {
