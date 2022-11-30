@@ -9,7 +9,7 @@ import style from '../../layout/global.module.css';
 import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 import Select from '../Blogs/Settings/Select/Select';
 
-import { Post } from './Post/Post';
+import { PostItem } from './PostItem/PostItem';
 import { getPosts } from './posts-actions';
 import styles from './posts.module.css';
 
@@ -36,7 +36,7 @@ export const Posts: FC = () => {
           {posts.posts.map(el => {
             return (
               <li key={el.id}>
-                <Post
+                <PostItem
                   key={el.id}
                   id={el.id}
                   blogName={el.blogName}

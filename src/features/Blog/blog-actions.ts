@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { blogAPI } from './blogItem-api';
+import { blogAPI } from './blog-api';
 
 export const getBlog = createAsyncThunk(
   'blogs/getBlog',

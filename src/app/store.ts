@@ -2,9 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { AnyAction, combineReducers } from 'redux';
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 
-import { blogSlice } from '../features/BlogItem/blogItem-slice';
+import { blogSlice } from '../features/Blog/blog-slice';
 import { blogsSlice } from '../features/Blogs/blogs-slice';
-import { postSlice } from '../features/PostItem/postItem-slice';
+import { postSlice } from '../features/Post/post-slice';
 import { postsSlice } from '../features/Posts/posts-slice';
 
 const rootReducer = combineReducers({

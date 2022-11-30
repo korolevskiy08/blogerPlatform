@@ -7,15 +7,15 @@ import { useAppSelector } from '../../common/hooks/useAppSelector';
 import arrowLeft from '../../common/icons/arrow-left.svg';
 import arrowRight from '../../common/icons/arrow_right.svg';
 import imageTitle from '../../common/images/blue-ocean-28668-2560x1600.jpg';
+import avatar from '../../common/images/Gull_portrait_ca_usa.jpg';
 import { Path } from '../../common/Routes';
 import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
-import Blog from '../Blogs/Blog/Blog';
 
-import { getBlog } from './blogItem-actions';
-import styles from './blogItem.module.css';
+import { getBlog } from './blog-actions';
+import styles from './blog.module.css';
 
-export const BlogItem: FC = () => {
+export const Blog: FC = () => {
   const { blogId } = useParams();
   const blog = useAppSelector(state => state.blog.blog);
   const dispatch = useAppDispatch();
@@ -34,9 +34,9 @@ export const BlogItem: FC = () => {
     <div className={styles.blogBlock}>
       <div className={styles.containerBlog}>
         <div className={style.titleBlock}>
-          <h2 className={style.titleBlog} role="presentation" onClick={navigateBlogs}>
+          <p className={style.titleBlog} role="presentation" onClick={navigateBlogs}>
             Blogs
-          </h2>
+          </p>
           <img src={arrowRight} alt="arrowRight" />
           <h3 className={style.titleName}>{blog.name}</h3>
         </div>
@@ -48,13 +48,19 @@ export const BlogItem: FC = () => {
       <div className={styles.titleImage}>
         <img src={imageTitle} alt="imageTitle" />
       </div>
+      <div className={styles.blogItemBlock}>
+        <div className={styles.avatarBlock}>
+          <img src={avatar} alt="avatar" />
+        </div>
+        <div>
+          <p>{blog.name}</p>
+          <span> creation date blog: </span>
+          <span>{blog.createdAt}</span>
+          <p>Website</p> {blog.websiteUrl}
+          <p>{blog.description}</p>
+        </div>
+      </div>
       <div className={style.container}>
-        <Blog
-          name={blog.name}
-          id={blog.id}
-          description={blog.youtubeUrl}
-          date={blog.createdAt}
-        />
         <div className={style.buttonBlock}>
           <Button title="Show more" onclick={() => {}} styleButton={styles.showButton} />
         </div>

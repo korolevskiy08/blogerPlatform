@@ -8,7 +8,7 @@ import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
-import Blog from './Blog/Blog';
+import BlogItem from './BlogItem/BlogItem';
 import { getBlogs } from './blogs-actions';
 import styles from './Blogs.module.css';
 import { Settings } from './Settings/Settings';
@@ -33,7 +33,12 @@ export const Blogs: FC = () => {
         <div>
           {blogs.blogs.map(el => {
             return (
-              <Blog name={el.name} key={el.id} id={el.id} description={el.youtubeUrl} />
+              <BlogItem
+                name={el.name}
+                key={el.id}
+                id={el.id}
+                description={el.description}
+              />
             );
           })}
           <div className={style.buttonBlock}>

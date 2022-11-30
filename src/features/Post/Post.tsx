@@ -11,10 +11,10 @@ import imgPost from '../../common/images/pexels-photo-268533.webp';
 import { Path } from '../../common/Routes';
 import style from '../../layout/global.module.css';
 
-import { getPost } from './postItem-actions';
-import styles from './postItem.module.css';
+import { getPost } from './post-actions';
+import styles from './post.module.css';
 
-export const PostItem: FC = () => {
+export const Post: FC = () => {
   const { postId } = useParams();
   const dispatch = useAppDispatch();
   const post = useAppSelector(state => state.post.post);

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import imageBlog from '../../../common/images/Gull_portrait_ca_usa.jpg';
 
-import styles from './Blog.module.css';
+import styles from './blogItem.module.css';
 
 type BlogType = {
   name: string;
@@ -13,7 +13,7 @@ type BlogType = {
   date?: string;
 };
 
-const Blog: FC<BlogType> = ({ name, id, description, date }) => {
+const BlogItem: FC<BlogType> = ({ name, id, description, date }) => {
   const navigate = useNavigate();
 
   const navigateBlogItem = (event: React.MouseEvent<HTMLElement>): void => {
@@ -47,4 +47,4 @@ const Blog: FC<BlogType> = ({ name, id, description, date }) => {
   );
 };
 
-export default Blog;
+export default BlogItem;
