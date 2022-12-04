@@ -5,7 +5,7 @@
 }
 
 .avatarBlogs {
-    min-width: 156px;
+    width: 156px;
     height: 156px;
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@
 }
 
 .descriptionBlock {
-    width: 90%;
+    width: 70vw;
     padding-left: 12px;
 }
 
