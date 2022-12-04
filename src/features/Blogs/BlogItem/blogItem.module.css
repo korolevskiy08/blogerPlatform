@@ -1,13 +1,12 @@
 .blogBlock {
-    width: 100%;
+    margin: 0 auto;
     padding: 24px 0 11px 0;
     border-bottom: 1px solid #DEDBDC;
 }
 
 .avatarBlogs {
-    width: 156px;
+    min-width: 156px;
     height: 156px;
-    background: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,33 +20,16 @@
 }
 
 .titleBlog {
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
     color: black;
     height: 25px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     cursor: pointer;
-}
-
-.descriptionText{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
 }
 
 .descriptionBlock {
     width: 90%;
     padding-left: 12px;
-}
-
-.youTubeBlock {
-    display: flex;
-    align-items: center;
 }
 
 .youTube {
@@ -61,3 +43,4 @@
 .showButton{
     text-align: center;
 }
+

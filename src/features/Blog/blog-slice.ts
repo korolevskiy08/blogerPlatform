@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { BlogType } from '../Blogs/blog-api';
+import { BlogType } from '../Blogs/blogs-api';
 
 import { getBlog } from './blog-actions';
 

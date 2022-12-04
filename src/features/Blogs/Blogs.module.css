@@ -1,6 +1,5 @@
 .blogsBlock{
     background: #faf7f8;
-    padding-left: 25px;
     flex-grow: 1;
 }
 
@@ -15,3 +14,15 @@
     line-height: 20px;
     cursor: pointer;
 }
+
+.container {
+    padding: 0 36px 0 25px;
+}
+
+.addBlogBlock {
+    text-align: end;
+}
+
+
+
+

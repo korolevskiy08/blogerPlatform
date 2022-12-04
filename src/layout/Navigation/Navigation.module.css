@@ -3,12 +3,8 @@
 }
 
 .link{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
     color: black;
+    padding-left: 10px;
 }
 
 ul {
@@ -23,28 +19,25 @@ a {
     padding-bottom: 10px ;
 }
 
-li img {
-    padding-right: 10px;
+.nav li:active {
+    color: red;
+}
+.navSvg * {
+    fill: #1A1718;
 }
 
-.link:hover {
+.activeList:hover * {
+    fill: #F8346B;
     color: #F8346B;
 }
+
+/*.activeLink * {*/
+/*    fill: #F8346B;*/
+/*    color: #F8346B;*/
+/*}*/
 
 .navBlock li:hover {
     border-right: 2px solid #F8346B;
 }
 
-.activeLink {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    color: #F8346B;
 
-}
-
-.activeList {
-    border-right: 2px solid #F8346B;
-}

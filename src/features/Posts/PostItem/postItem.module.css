@@ -1,7 +1,7 @@
 .postBlock {
     width: 300px;
-    height: 268px;
     cursor: pointer;
+    padding-bottom: 15px;
 }
 
 .imgPost {
@@ -16,7 +16,7 @@
 }
 
 .avatarBlock {
-    width: 48px;
+    min-width: 48px;
     height: 48px;
     padding-right: 12px;
 }
@@ -29,6 +29,7 @@
 
 .descriptionBlock {
     display: flex;
+    width: 300px;
 }
 
 /*post*/

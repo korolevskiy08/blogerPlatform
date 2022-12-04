@@ -27,6 +27,7 @@
     background: none;
 }
 
-.postsBlock ul li {
-    padding-bottom: 30px;
+.addPostButton {
+    text-align: right;
+    padding-right: 55px;
 }

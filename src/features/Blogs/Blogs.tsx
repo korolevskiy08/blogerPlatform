@@ -10,8 +10,7 @@ import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
 import BlogItem from './BlogItem/BlogItem';
 import { getBlogs } from './blogs-actions';
-import styles from './Blogs.module.css';
-import { Settings } from './Settings/Settings';
+import styles from './blogs.module.css';
 
 export const Blogs: FC = () => {
   const dispatch = useAppDispatch();
@@ -23,33 +22,36 @@ export const Blogs: FC = () => {
 
   return (
     <div className={styles.blogsBlock}>
-      <TitleComponent title="Blogs" />
-      <Settings />
-      {blogs.status === 'loading' ? (
-        <div className={style.loader}>
-          <CircularProgress color="inherit" />
-        </div>
-      ) : (
-        <div>
-          {blogs.blogs.map(el => {
-            return (
-              <BlogItem
-                name={el.name}
-                key={el.id}
-                id={el.id}
-                description={el.description}
-              />
-            );
-          })}
-          <div className={style.buttonBlock}>
-            <Button
-              title="Show more"
-              onclick={() => {}}
-              styleButton={styles.buttonShowMore}
-            />
+      <div className={styles.container}>
+        <TitleComponent title="Blogs" />
+        {blogs.status === 'loading' ? (
+          <div className={style.loader}>
+            <CircularProgress color="inherit" />
           </div>
-        </div>
-      )}
+        ) : (
+          <div>
+            {blogs.blogs.map(el => {
+              return (
+                <BlogItem
+                  createdAt={el.createdAt}
+                  name={el.name}
+                  key={el.id}
+                  id={el.id}
+                  websiteUrl={el.websiteUrl}
+                  description={el.description}
+                />
+              );
+            })}
+            <div className={style.buttonBlock}>
+              <Button
+                title="Show more"
+                onclick={() => {}}
+                styleButton={styles.buttonShowMore}
+              />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

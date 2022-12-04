@@ -7,10 +7,17 @@
     box-shadow: 0px 5px 20px rgba(29, 33, 38, 0.03), 0px 1px 2px rgba(29, 33, 38, 0.1);
 }
 
-.title{
+.content {
+    display: flex;
+    align-items: baseline;
+}
+
+.title {
     margin: 0;
     font-size: 26px;
     font-weight: 600;
     line-height: 36px;
     color: #1A1718;
+    padding-right: 10px;
 }
+

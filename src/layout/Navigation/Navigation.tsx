@@ -1,36 +1,29 @@
 import React, { FC } from 'react';
 
-import blogsSvg from '../../common/icons/Blogs.svg';
-import postsSvg from '../../common/icons/Posts.svg';
-import { Path } from '../../common/Routes';
+import { NavLink } from 'react-router-dom';
 
-import style from './Navigation.module.css';
+import { ReactComponent as Blog } from '../../common/icons/Blogs.svg';
+import { ReactComponent as Post } from '../../common/icons/Posts.svg';
+import { Path } from '../../common/Routes';
+import style from '../global.module.css';
+
 import styles from './Navigation.module.css';
-import { NavigationLink } from './NavLink/NavLink';
 
 export const Navigation: FC = () => {
   return (
-    <div className={style.navBlock}>
-      <ul>
-        <li className={styles.activeList}>
-          <NavigationLink
-            img={blogsSvg}
-            path={Path.Blogs}
-            alt="blogs"
-            text="Blogs"
-            notActive={style.link}
-            activeLink={style.activeLink}
-          />
+    <div className={styles.navBlock}>
+      <ul className={styles.nav}>
+        <li className={`${styles.activeList} ${styles.activeLink}`}>
+          <NavLink to={Path.Blogs}>
+            <Blog className={styles.navSvg} />
+            <span className={`${style.titleName} ${styles.link}`}>Blogs</span>
+          </NavLink>
         </li>
-        <li>
-          <NavigationLink
-            img={postsSvg}
-            path={Path.Posts}
-            alt="posts"
-            text="Posts"
-            notActive={style.linkBlock}
-            activeLink={style.activeLink}
-          />
+        <li className={`${styles.activeList} ${styles.activeLink}`}>
+          <NavLink to={Path.Posts}>
+            <Post />
+            <span className={`${style.titleName} ${styles.link}`}>Posts</span>
+          </NavLink>
         </li>
       </ul>
     </div>

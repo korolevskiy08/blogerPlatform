@@ -41,3 +41,17 @@
     align-items: center;
     border-bottom: 1px solid #DEDBDC;
 }
+
+.button {
+    width: 118px;
+    height: 36px;
+    background: #F8346B;
+    border-radius: 2px;
+    border: none;
+    color: #faf7f8;
+    cursor: pointer;
+}
+
+.button:hover {
+    box-shadow: 0px 4px 18px rgba(248, 52, 107, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+}

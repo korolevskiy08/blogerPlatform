@@ -1,24 +1,43 @@
-.search {
-    width: 672px;
-    height: 36px;
-    border-color: #DEDBDC;
-    padding-left: 40px;
+.settingsBlock {
+    width: 4px;
+    height: 16px;
+    position: relative;
 }
 
-.searchImg {
+.settingsBlock img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.settings {
+    width: 149px;
+    height: 84px;
     position: absolute;
-    padding: 10px;
+    top: 100%;
+    right:  0;
+    background: white;
 }
 
-.settingBlock {
+.settings img{
+    width: 14px;
+    height: 18px;
+    padding-right: 17px;
+}
+
+.settings a {
+    color: black;
+}
+
+.settings li {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
 }
 
-.select {
-    width: 256px;
-    height: 36px;
-    border-color: #DEDBDC;
+.addPost {
+    width: 300px;
+    height: 300px;
+    background: #faf7f8;
 }
-
 

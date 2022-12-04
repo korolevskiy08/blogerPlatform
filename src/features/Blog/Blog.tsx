@@ -34,7 +34,7 @@ export const Blog: FC = () => {
     <div className={styles.blogBlock}>
       <div className={styles.containerBlog}>
         <div className={style.titleBlock}>
-          <p className={style.titleBlog} role="presentation" onClick={navigateBlogs}>
+          <p className={style.titleName} role="presentation" onClick={navigateBlogs}>
             Blogs
           </p>
           <img src={arrowRight} alt="arrowRight" />
@@ -42,25 +42,30 @@ export const Blog: FC = () => {
         </div>
         <div className={styles.backBlogs} role="presentation" onClick={navigateBlogs}>
           <img src={arrowLeft} alt="arrowLeft" />
-          <p className={styles.backBlogsText}>Back to blogs</p>
+          <p className={`titleName ${styles.backBlogsText}`}>Back to blogs</p>
         </div>
-      </div>
-      <div className={styles.titleImage}>
-        <img src={imageTitle} alt="imageTitle" />
-      </div>
-      <div className={styles.blogItemBlock}>
-        <div className={styles.avatarBlock}>
-          <img src={avatar} alt="avatar" />
+        <div className={styles.titleImage}>
+          <img src={imageTitle} alt="imageTitle" />
         </div>
-        <div>
-          <p>{blog.name}</p>
-          <span> creation date blog: </span>
-          <span>{blog.createdAt}</span>
-          <p>Website</p> {blog.websiteUrl}
-          <p>{blog.description}</p>
+        <div className={styles.blog}>
+          <div className={styles.avatarBlock}>
+            <img src={avatar} alt="avatar" />
+          </div>
+          <div>
+            <h3>{blog.name}</h3>
+            <div className={styles.dateBlock}>
+              <span className={`titleName ${styles.creationDataText}`}>
+                creation date blog:
+              </span>
+              <span className={`titleName ${styles.creationData}`}>{blog.createdAt}</span>
+            </div>
+            <span className={`titleName ${styles.websiteText}`}>website: </span>
+            <span className="titleName">
+              <a href={blog.websiteUrl}>{blog.websiteUrl}</a>
+            </span>
+            <p className="titleName">{blog.description}</p>
+          </div>
         </div>
-      </div>
-      <div className={style.container}>
         <div className={style.buttonBlock}>
           <Button title="Show more" onclick={() => {}} styleButton={styles.showButton} />
         </div>

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-import { blogsAPI } from './blog-api';
+import { blogsAPI } from './blogs-api';
 
 export const getBlogs = createAsyncThunk(
   'blogs/getBlogs',
@@ -10,7 +11,20 @@ export const getBlogs = createAsyncThunk(
 
       return res;
     } catch (e) {
-      return rejectWithValue(null);
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
+
+export const deleteBlog = createAsyncThunk(
+  'blogs/deleteBlog',
+  async (id: string, { rejectWithValue }) => {
+    await blogsAPI.removeBlog(id);
+
+    try {
+      return { id };
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }
   },
 );

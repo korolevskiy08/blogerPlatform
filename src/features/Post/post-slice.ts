@@ -13,18 +13,31 @@ const slice = createSlice({
   },
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getPost.pending, state => {
-      state.status = 'loading';
-      state.error = null;
-    });
     builder.addCase(getPost.fulfilled, (state, action) => {
       state.status = 'succeeded';
       state.post = action.payload.data;
     });
-    builder.addCase(getPost.rejected, state => {
-      state.status = 'failed';
-      state.error = null;
-    });
+    builder.addMatcher(
+      action => action.type.endsWith('pending'),
+      state => {
+        state.status = 'loading';
+        state.error = null;
+      },
+    );
+    builder.addMatcher(
+      action => action.type.endsWith('fulfilled'),
+      state => {
+        state.status = 'succeeded';
+        state.error = null;
+      },
+    );
+    builder.addMatcher(
+      action => action.type.endsWith('rejected'),
+      (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      },
+    );
   },
 });
 

@@ -32,9 +32,9 @@ export const Post: FC = () => {
   return (
     <div className={styles.postBlock}>
       <div className={style.titleBlock}>
-        <h3 className={style.titleBlog} role="presentation" onClick={navigatePosts}>
+        <p className={style.titleBlog} role="presentation" onClick={navigatePosts}>
           Posts
-        </h3>
+        </p>
         <img src={arrowRight} alt="arrow right" />
         <p className={style.titleName}>{post.blogName}</p>
       </div>
@@ -44,12 +44,12 @@ export const Post: FC = () => {
       </div>
       <div className={styles.avatarBlock}>
         <img src={avatar} alt="avatar" />
-        <h3 className={`${style.titleName} ${styles.blogName}`}>{post.blogName}</h3>
+        <p className={`${style.titleName} ${styles.blogName}`}>{post.blogName}</p>
       </div>
-      <h3 className={`${style.titleName} ${styles.postName}`}>{post.blogName}</h3>
-      <h5 className={`${style.titleName} ${styles.postDate}`}>
+      <p className={`titleName ${styles.postName}`}>{post.blogName}</p>
+      <p className={`${style.titleName} ${styles.postDate}`}>
         {/* {`${post.createdAt.slice(0, 10)}`} */}
-      </h5>
+      </p>
       <div className={styles.postImg}>
         <img src={imgPost} alt="post img" />
       </div>

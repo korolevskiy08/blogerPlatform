@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { BlogType } from './blog-api';
-import { getBlogs } from './blogs-actions';
+import { deleteBlog, getBlogs } from './blogs-actions';
+import { BlogType } from './blogs-api';
 
 const slice = createSlice({
   name: 'blogs',
@@ -12,19 +12,39 @@ const slice = createSlice({
   },
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getBlogs.pending, state => {
-      state.status = 'loading';
-      state.error = null;
-    });
     builder.addCase(getBlogs.fulfilled, (state, action) => {
-      state.status = 'succeeded';
-      state.error = null;
-      state.blogs = action.payload.data.items;
+      state.blogs = action.payload!.data.items;
     });
-    builder.addCase(getBlogs.rejected, state => {
-      state.status = 'failed';
-      state.error = null;
+    builder.addCase(deleteBlog.fulfilled, (state, action) => {
+      return {
+        ...state,
+        status: 'succeeded',
+        error: null,
+
+        blogs: state.blogs.filter(bl => bl.id !== action.payload!.id),
+      };
     });
+    builder.addMatcher(
+      action => action.type.endsWith('pending'),
+      state => {
+        state.status = 'loading';
+        state.error = null;
+      },
+    );
+    builder.addMatcher(
+      action => action.type.endsWith('fulfilled'),
+      state => {
+        state.status = 'succeeded';
+        state.error = null;
+      },
+    );
+    builder.addMatcher(
+      action => action.type.endsWith('rejected'),
+      (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      },
+    );
   },
 });
 
