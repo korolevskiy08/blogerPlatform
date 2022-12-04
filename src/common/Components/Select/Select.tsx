@@ -26,7 +26,7 @@ export const Select: FC<SelectType> = ({ options, onChange, value }) => {
         role="presentation"
         onClick={() => setOpen(!open)}
       >
-        <span className={`${style.titleName} ${styles.value}`}>{value?.name}</span>
+        <span className={`${style.textGlobal} ${styles.value}`}>{value?.name}</span>
         {open ? (
           <ArrowTop className={styles.arrow} />
         ) : (

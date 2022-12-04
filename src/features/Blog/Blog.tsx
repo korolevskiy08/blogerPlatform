@@ -34,15 +34,15 @@ export const Blog: FC = () => {
     <div className={styles.blogBlock}>
       <div className={styles.containerBlog}>
         <div className={style.titleBlock}>
-          <p className={style.titleName} role="presentation" onClick={navigateBlogs}>
+          <p className={style.textGlobal} role="presentation" onClick={navigateBlogs}>
             Blogs
           </p>
           <img src={arrowRight} alt="arrowRight" />
-          <h3 className={style.titleName}>{blog.name}</h3>
+          <h3 className={style.textGlobal}>{blog.name}</h3>
         </div>
         <div className={styles.backBlogs} role="presentation" onClick={navigateBlogs}>
           <img src={arrowLeft} alt="arrowLeft" />
-          <p className={`titleName ${styles.backBlogsText}`}>Back to blogs</p>
+          <p className={`textGlobal ${styles.backBlogsText}`}>Back to blogs</p>
         </div>
         <div className={styles.titleImage}>
           <img src={imageTitle} alt="imageTitle" />
@@ -54,16 +54,18 @@ export const Blog: FC = () => {
           <div>
             <h3>{blog.name}</h3>
             <div className={styles.dateBlock}>
-              <span className={`titleName ${styles.creationDataText}`}>
+              <span className={`textGlobal ${styles.creationDataText}`}>
                 creation date blog:
               </span>
-              <span className={`titleName ${styles.creationData}`}>{blog.createdAt}</span>
+              <span className={`textGlobal ${styles.creationData}`}>
+                {blog.createdAt}
+              </span>
             </div>
-            <span className={`titleName ${styles.websiteText}`}>website: </span>
-            <span className="titleName">
+            <span className={`textGlobal ${styles.websiteText}`}>website: </span>
+            <span className="textGlobal">
               <a href={blog.websiteUrl}>{blog.websiteUrl}</a>
             </span>
-            <p className="titleName">{blog.description}</p>
+            <p className="textGlobal">{blog.description}</p>
           </div>
         </div>
         <div className={style.buttonBlock}>

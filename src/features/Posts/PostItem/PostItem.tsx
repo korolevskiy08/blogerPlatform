@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import avatar from '../../../common/images/images.jpg';
 import imagePost from '../../../common/images/pexels-photo-268533.webp';
+import style from '../../../layout/global.module.css';
 
 import styles from './postItem.module.css';
 
@@ -37,9 +38,9 @@ export const PostItem: FC<PostType> = ({ name, content, createdAt, id }) => {
             role="presentation"
             onClick={navigatePostItem}
           >
-            <h3 className={styles.titlePost}>{name}</h3>
-            <p className={styles.descriptionText}>{content}</p>
-            <p className={styles.date}>{createdAt}</p>
+            <h3 className={`${style.textGlobal} ${styles.titlePost}`}>{name}</h3>
+            <p className={`${style.textGlobal} ${styles.descriptionText}`}>{content}</p>
+            <p className={`${style.textGlobal} ${styles.date}`}>{createdAt}</p>
           </div>
         </div>
       </div>

@@ -33,7 +33,6 @@ export const Blogs: FC = () => {
             {blogs.blogs.map(el => {
               return (
                 <BlogItem
-                  createdAt={el.createdAt}
                   name={el.name}
                   key={el.id}
                   id={el.id}
