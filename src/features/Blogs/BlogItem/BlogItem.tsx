@@ -1,13 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { DeleteModal } from '../../../common/Components/Modals/DeleteModal/DeleteModal';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import imageBlog from '../../../common/images/Gull_portrait_ca_usa.jpg';
-import { Path } from '../../../common/Routes';
-import { deleteBlog } from '../blogs-actions';
-import { Settings } from '../Settings/Settings';
 
 import styles from './blogItem.module.css';
 
@@ -20,28 +15,11 @@ type BlogType = {
 };
 
 const BlogItem: FC<BlogType> = ({ name, id, websiteUrl, createdAt, description }) => {
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const navigateBlogItem = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
     navigate(`/Blog/${id}`);
-  };
-
-  const deleteItemHandler = (): void => {
-    dispatch(deleteBlog(id));
-  };
-
-  const navigateEditBlog = (): void => {
-    navigate(Path.EditBlog, {
-      state: {
-        id,
-        name,
-        websiteUrl,
-        description,
-      },
-    });
   };
 
   return (
@@ -66,18 +44,7 @@ const BlogItem: FC<BlogType> = ({ name, id, websiteUrl, createdAt, description }
           </p>
           <p className="titleName">{description}</p>
         </div>
-        <Settings
-          navigateEditMode={navigateEditBlog}
-          openDeleteModal={() => setOpenDeleteModal(true)}
-        />
       </div>
-      <DeleteModal
-        isOpen={openDeleteModal}
-        onClose={() => setOpenDeleteModal(false)}
-        deleteItem={deleteItemHandler}
-        textModals="Are you sure you want to delete this blog?"
-        title="Delete a blog"
-      />
     </div>
   );
 };

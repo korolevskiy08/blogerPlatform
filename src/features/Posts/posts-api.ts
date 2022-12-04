@@ -4,30 +4,6 @@ export const postsAPI = {
   getPosts() {
     return instance.get<PostType>('posts');
   },
-  removePost(id: string) {
-    return instance.delete(`posts/${id}`);
-  },
-  addPost(data: AddPostType) {
-    return instance.post<AddPostResponseType>('posts', data);
-  },
-  editPost({ data, id }: EditPostType) {
-    return instance.put(`posts/${id}`, data);
-  },
-};
-
-export type EditPostType = {
-  data: AddPostType;
-  id: string;
-};
-
-export type AddPostResponseType = {
-  id: string;
-  title: string;
-  shortDescription: string;
-  content: string;
-  blogId: string;
-  blogName: string;
-  createdAt: string;
 };
 
 export type ItemPostType = {
