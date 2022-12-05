@@ -1,18 +1,27 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { CircularProgress } from '@mui/material';
 
+import { Button } from '../../common/Components/Button/Button';
+import { OptionType, Select } from '../../common/Components/Select/Select';
+import { TitleComponent } from '../../common/Components/TitleComponent/TitleComponent';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
-import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
-import { TitleComponent } from '../../layout/TitleComponent/TitleComponent';
 
 import { PostItem } from './PostItem/PostItem';
 import { getPosts } from './posts-actions';
 import styles from './posts.module.css';
 
 export const Posts: FC = () => {
+  const option: OptionType[] = [
+    { id: 1, value: 'New blogs first' },
+    { id: 2, value: 'Old blog first' },
+  ];
+
+  const [value, setValue] = useState(option[0]);
+  const [openSelect, setOpenSelect] = useState(false);
+
   const dispatch = useAppDispatch();
   const posts = useAppSelector(state => state.posts);
 
@@ -23,7 +32,15 @@ export const Posts: FC = () => {
   return (
     <div className={styles.postsBlock}>
       <TitleComponent title="Posts" />
-      <div className={styles.selectBlock} />
+      <div className={styles.selectBlock}>
+        <Select
+          setOpenSelect={() => setOpenSelect(!openSelect)}
+          setValue={setValue}
+          value={value}
+          openSelect={openSelect}
+          option={option}
+        />
+      </div>
       {posts.status === 'loading' ? (
         <div className={style.loader}>
           <CircularProgress color="inherit" />

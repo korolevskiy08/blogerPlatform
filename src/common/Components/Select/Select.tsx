@@ -1,52 +1,51 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
-import { BlogType } from '../../../features/Blogs/blogs-api';
 import style from '../../../layout/global.module.css';
 import { ReactComponent as ArrowBottom } from '../../icons/arrowBottom.svg';
 import { ReactComponent as ArrowTop } from '../../icons/arrowTop.svg';
 
 import styles from './select.module.css';
 
-type SelectType = {
-  options: BlogType[];
-  value?: BlogType;
-  onChange: (value: any) => void;
+export type OptionType = {
+  id: number;
+  value: string;
 };
 
-export const Select: FC<SelectType> = ({ options, onChange, value }) => {
-  const [open, setOpen] = useState(false);
-  const selectOption = (option: BlogType): void => {
-    onChange(option);
-  };
+type SelectType = {
+  setOpenSelect: () => void;
+  setValue: (value: OptionType) => void;
+  value: OptionType;
+  openSelect: boolean;
+  option: OptionType[];
+};
 
+export const Select: FC<SelectType> = ({
+  setOpenSelect,
+  setValue,
+  value,
+  openSelect,
+  option,
+}) => {
   return (
     <div className={styles.container}>
-      <div
-        className={styles.initValue}
-        role="presentation"
-        onClick={() => setOpen(!open)}
-      >
-        <span className={`${style.textGlobal} ${styles.value}`}>{value?.name}</span>
-        {open ? (
-          <ArrowTop className={styles.arrow} />
-        ) : (
-          <ArrowBottom className={styles.arrow} />
-        )}
+      <div role="presentation" onClick={() => setOpenSelect()} className={styles.value}>
+        <span className={style.textGlobal}>{value.value}</span>
+        {openSelect ? <ArrowTop /> : <ArrowBottom />}
       </div>
-      {open && (
-        <ul className={styles.option}>
-          {options.map(option => (
+      {openSelect && (
+        <ul className={styles.optionList}>
+          {option.map(option => (
             <li
-              role="presentation"
               key={option.id}
-              className={styles.option}
+              role="presentation"
               onClick={e => {
                 e.stopPropagation();
-                selectOption(option);
-                setOpen(false);
+                setValue(option);
+                setOpenSelect();
               }}
+              className={`${style.textGlobal} ${styles.option}`}
             >
-              {option.name}
+              {option.value}
             </li>
           ))}
         </ul>

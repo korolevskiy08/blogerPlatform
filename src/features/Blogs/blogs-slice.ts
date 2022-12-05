@@ -9,6 +9,11 @@ const slice = createSlice({
     status: 'idle' as Status,
     blogs: [] as BlogType[],
     error: null as null | string,
+    searchNameTerm: '',
+    pageNumber: 0,
+    pageSize: 0,
+    sortBy: '',
+    sortDirection: '',
   },
   reducers: {},
   extraReducers: builder => {

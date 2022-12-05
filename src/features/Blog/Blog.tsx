@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { Button } from '../../common/Components/Button/Button';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import arrowLeft from '../../common/icons/arrow-left.svg';
@@ -9,7 +10,6 @@ import arrowRight from '../../common/icons/arrow_right.svg';
 import imageTitle from '../../common/images/blue-ocean-28668-2560x1600.jpg';
 import avatar from '../../common/images/Gull_portrait_ca_usa.jpg';
 import { Path } from '../../common/Routes';
-import { Button } from '../../layout/Button/Button';
 import style from '../../layout/global.module.css';
 
 import { getBlog } from './blog-actions';

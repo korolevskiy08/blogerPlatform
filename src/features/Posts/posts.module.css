@@ -5,11 +5,15 @@
 }
 
 .selectBlock {
-    text-align: right;
-    padding-right: 55px;
+    /*display: flex;*/
+    /*justify-content: flex-end;*/
+    /*padding-right: 55px;*/
+    position: absolute;
+    right: 55px;
 }
 
 .postContainer {
+    padding-top: 83px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }

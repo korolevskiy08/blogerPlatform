@@ -40,7 +40,9 @@
     padding-top: 10px;
 }
 
-.filterBlock {
-    display: flex;
-    justify-content: space-between;
+.selectBlock {
+    position: absolute;
+    right: 55px;
+    top: 140px;
 }
+

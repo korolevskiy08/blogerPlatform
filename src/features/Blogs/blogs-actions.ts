@@ -19,9 +19,9 @@ export const getBlogs = createAsyncThunk(
 export const deleteBlog = createAsyncThunk(
   'blogs/deleteBlog',
   async (id: string, { rejectWithValue }) => {
-    await blogsAPI.removeBlog(id);
-
     try {
+      await blogsAPI.removeBlog(id);
+
       return { id };
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
