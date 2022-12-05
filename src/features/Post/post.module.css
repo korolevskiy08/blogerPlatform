@@ -10,6 +10,12 @@
     cursor: pointer;
 }
 
+.title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+}
+
 .backPostsBlock img {
     padding-right: 13px;
 }

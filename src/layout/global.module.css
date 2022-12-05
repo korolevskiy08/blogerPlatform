@@ -18,15 +18,6 @@
     padding-bottom: 15px;
 }
 
-.titleBlog {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    cursor: pointer;
-}
-
 .textGlobal {
     font-family: 'Inter';
     font-style: normal;

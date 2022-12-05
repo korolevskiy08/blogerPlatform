@@ -32,7 +32,11 @@ export const Post: FC = () => {
   return (
     <div className={styles.postBlock}>
       <div className={style.titleBlock}>
-        <p className={style.titleBlog} role="presentation" onClick={navigatePosts}>
+        <p
+          className={`${style.textGlobal} ${styles.title}`}
+          role="presentation"
+          onClick={navigatePosts}
+        >
           Posts
         </p>
         <img src={arrowRight} alt="arrow right" />
