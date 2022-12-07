@@ -9,6 +9,7 @@ import styles from './select.module.css';
 export type OptionType = {
   id: number;
   value: string;
+  filterItems: Function;
 };
 
 type SelectType = {
@@ -42,6 +43,7 @@ export const Select: FC<SelectType> = ({
                 e.stopPropagation();
                 setValue(option);
                 setOpenSelect();
+                option.filterItems();
               }}
               className={`${style.textGlobal} ${styles.option}`}
             >

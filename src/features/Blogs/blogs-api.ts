@@ -9,6 +9,14 @@ export const blogsAPI = {
   },
 };
 
+// type BlogsParamType = {
+//   searchNameTerm?: string;
+//   pageNumber?: number;
+//   pageSize?: number;
+//   sortBy?: string;
+//   sortDirection?: string;
+// };
+
 export type BlogType = {
   createdAt: string;
   id: string;

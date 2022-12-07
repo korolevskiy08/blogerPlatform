@@ -15,18 +15,34 @@ import { getBlogs } from './blogs-actions';
 import styles from './blogs.module.css';
 
 export const Blogs: FC = () => {
+  const dispatch = useAppDispatch();
+  const blogs = useAppSelector(state => state.blogs);
+
+  const filterBlogsFirst = (): void => {
+    console.log('New blogs first');
+  };
+
+  const filterBlogsOld = (): void => {
+    console.log('Old blog first');
+  };
+
+  const filterAlphabetOrder = (): void => {
+    console.log('From A to Z');
+  };
+
+  const filterReverseAlphabetOrder = (): void => {
+    console.log('From Z to A');
+  };
+
   const option: OptionType[] = [
-    { id: 1, value: 'New blogs first' },
-    { id: 2, value: 'Old blog first' },
-    { id: 3, value: 'From A to Z' },
-    { id: 4, value: 'From Z to A' },
+    { id: 1, value: 'New blogs first', filterItems: filterBlogsFirst },
+    { id: 2, value: 'Old blog first', filterItems: filterBlogsOld },
+    { id: 3, value: 'From A to Z', filterItems: filterAlphabetOrder },
+    { id: 4, value: 'From Z to A', filterItems: filterReverseAlphabetOrder },
   ];
 
   const [value, setValue] = useState(option[0]);
   const [openSelect, setOpenSelect] = useState(false);
-
-  const dispatch = useAppDispatch();
-  const blogs = useAppSelector(state => state.blogs);
 
   useEffect(() => {
     dispatch(getBlogs());

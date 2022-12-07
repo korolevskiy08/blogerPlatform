@@ -14,9 +14,17 @@ import { getPosts } from './posts-actions';
 import styles from './posts.module.css';
 
 export const Posts: FC = () => {
+  const filterAlphabetOrder = (): void => {
+    console.log('From A to Z');
+  };
+
+  const filterReverseAlphabetOrder = (): void => {
+    console.log('From Z to A');
+  };
+
   const option: OptionType[] = [
-    { id: 1, value: 'New blogs first' },
-    { id: 2, value: 'Old blog first' },
+    { id: 1, value: 'New blogs first', filterItems: filterAlphabetOrder },
+    { id: 2, value: 'Old blog first', filterItems: filterReverseAlphabetOrder },
   ];
 
   const [value, setValue] = useState(option[0]);
