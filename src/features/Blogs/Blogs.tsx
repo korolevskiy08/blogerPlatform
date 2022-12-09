@@ -24,11 +24,13 @@ export const Blogs: FC = () => {
   const debounceText = useDebounce(searchText, delay);
 
   const filterBlogsFirst = (): void => {
-    console.log('New blogs first');
+    dispatch(setFilter({ sortDirection: 'desc', sortBy: 'createdAt' }));
+    dispatch(getBlogs());
   };
 
   const filterBlogsOld = (): void => {
-    console.log('Old blog first');
+    dispatch(setFilter({ sortDirection: 'asc', sortBy: 'createdAt' }));
+    dispatch(getBlogs());
   };
 
   const filterAlphabetOrder = (): void => {
