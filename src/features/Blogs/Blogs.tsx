@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { CircularProgress } from '@mui/material';
 
@@ -7,6 +7,7 @@ import { OptionType, Select } from '../../common/Components/Select/Select';
 import { TitleComponent } from '../../common/Components/TitleComponent/TitleComponent';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
+import { useDebounce } from '../../common/hooks/useDebounce';
 import { ReactComponent as SearchSvg } from '../../common/icons/Search.svg';
 import style from '../../layout/global.module.css';
 
@@ -17,7 +18,11 @@ import styles from './blogs.module.css';
 export const Blogs: FC = () => {
   const dispatch = useAppDispatch();
   const blogs = useAppSelector(state => state.blogs);
+  const [searchText, setSearchText] = useState(blogs.searchNameTerm);
+  const delay = 500;
+  const debounceText = useDebounce(searchText, delay);
 
+  console.log(debounceText);
   const filterBlogsFirst = (): void => {
     console.log('New blogs first');
   };
@@ -44,9 +49,17 @@ export const Blogs: FC = () => {
   const [value, setValue] = useState(option[0]);
   const [openSelect, setOpenSelect] = useState(false);
 
+  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    setSearchText(e.currentTarget.value);
+  };
+
   useEffect(() => {
-    dispatch(getBlogs());
-  }, []);
+    setSearchText(blogs.searchNameTerm);
+  }, [blogs.searchNameTerm]);
+
+  useEffect(() => {
+    dispatch(getBlogs({ searchNameTerm: debounceText }));
+  }, [debounceText]);
 
   return (
     <div className={styles.blogsBlock}>
@@ -54,6 +67,8 @@ export const Blogs: FC = () => {
         <TitleComponent title="Blogs" />
         <SearchSvg className={styles.searchSvg} />
         <input
+          value={searchText}
+          onChange={inputChangeHandler}
           placeholder="Search"
           type="text"
           className={`${style.textGlobal} ${styles.inputSearch}`}

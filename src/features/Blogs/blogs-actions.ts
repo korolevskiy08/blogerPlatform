@@ -5,13 +5,11 @@ import { blogsAPI } from './blogs-api';
 
 export const getBlogs = createAsyncThunk(
   'blogs/getBlogs',
-  async (_, { rejectWithValue }) => {
-    // const {
-    //   blogs: { searchNameTerm },
-    // } = getState() as AppRootStateType;
-
+  async (params: { searchNameTerm: string }, { rejectWithValue }) => {
     try {
-      const res = await blogsAPI.getBlogs();
+      const res = await blogsAPI.getBlogs(params);
+
+      console.log(res.data);
 
       return res;
     } catch (e) {
