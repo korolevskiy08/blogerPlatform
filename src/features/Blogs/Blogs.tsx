@@ -22,7 +22,6 @@ export const Blogs: FC = () => {
   const delay = 500;
   const debounceText = useDebounce(searchText, delay);
 
-  console.log(debounceText);
   const filterBlogsFirst = (): void => {
     console.log('New blogs first');
   };
@@ -32,11 +31,11 @@ export const Blogs: FC = () => {
   };
 
   const filterAlphabetOrder = (): void => {
-    console.log('From A to Z');
+    dispatch(getBlogs({ sortDirection: 'desc' }));
   };
 
   const filterReverseAlphabetOrder = (): void => {
-    console.log('From Z to A');
+    dispatch(getBlogs({ sortDirection: 'asc' }));
   };
 
   const option: OptionType[] = [

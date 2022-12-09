@@ -5,11 +5,12 @@ import { blogsAPI } from './blogs-api';
 
 export const getBlogs = createAsyncThunk(
   'blogs/getBlogs',
-  async (params: { searchNameTerm: string }, { rejectWithValue }) => {
+  async (
+    params: { searchNameTerm?: string; sortDirection?: string },
+    { rejectWithValue },
+  ) => {
     try {
       const res = await blogsAPI.getBlogs(params);
-
-      console.log(res.data);
 
       return res;
     } catch (e) {
