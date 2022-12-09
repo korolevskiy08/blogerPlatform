@@ -19,10 +19,10 @@ const slice = createSlice({
   },
 
   reducers: {
-    setFilter(
+    setFilterBlogs(
       state,
       action: PayloadAction<{
-        searchNameTerm?: '';
+        searchNameTerm?: string;
         pageNumber?: number;
         pageSize?: number;
         sortBy?: string;
@@ -77,6 +77,6 @@ const slice = createSlice({
 
 export const blogsSlice = slice.reducer;
 
-export const { setFilter } = slice.actions;
+export const { setFilterBlogs } = slice.actions;
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';

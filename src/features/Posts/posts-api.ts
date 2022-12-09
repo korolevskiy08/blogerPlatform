@@ -1,9 +1,16 @@
 import { instance } from '../../common/api-instance/instance';
 
 export const postsAPI = {
-  getPosts() {
-    return instance.get<PostType>('posts');
+  getPosts(params: PostsParamType) {
+    return instance.get<PostType>('posts', { params });
   },
+};
+
+type PostsParamType = {
+  pageNumber?: number;
+  pageSize?: number;
+  sortBy?: string;
+  sortDirection?: string;
 };
 
 export type ItemPostType = {
@@ -22,11 +29,4 @@ export type PostType = {
   pageSize: number;
   pagesCount: number;
   totalCount: number;
-};
-
-export type AddPostType = {
-  title: string;
-  shortDescription: string;
-  content: string;
-  blogId: string;
 };

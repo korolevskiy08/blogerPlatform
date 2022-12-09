@@ -11,15 +11,21 @@ import style from '../../layout/global.module.css';
 
 import { PostItem } from './PostItem/PostItem';
 import { getPosts } from './posts-actions';
+import { setFilterPosts } from './posts-slice';
 import styles from './posts.module.css';
 
 export const Posts: FC = () => {
+  const dispatch = useAppDispatch();
+  const posts = useAppSelector(state => state.posts);
+
   const filterAlphabetOrder = (): void => {
-    console.log('From A to Z');
+    dispatch(setFilterPosts({ sortDirection: 'asc' }));
+    dispatch(getPosts());
   };
 
   const filterReverseAlphabetOrder = (): void => {
-    console.log('From Z to A');
+    dispatch(setFilterPosts({ sortDirection: 'desc' }));
+    dispatch(getPosts());
   };
 
   const option: OptionType[] = [
@@ -29,9 +35,6 @@ export const Posts: FC = () => {
 
   const [value, setValue] = useState(option[0]);
   const [openSelect, setOpenSelect] = useState(false);
-
-  const dispatch = useAppDispatch();
-  const posts = useAppSelector(state => state.posts);
 
   useEffect(() => {
     dispatch(getPosts());

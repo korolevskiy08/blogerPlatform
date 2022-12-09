@@ -13,7 +13,7 @@ import style from '../../layout/global.module.css';
 
 import BlogItem from './BlogItem/BlogItem';
 import { getBlogs } from './blogs-actions';
-import { setFilter } from './blogs-slice';
+import { setFilterBlogs } from './blogs-slice';
 import styles from './blogs.module.css';
 
 export const Blogs: FC = () => {
@@ -24,22 +24,22 @@ export const Blogs: FC = () => {
   const debounceText = useDebounce(searchText, delay);
 
   const filterBlogsFirst = (): void => {
-    dispatch(setFilter({ sortDirection: 'desc', sortBy: 'createdAt' }));
+    dispatch(setFilterBlogs({ sortDirection: 'desc', sortBy: 'createdAt' }));
     dispatch(getBlogs());
   };
 
   const filterBlogsOld = (): void => {
-    dispatch(setFilter({ sortDirection: 'asc', sortBy: 'createdAt' }));
+    dispatch(setFilterBlogs({ sortDirection: 'asc', sortBy: 'createdAt' }));
     dispatch(getBlogs());
   };
 
   const filterAlphabetOrder = (): void => {
-    dispatch(setFilter({ sortDirection: 'asc' }));
+    dispatch(setFilterBlogs({ sortDirection: 'asc' }));
     dispatch(getBlogs());
   };
 
   const filterReverseAlphabetOrder = (): void => {
-    dispatch(setFilter({ sortDirection: 'desc' }));
+    dispatch(setFilterBlogs({ sortDirection: 'desc' }));
     dispatch(getBlogs());
   };
 
@@ -62,6 +62,7 @@ export const Blogs: FC = () => {
   }, [blogs.params.searchNameTerm]);
 
   useEffect(() => {
+    dispatch(setFilterBlogs({ searchNameTerm: debounceText }));
     dispatch(getBlogs());
   }, [debounceText]);
 
