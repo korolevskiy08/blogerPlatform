@@ -13,12 +13,13 @@ import style from '../../layout/global.module.css';
 
 import BlogItem from './BlogItem/BlogItem';
 import { getBlogs } from './blogs-actions';
+import { setFilter } from './blogs-slice';
 import styles from './blogs.module.css';
 
 export const Blogs: FC = () => {
   const dispatch = useAppDispatch();
   const blogs = useAppSelector(state => state.blogs);
-  const [searchText, setSearchText] = useState(blogs.searchNameTerm);
+  const [searchText, setSearchText] = useState(blogs.params.searchNameTerm);
   const delay = 500;
   const debounceText = useDebounce(searchText, delay);
 
@@ -31,11 +32,12 @@ export const Blogs: FC = () => {
   };
 
   const filterAlphabetOrder = (): void => {
-    dispatch(getBlogs({ sortDirection: 'desc' }));
+    dispatch(setFilter({ sortDirection: 'asc' }));
+    dispatch(getBlogs());
   };
 
   const filterReverseAlphabetOrder = (): void => {
-    dispatch(getBlogs({ sortDirection: 'asc' }));
+    dispatch(getBlogs());
   };
 
   const option: OptionType[] = [
@@ -53,11 +55,11 @@ export const Blogs: FC = () => {
   };
 
   useEffect(() => {
-    setSearchText(blogs.searchNameTerm);
-  }, [blogs.searchNameTerm]);
+    setSearchText(blogs.params.searchNameTerm);
+  }, [blogs.params.searchNameTerm]);
 
   useEffect(() => {
-    dispatch(getBlogs({ searchNameTerm: debounceText }));
+    dispatch(getBlogs());
   }, [debounceText]);
 
   return (

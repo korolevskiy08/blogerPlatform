@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { deleteBlog, getBlogs } from './blogs-actions';
 import { BlogType } from './blogs-api';
@@ -9,13 +9,35 @@ const slice = createSlice({
     status: 'idle' as Status,
     blogs: [] as BlogType[],
     error: null as null | string,
-    searchNameTerm: '',
-    pageNumber: 0,
-    pageSize: 0,
-    sortBy: '',
-    sortDirection: '',
+    params: {
+      searchNameTerm: '',
+      pageNumber: 1,
+      pageSize: 10,
+      sortBy: 'name',
+      sortDirection: 'desc',
+    },
   },
-  reducers: {},
+
+  reducers: {
+    setFilter(
+      state,
+      action: PayloadAction<{
+        searchNameTerm?: '';
+        pageNumber?: number;
+        pageSize?: number;
+        sortBy?: string;
+        sortDirection?: string;
+      }>,
+    ) {
+      state.params.searchNameTerm =
+        action.payload.searchNameTerm || state.params.searchNameTerm;
+      state.params.pageNumber = action.payload.pageNumber || state.params.pageNumber;
+      state.params.pageSize = action.payload.pageSize || state.params.pageSize;
+      state.params.sortBy = action.payload.sortBy || state.params.sortBy;
+      state.params.sortDirection =
+        action.payload.sortDirection || state.params.sortDirection;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(getBlogs.fulfilled, (state, action) => {
       state.blogs = action.payload!.data.items;
@@ -54,5 +76,7 @@ const slice = createSlice({
 });
 
 export const blogsSlice = slice.reducer;
+
+export const { setFilter } = slice.actions;
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';
