@@ -37,6 +37,7 @@ export const Blogs: FC = () => {
   };
 
   const filterReverseAlphabetOrder = (): void => {
+    dispatch(setFilter({ sortDirection: 'desc' }));
     dispatch(getBlogs());
   };
 
