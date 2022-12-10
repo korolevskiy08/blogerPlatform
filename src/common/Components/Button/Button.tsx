@@ -1,19 +1,24 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 type ButtonType = {
-  title: string;
   onclick: () => void;
   styleButton?: any;
+  children: ReactNode;
 };
 
-export const Button: FC<ButtonType> = ({ onclick, title, styleButton, ...restProps }) => {
+export const Button: FC<ButtonType> = ({
+  onclick,
+  children,
+  styleButton,
+  ...restProps
+}) => {
   const onclickHandler = (): void => {
     onclick();
   };
 
   return (
     <button type="button" onClick={onclickHandler} className={styleButton} {...restProps}>
-      {title}
+      {children}
     </button>
   );
 };

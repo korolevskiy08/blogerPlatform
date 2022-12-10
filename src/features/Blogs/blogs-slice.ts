@@ -13,8 +13,8 @@ const slice = createSlice({
       searchNameTerm: '',
       pageNumber: 1,
       pageSize: 10,
-      sortBy: 'name',
-      sortDirection: 'desc',
+      sortBy: 'createdAt' as SortByType,
+      sortDirection: 'desc' as SortDirectionType,
     },
   },
 
@@ -25,8 +25,8 @@ const slice = createSlice({
         searchNameTerm?: string;
         pageNumber?: number;
         pageSize?: number;
-        sortBy?: string;
-        sortDirection?: string;
+        sortBy?: SortByType;
+        sortDirection?: SortDirectionType;
       }>,
     ) {
       state.params.searchNameTerm =
@@ -80,3 +80,5 @@ export const blogsSlice = slice.reducer;
 export const { setFilterBlogs } = slice.actions;
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';
+export type SortByType = 'name' | 'createdAt';
+export type SortDirectionType = 'asc' | 'desc';

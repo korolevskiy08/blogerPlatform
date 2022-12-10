@@ -69,7 +69,9 @@ export const Blog: FC = () => {
           </div>
         </div>
         <div className={style.buttonBlock}>
-          <Button title="Show more" onclick={() => {}} styleButton={styles.showButton} />
+          <Button onclick={() => {}} styleButton={styles.showButton}>
+            Show more
+          </Button>
         </div>
       </div>
     </div>

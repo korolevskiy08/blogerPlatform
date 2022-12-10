@@ -74,11 +74,9 @@ export const Posts: FC = () => {
         </ul>
       )}
       <div className={style.buttonBlock}>
-        <Button
-          title="Show more"
-          onclick={() => {}}
-          styleButton={styles.buttonShowMore}
-        />
+        <Button onclick={() => {}} styleButton={styles.buttonShowMore}>
+          Show More
+        </Button>
       </div>
     </div>
   );
