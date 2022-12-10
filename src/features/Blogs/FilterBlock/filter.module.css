@@ -1,0 +1,23 @@
+.searchSvg {
+    position: relative;
+    left: 30px;
+    z-index: 1;
+    padding-top: 10px;
+}
+
+.inputSearch {
+    width: 672px;
+    height: 36px;
+    border: 1px solid #DEDBDC;
+    border-radius: 2px;
+    background: #FAF7F8;
+    position: absolute;
+    padding-left: 48px;
+}
+
+.selectBlock {
+    position: absolute;
+    right: 55px;
+    top: 140px;
+}
+
