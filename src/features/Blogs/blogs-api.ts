@@ -9,7 +9,7 @@ export const blogsAPI = {
   },
 };
 
-type BlogsParamType = {
+export type BlogsParamType = {
   searchNameTerm?: string;
   pageNumber?: number;
   pageSize?: number;

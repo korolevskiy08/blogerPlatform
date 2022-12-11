@@ -2,7 +2,6 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { OptionType, Select } from '../../../common/Components/Select/Select';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { useDebounce } from '../../../common/hooks/useDebounce';
 import { ReactComponent as SearchSvg } from '../../../common/icons/Search.svg';
 import style from '../../../layout/global.module.css';
@@ -11,9 +10,12 @@ import { setFilterBlogs } from '../blogs-slice';
 
 import styles from './filter.module.css';
 
-export const FilterBlock: FC = () => {
-  const blogs = useAppSelector(state => state.blogs);
-  const [searchText, setSearchText] = useState(blogs.params.searchNameTerm);
+type FilterBlockType = {
+  searchNameTerm: string;
+};
+
+export const FilterBlock: FC<FilterBlockType> = ({ searchNameTerm }) => {
+  const [searchText, setSearchText] = useState(searchNameTerm);
   const delay = 500;
   const debounceText = useDebounce(searchText, delay);
   const dispatch = useAppDispatch();
@@ -53,8 +55,8 @@ export const FilterBlock: FC = () => {
   const [openSelect, setOpenSelect] = useState(false);
 
   useEffect(() => {
-    setSearchText(blogs.params.searchNameTerm);
-  }, [blogs.params.searchNameTerm]);
+    setSearchText(searchNameTerm);
+  }, [searchNameTerm]);
 
   useEffect(() => {
     dispatch(setFilterBlogs({ searchNameTerm: debounceText }));
