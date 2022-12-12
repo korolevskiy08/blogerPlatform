@@ -32,7 +32,6 @@ export const Blogs: FC = () => {
           setCurrentBlogs([...currentBlogs, ...res.payload.data.items]);
           setCurrentPage(prevState => prevState + 1);
           setTotalCount(res.payload.data.totalCount);
-          console.log(res);
         })
         .finally(() => {
           setFetching(false);

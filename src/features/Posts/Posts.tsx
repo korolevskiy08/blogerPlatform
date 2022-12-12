@@ -89,7 +89,7 @@ export const Posts: FC = () => {
         />
       </div>
       <ul className={styles.postContainer}>
-        {posts.posts.map(el => {
+        {currentPosts.map(el => {
           return (
             <li key={el.id}>
               <PostItem

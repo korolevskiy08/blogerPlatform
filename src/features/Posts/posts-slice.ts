@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { SortByType, SortDirectionType } from '../Blogs/blogs-slice';
+
 import { getPosts } from './posts-actions';
 import { ItemPostType } from './posts-api';
 
@@ -12,8 +14,8 @@ const slice = createSlice({
     params: {
       pageNumber: 1,
       pageSize: 10,
-      sortBy: 'name',
-      sortDirection: 'desc',
+      sortBy: 'createdAt' as SortByType,
+      sortDirection: 'desc' as SortDirectionType,
     },
   },
   reducers: {
@@ -22,8 +24,8 @@ const slice = createSlice({
       action: PayloadAction<{
         pageNumber?: number;
         pageSize?: number;
-        sortBy?: string;
-        sortDirection?: string;
+        sortBy?: SortByType;
+        sortDirection?: SortDirectionType;
       }>,
     ) {
       state.params.pageNumber = action.payload.pageNumber || state.params.pageNumber;
