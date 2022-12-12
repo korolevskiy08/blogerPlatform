@@ -5,7 +5,6 @@ import { CircularProgress } from '@mui/material';
 import { TitleComponent } from '../../common/Components/TitleComponent/TitleComponent';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
-import { ReactComponent as ArrowBottom } from '../../common/icons/arrowBottom.svg';
 import style from '../../layout/global.module.css';
 
 import BlogItem from './BlogItem/BlogItem';
@@ -33,6 +32,7 @@ export const Blogs: FC = () => {
           setCurrentBlogs([...currentBlogs, ...res.payload.data.items]);
           setCurrentPage(prevState => prevState + 1);
           setTotalCount(res.payload.data.totalCount);
+          console.log(res);
         })
         .finally(() => {
           setFetching(false);
@@ -82,12 +82,6 @@ export const Blogs: FC = () => {
             <CircularProgress color="inherit" />
           </div>
         )}
-        <div className={style.buttonBlock}>
-          <div className={styles.buttonShowMore}>
-            Show more
-            <ArrowBottom className={styles.arrowBottom} />
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ export const getPosts = createAsyncThunk(
     try {
       const res = await postsAPI.getPosts(params.posts.params);
 
-      return { posts: res.data.items };
+      return res;
     } catch (e) {
       return rejectWithValue(null);
     }

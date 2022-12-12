@@ -37,7 +37,7 @@ const slice = createSlice({
     builder.addCase(getPosts.fulfilled, (state, action) => {
       state.status = 'succeeded';
       state.error = null;
-      state.posts = action.payload.posts;
+      state.posts = action.payload!.data.items;
     });
     builder.addMatcher(
       action => action.type.endsWith('pending'),
