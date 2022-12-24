@@ -7,6 +7,7 @@ import { Blog } from '../../features/Blog/Blog';
 import { Blogs } from '../../features/Blogs/Blogs';
 import { Post } from '../../features/Post/Post';
 import { Posts } from '../../features/Posts/Posts';
+import { SignIn } from '../../features/SignIn/SignIn';
 
 export const AppRoutes: FC = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRoutes: FC = () => {
       <Route path={Path.Blog} element={<Blog />} />
       <Route path={Path.Posts} element={<Posts />} />
       <Route path={Path.Post} element={<Post />} />
+      <Route path={Path.SignIn} element={<SignIn />} />
     </Routes>
   );
 };

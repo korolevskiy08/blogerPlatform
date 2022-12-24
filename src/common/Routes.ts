@@ -3,6 +3,5 @@ export enum Path {
   Posts = '/Posts',
   Blog = '/Blog/:blogId',
   Post = '/Post/:postId',
-  NewBlog = '/NewBlog',
-  EditBlog = '/EditBlog',
+  SignIn = '/SignIn',
 }
