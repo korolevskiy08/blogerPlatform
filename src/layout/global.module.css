@@ -46,3 +46,7 @@
 .button:hover {
     box-shadow: 0px 4px 18px rgba(248, 52, 107, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
+
+.main {
+    display: flex;
+}

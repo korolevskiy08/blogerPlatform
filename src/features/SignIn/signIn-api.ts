@@ -4,6 +4,6 @@ import { SignInType } from './signInType';
 
 export const signInApi = {
   login(params: SignInType) {
-    return instance.post('auth/login', { params });
+    return instance.post('auth/login', params);
   },
 };

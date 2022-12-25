@@ -1,14 +1,20 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 import '../App.css';
+import styles from '../layout/global.module.css';
 import { Header } from '../layout/Header/Header';
-import { Main } from '../layout/Main/Main';
+import { Navigation } from '../layout/Navigation/Navigation';
+
+import { AppRoutes } from './AppRoutes/AppRoutes';
 
 const App: FC = () => {
   return (
     <div>
       <Header />
-      <Main />
+      <div className={styles.main}>
+        <Navigation />
+        <AppRoutes />
+      </div>
     </div>
   );
 };
