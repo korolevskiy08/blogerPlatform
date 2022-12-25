@@ -1,6 +1,11 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
-type ButtonType = {
+type DefaultButtonPropsType = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
+
+type ButtonType = DefaultButtonPropsType & {
   onclick: () => void;
   styleButton?: any;
   children: ReactNode;
@@ -17,7 +22,8 @@ export const Button: FC<ButtonType> = ({
   };
 
   return (
-    <button type="button" onClick={onclickHandler} className={styleButton} {...restProps}>
+    // eslint-disable-next-line react/button-has-type
+    <button onClick={onclickHandler} className={styleButton} {...restProps}>
       {children}
     </button>
   );
