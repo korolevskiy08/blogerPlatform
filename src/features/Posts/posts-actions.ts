@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { AppRootStateType } from '../../app/store';
+import { AppRootStateType } from '../../app/AppRoutes/store';
 
 import { postsAPI } from './posts-api';
 

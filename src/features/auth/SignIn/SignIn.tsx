@@ -1,26 +1,28 @@
 import React, { FC } from 'react';
 
 import { useFormik } from 'formik';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-import { Button } from '../../common/Components/Button/Button';
-import { validateSignIn } from '../../common/function/validateSignIn';
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
-import rafiki from '../../common/images/rafiki.png';
-import style from '../../layout/global.module.css';
+import { Button } from '../../../common/Components/Button/Button';
+import { validateSignIn } from '../../../common/function/validateSignIn';
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import rafiki from '../../../common/images/rafiki.png';
+import { Path } from '../../../common/Routes';
+import style from '../../../layout/global.module.css';
+import { signIn } from '../auth-actions';
+import { AuthType } from '../authType';
 
-import { signIn } from './signIn-actions';
 import styles from './signIn.module.css';
-import { SignInType } from './signInType';
 
 export const SignIn: FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
       loginOrEmail: '',
       password: '',
-    } as SignInType,
+    } as AuthType,
     validate: values => validateSignIn(values),
     onSubmit: values => {
       dispatch(
@@ -28,7 +30,9 @@ export const SignIn: FC = () => {
           loginOrEmail: values.loginOrEmail,
           password: values.password,
         }),
-      );
+      ).then(() => {
+        navigate(Path.Blogs);
+      });
     },
   });
 

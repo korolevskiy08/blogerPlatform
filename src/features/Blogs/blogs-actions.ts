@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { AppRootStateType } from '../../app/store';
+import { AppRootStateType } from '../../app/AppRoutes/store';
 
 import { blogsAPI } from './blogs-api';
 

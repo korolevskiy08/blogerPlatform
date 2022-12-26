@@ -1,4 +1,4 @@
-import { SignInFormType } from '../../features/SignIn/signInType';
+import { SignInFormType } from '../../features/auth/authType';
 
 export const validateSignIn = (values: any): SignInFormType => {
   const emailLength = 2;

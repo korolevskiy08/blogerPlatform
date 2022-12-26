@@ -3,11 +3,11 @@ import React, { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Path } from '../../common/Routes';
+import { SignIn } from '../../features/auth/SignIn/SignIn';
 import { Blog } from '../../features/Blog/Blog';
 import { Blogs } from '../../features/Blogs/Blogs';
 import { Post } from '../../features/Post/Post';
 import { Posts } from '../../features/Posts/Posts';
-import { SignIn } from '../../features/SignIn/SignIn';
 
 export const AppRoutes: FC = () => {
   return (
