@@ -37,9 +37,9 @@ export const SignIn: FC = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <div className={styles.container}>
-        <div className={styles.signIn}>
+    <div className={`${style.container} ${styles.container}`}>
+      <div className={styles.signIn}>
+        <form onSubmit={formik.handleSubmit}>
           <h2 className={`${style.textGlobal} ${styles.title}`}>Sign In</h2>
           <p className={`${style.textGlobal} ${styles.text}`}>Email or Username</p>
           <input
@@ -78,11 +78,11 @@ export const SignIn: FC = () => {
               Sign In
             </NavLink>
           </p>
-        </div>
-        <div className={styles.rafiki}>
-          <img src={rafiki} alt="rafiki" />
-        </div>
+        </form>
       </div>
-    </form>
+      <div className={styles.rafiki}>
+        <img src={rafiki} alt="rafiki" />
+      </div>
+    </div>
   );
 };
