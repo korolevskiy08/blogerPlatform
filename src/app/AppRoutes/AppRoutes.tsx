@@ -12,12 +12,12 @@ import { Posts } from '../../features/Posts/Posts';
 export const AppRoutes: FC = () => {
   return (
     <Routes>
-      {/* <Route path="/" element={<Blogs />} /> */}
+      <Route path="/" element={<Blogs />} />
       <Route path={Path.Blogs} element={<Blogs />} />
       <Route path={Path.Blog} element={<Blog />} />
       <Route path={Path.Posts} element={<Posts />} />
       <Route path={Path.Post} element={<Post />} />
-      <Route path="/" element={<SignIn />} />
+      <Route path={Path.SignIn} element={<SignIn />} />
     </Routes>
   );
 };

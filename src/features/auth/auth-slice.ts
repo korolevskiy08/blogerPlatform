@@ -2,9 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Status } from '../Post/post-slice';
 
+import { UserType } from './authType';
+
 const slice = createSlice({
   name: 'signIn',
   initialState: {
+    user: {} as UserType,
     isLoggedIn: false,
     status: 'idle' as Status,
     error: null as null | string,

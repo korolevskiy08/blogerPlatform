@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { Wrapper } from '../../common/Components/Wrapper/Wrapper';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import arrowLeft from '../../common/icons/arrow-left.svg';
@@ -30,38 +31,44 @@ export const Post: FC = () => {
   };
 
   return (
-    <div className={styles.postBlock}>
-      <div className={style.titleBlock}>
-        <p
-          className={`${style.textGlobal} ${styles.title}`}
+    <Wrapper>
+      <div className={styles.postBlock}>
+        <div className={style.titleBlock}>
+          <p
+            className={`${style.textGlobal} ${styles.title}`}
+            role="presentation"
+            onClick={navigatePosts}
+          >
+            Posts
+          </p>
+          <img src={arrowRight} alt="arrow right" />
+          <p className={style.textGlobal}>{post.title}</p>
+        </div>
+        <div
+          className={styles.backPostsBlock}
           role="presentation"
           onClick={navigatePosts}
         >
-          Posts
+          <img src={arrowLeft} alt="arrow left" />
+          <p>Back to posts</p>
+        </div>
+        <div className={styles.avatarBlock}>
+          <img src={avatar} alt="avatar" />
+          <p className={`${style.textGlobal} ${styles.blogName}`}>{post.title}</p>
+        </div>
+        <p className={`textGlobal ${styles.postName}`}>{post.title}</p>
+        <p className={`${style.textGlobal} ${styles.postDate}`}>
+          {/* {`${post.createdAt.slice(0, 10)}`} */}
         </p>
-        <img src={arrowRight} alt="arrow right" />
-        <p className={style.textGlobal}>{post.title}</p>
+        <div className={styles.postImg}>
+          <img src={imgPost} alt="post img" />
+        </div>
+        <p className={`${style.textGlobal} ${styles.textPost}`}>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi deleniti
+          id, modi natus perspiciatis quam saepe voluptas. Aperiam, assumenda, eum?
+          Debitis ducimus minus molestias omnis quidem sint ullam veritatis!
+        </p>
       </div>
-      <div className={styles.backPostsBlock} role="presentation" onClick={navigatePosts}>
-        <img src={arrowLeft} alt="arrow left" />
-        <p>Back to posts</p>
-      </div>
-      <div className={styles.avatarBlock}>
-        <img src={avatar} alt="avatar" />
-        <p className={`${style.textGlobal} ${styles.blogName}`}>{post.title}</p>
-      </div>
-      <p className={`textGlobal ${styles.postName}`}>{post.title}</p>
-      <p className={`${style.textGlobal} ${styles.postDate}`}>
-        {/* {`${post.createdAt.slice(0, 10)}`} */}
-      </p>
-      <div className={styles.postImg}>
-        <img src={imgPost} alt="post img" />
-      </div>
-      <p className={`${style.textGlobal} ${styles.textPost}`}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi deleniti
-        id, modi natus perspiciatis quam saepe voluptas. Aperiam, assumenda, eum? Debitis
-        ducimus minus molestias omnis quidem sint ullam veritatis!
-      </p>
-    </div>
+    </Wrapper>
   );
 };

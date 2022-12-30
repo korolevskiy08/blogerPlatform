@@ -1,0 +1,8 @@
+.content {
+    display: flex;
+}
+
+.children {
+    width: 100%;
+    background: #faf7f8;
+}

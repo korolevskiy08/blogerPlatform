@@ -1,13 +1,18 @@
 .postsBlock{
     background: #faf7f8;
-    padding-left: 25px;
-    flex-grow: 1;
+    display: flex;
+    padding: 0 65px 0 24px;
+}
+
+.containerPosts {
+    width: 100%;
+}
+
+.content {
+    width: 100%;
 }
 
 .selectBlock {
-    /*display: flex;*/
-    /*justify-content: flex-end;*/
-    /*padding-right: 55px;*/
     position: absolute;
     right: 55px;
 }

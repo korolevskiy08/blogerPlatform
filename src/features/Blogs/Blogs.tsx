@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 
 import { TitleComponent } from '../../common/Components/TitleComponent/TitleComponent';
+import { Wrapper } from '../../common/Components/Wrapper/Wrapper';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import style from '../../layout/global.module.css';
@@ -59,29 +60,31 @@ export const Blogs: FC = () => {
   };
 
   return (
-    <div className={styles.blogsBlock}>
-      <div className={styles.container}>
-        <TitleComponent title="Blogs" />
-        <FilterBlock searchNameTerm={blogs.params.searchNameTerm} />
-      </div>
-      <div>
-        {currentBlogs.map(el => {
-          return (
-            <BlogItem
-              name={el.name}
-              key={el.id}
-              id={el.id}
-              websiteUrl={el.websiteUrl}
-              description={el.description}
-            />
-          );
-        })}
-        {blogs.status === 'loading' && (
-          <div className={style.loader}>
-            <CircularProgress color="inherit" />
+    <Wrapper>
+      <div className={styles.blogsBlock}>
+        <div className={styles.container}>
+          <TitleComponent title="Blogs" />
+          <FilterBlock searchNameTerm={blogs.params.searchNameTerm} />
+          <div>
+            {currentBlogs.map(el => {
+              return (
+                <BlogItem
+                  name={el.name}
+                  key={el.id}
+                  id={el.id}
+                  websiteUrl={el.websiteUrl}
+                  description={el.description}
+                />
+              );
+            })}
+            {blogs.status === 'loading' && (
+              <div className={style.loader}>
+                <CircularProgress color="inherit" />
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
-    </div>
+    </Wrapper>
   );
 };

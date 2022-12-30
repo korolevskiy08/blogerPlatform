@@ -1,12 +1,10 @@
 .postBlock {
     background: #faf7f8;
-    flex-grow: 1;
-    padding-left: 24px;
+    padding: 0 65px 0 24px;
 }
 
 .backPostsBlock {
     display: flex;
-    padding-bottom: 36px;
     cursor: pointer;
 }
 

@@ -4,6 +4,7 @@ import { CircularProgress } from '@mui/material';
 
 import { OptionType, Select } from '../../common/Components/Select/Select';
 import { TitleComponent } from '../../common/Components/TitleComponent/TitleComponent';
+import { Wrapper } from '../../common/Components/Wrapper/Wrapper';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import style from '../../layout/global.module.css';
@@ -77,37 +78,41 @@ export const Posts: FC = () => {
   const [openSelect, setOpenSelect] = useState(false);
 
   return (
-    <div className={styles.postsBlock}>
-      <TitleComponent title="Posts" />
-      <div className={styles.selectBlock}>
-        <Select
-          setOpenSelect={() => setOpenSelect(!openSelect)}
-          setValue={setValue}
-          value={value}
-          openSelect={openSelect}
-          option={option}
-        />
-      </div>
-      <ul className={styles.postContainer}>
-        {currentPosts.map(el => {
-          return (
-            <li key={el.id}>
-              <PostItem
-                key={el.id}
-                id={el.id}
-                name={el.title}
-                content={el.content}
-                createdAt={el.createdAt}
-              />
-            </li>
-          );
-        })}
-      </ul>
-      {posts.status === 'loading' && (
-        <div className={style.loader}>
-          <CircularProgress color="inherit" />
+    <Wrapper>
+      <div className={styles.postsBlock}>
+        <div className={styles.containerPosts}>
+          <TitleComponent title="Posts" />
+          <div className={styles.selectBlock}>
+            <Select
+              setOpenSelect={() => setOpenSelect(!openSelect)}
+              setValue={setValue}
+              value={value}
+              openSelect={openSelect}
+              option={option}
+            />
+          </div>
+          <ul className={styles.postContainer}>
+            {currentPosts.map(el => {
+              return (
+                <li key={el.id}>
+                  <PostItem
+                    key={el.id}
+                    id={el.id}
+                    name={el.title}
+                    content={el.content}
+                    createdAt={el.createdAt}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+          {posts.status === 'loading' && (
+            <div className={style.loader}>
+              <CircularProgress color="inherit" />
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </Wrapper>
   );
 };
