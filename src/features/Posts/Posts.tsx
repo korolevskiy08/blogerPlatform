@@ -78,7 +78,7 @@ export const Posts: FC = () => {
   const [openSelect, setOpenSelect] = useState(false);
 
   return (
-    <Wrapper>
+    <Wrapper showNavigation>
       <div className={styles.postsBlock}>
         <div className={styles.containerPosts}>
           <TitleComponent title="Posts" />

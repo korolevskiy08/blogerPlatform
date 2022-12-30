@@ -1,23 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { Status } from '../Post/post-slice';
 
+import { userData } from './auth-actions';
 import { UserType } from './authType';
 
 const slice = createSlice({
   name: 'signIn',
   initialState: {
-    user: {} as UserType,
+    user: null as null | {} as UserType,
     isLoggedIn: false,
     status: 'idle' as Status,
     error: null as null | string,
   },
-  reducers: {
-    setIsLoggedIn(state, action: PayloadAction<{ isLoggedIn: boolean }>) {
-      state.isLoggedIn = action.payload.isLoggedIn;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
+    builder.addCase(userData.fulfilled, (state, action) => {
+      state.user = action.payload!.res.data;
+    });
     builder.addMatcher(
       action => action.type.endsWith('pending'),
       state => {
@@ -43,5 +43,3 @@ const slice = createSlice({
 });
 
 export const authSlice = slice.reducer;
-
-export const { setIsLoggedIn } = slice.actions;

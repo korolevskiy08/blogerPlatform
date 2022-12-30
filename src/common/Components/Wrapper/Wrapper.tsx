@@ -6,15 +6,16 @@ import { Navigation } from '../../../layout/Navigation/Navigation';
 import styles from './wrapper.module.css';
 
 type WrapperType = {
+  showNavigation: boolean;
   children: ReactNode;
 };
 
-export const Wrapper: FC<WrapperType> = ({ children }) => {
+export const Wrapper: FC<WrapperType> = ({ children, showNavigation }) => {
   return (
     <div>
       <Header />
       <div className={styles.content}>
-        <Navigation />
+        {showNavigation && <Navigation />}
         <div className={styles.children}>{children}</div>
       </div>
     </div>

@@ -60,7 +60,7 @@ export const Blogs: FC = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper showNavigation>
       <div className={styles.blogsBlock}>
         <div className={styles.container}>
           <TitleComponent title="Blogs" />

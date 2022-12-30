@@ -32,7 +32,7 @@ export const Blog: FC = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper showNavigation>
       <div className={styles.blogBlock}>
         <div className={styles.containerBlog}>
           <div className={style.titleBlock}>

@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { authApi } from './auth-api';
-import { setIsLoggedIn } from './auth-slice';
 import { AuthType } from './authType';
 
 export const signIn = createAsyncThunk(
@@ -11,7 +10,6 @@ export const signIn = createAsyncThunk(
     const res = await authApi.login(params);
 
     try {
-      dispatch(setIsLoggedIn({ isLoggedIn: true }));
       localStorage.setItem('accessToken', res.data.accessToken);
       dispatch(userData());
     } catch (e) {
@@ -23,11 +21,9 @@ export const signIn = createAsyncThunk(
 export const userData = createAsyncThunk(
   'auth/userData',
   async (_, { rejectWithValue }) => {
-    const res = authApi.getUserData();
+    const res = await authApi.getUserData();
 
     try {
-      console.log(res);
-
       return { res };
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);

@@ -31,7 +31,7 @@ export const Post: FC = () => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper showNavigation>
       <div className={styles.postBlock}>
         <div className={style.titleBlock}>
           <p
