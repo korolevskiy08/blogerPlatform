@@ -21,7 +21,7 @@ export const signIn = createAsyncThunk(
 export const userData = createAsyncThunk(
   'auth/userData',
   async (_, { rejectWithValue }) => {
-    const res = await authApi.getUserData();
+    const res = await authApi.me();
 
     try {
       return { res };

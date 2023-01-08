@@ -8,7 +8,7 @@ import { UserType } from './authType';
 const slice = createSlice({
   name: 'signIn',
   initialState: {
-    user: null as null | {} as UserType,
+    user: {} as UserType,
     isLoggedIn: false,
     status: 'idle' as Status,
     error: null as null | string,

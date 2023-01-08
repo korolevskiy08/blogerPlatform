@@ -29,7 +29,9 @@
 
 .descriptionBlock {
     display: flex;
-    width: 300px;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 20px;
 }
 
 /*post*/
