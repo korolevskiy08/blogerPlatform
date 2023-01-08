@@ -13,6 +13,7 @@ import { Path } from '../../common/Routes';
 import style from '../../layout/global.module.css';
 
 import { AddComments } from './Coments/AddComments/AddComments';
+import { Comments } from './Coments/Comments/Comments';
 import { getPost } from './post-actions';
 import styles from './post.module.css';
 
@@ -69,7 +70,9 @@ export const Post: FC = () => {
           id, modi natus perspiciatis quam saepe voluptas. Aperiam, assumenda, eum?
           Debitis ducimus minus molestias omnis quidem sint ullam veritatis!
         </p>
+        <p className={`${style.textGlobal} ${styles.commentTitle}`}>Comments</p>
         <AddComments />
+        <Comments />
       </div>
     </Wrapper>
   );

@@ -1,0 +1,42 @@
+.container {
+    width: 100%;
+    background: white;
+    padding: 12px;
+}
+
+.profileInfo {
+    display: flex;
+    align-items: center;
+}
+
+.avatarBlock {
+    width: 42px;
+    height: 38px;
+    padding-right: 12px;
+}
+
+.avatarBlock img {
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+}
+
+.nameProfile {
+    margin: 0;
+    font-weight: 600;
+    font-size: 18px;
+    padding-right: 16px;
+}
+
+.dateComment {
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #797476;
+}
+
+.textComment {
+    margin: 0;
+    padding: 14px 54px 17px 54px;
+}

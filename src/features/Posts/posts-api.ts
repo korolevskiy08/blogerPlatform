@@ -22,11 +22,3 @@ export type ItemPostType = {
   shortDescription: string;
   title: string;
 };
-
-export type PostType = {
-  items: ItemPostType[];
-  page: number;
-  pageSize: number;
-  pagesCount: number;
-  totalCount: number;
-};
