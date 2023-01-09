@@ -1,6 +1,6 @@
 import { instance } from '../../common/api-instance/instance';
 
-import { DataNewComment } from './postType';
+import { DataNewComment, UpdateCommentType } from './postType';
 
 export const postAPI = {
   getPost(id: string) {
@@ -26,5 +26,16 @@ export const postAPI = {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },
     });
+  },
+  updateComment({ commentId, content }: UpdateCommentType) {
+    return instance.put(
+      `comments/${commentId}`,
+      { content },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      },
+    );
   },
 };

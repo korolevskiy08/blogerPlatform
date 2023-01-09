@@ -13,8 +13,6 @@ import styles from './Header.module.css';
 export const Header: FC = () => {
   const userData = useAppSelector(state => state.auth.user);
 
-  console.log(userData);
-
   return (
     <header className={styles.header}>
       <p className={styles.title}>Blogger Platform</p>

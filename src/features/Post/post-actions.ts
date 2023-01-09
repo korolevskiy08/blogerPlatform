@@ -55,3 +55,18 @@ export const deleteComment = createAsyncThunk(
     }
   },
 );
+
+export const editComment = createAsyncThunk(
+  'post/editComment',
+  async (
+    param: { commentId: string; content: string; postId: string },
+    { rejectWithValue, dispatch },
+  ) => {
+    try {
+      await postAPI.updateComment({ commentId: param.commentId, content: param.content });
+      dispatch(getComments(param.postId));
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);

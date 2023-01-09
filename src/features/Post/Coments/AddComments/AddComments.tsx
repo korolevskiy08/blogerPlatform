@@ -16,7 +16,6 @@ type AddCommentsType = {
 
 export const AddComments: FC<AddCommentsType> = ({ setTextComment, textComment }) => {
   const { postId } = useParams();
-
   const dispatch = useAppDispatch();
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {

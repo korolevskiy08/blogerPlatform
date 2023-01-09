@@ -28,3 +28,8 @@ export type DataNewComment = {
   postId: string;
   content: string;
 };
+
+export type UpdateCommentType = {
+  commentId: string;
+  content: string;
+};
