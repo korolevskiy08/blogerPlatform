@@ -12,7 +12,7 @@ import BlogItem from './BlogItem/BlogItem';
 import { getBlogs } from './blogs-actions';
 import { BlogType } from './blogs-api';
 import { setFilterBlogs } from './blogs-slice';
-import styles from './blogs.module.css';
+import styles from './Blogs.module.css';
 import { FilterBlock } from './FilterBlock/FilterBlock';
 
 export const Blogs: FC = () => {
