@@ -14,17 +14,23 @@ import style from '../../layout/global.module.css';
 
 import { AddComments } from './Coments/AddComments/AddComments';
 import { Comments } from './Coments/Comments/Comments';
-import { getPost } from './post-actions';
+import { getComments, getPost } from './post-actions';
 import styles from './post.module.css';
 
 export const Post: FC = () => {
   const { postId } = useParams();
   const dispatch = useAppDispatch();
   const post = useAppSelector(state => state.post.post);
+  const comments = useAppSelector(state => state.post.comments);
   const navigate = useNavigate();
 
+  console.log(comments);
+
   useEffect(() => {
-    if (postId) dispatch(getPost(postId));
+    if (postId) {
+      dispatch(getPost(postId));
+      dispatch(getComments(postId));
+    }
   }, []);
 
   const navigatePosts = (event: React.MouseEvent<HTMLElement>): void => {
@@ -72,7 +78,18 @@ export const Post: FC = () => {
         </p>
         <p className={`${style.textGlobal} ${styles.commentTitle}`}>Comments</p>
         <AddComments />
-        <Comments />
+        {comments.map(c => {
+          console.log(c);
+
+          return (
+            <Comments
+              key={c.id}
+              userLogin={c.userLogin}
+              createdAt={c.createdAt}
+              content={c.content}
+            />
+          );
+        })}
       </div>
     </Wrapper>
   );

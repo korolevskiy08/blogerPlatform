@@ -1,14 +1,14 @@
 import { ItemPostType } from '../Posts/posts-api';
 
-export type commentsItemType = {
-  items: commentType[];
+export type CommentsItemType = {
+  items: CommentType[];
   pagesCount: number;
   page: number;
   pageSize: number;
   totalCount: number;
 };
 
-export type commentType = {
+export type CommentType = {
   id: string;
   content: string;
   userId: string;
@@ -22,4 +22,9 @@ export type PostType = {
   pageSize: number;
   pagesCount: number;
   totalCount: number;
+};
+
+export type DataNewComment = {
+  postId: string;
+  content: string;
 };

@@ -1,10 +1,23 @@
 import { instance } from '../../common/api-instance/instance';
 
+import { DataNewComment } from './postType';
+
 export const postAPI = {
   getPost(id: string) {
     return instance.get(`posts/${id}`);
   },
-  comments(id: string) {
-    return instance.get(`posts/${id}/comments`);
+  getComments(postId: string) {
+    return instance.get(`posts/${postId}/comments`);
+  },
+  newComment(data: DataNewComment) {
+    return instance.post(
+      `posts/${data.postId}/comments`,
+      { content: data.content },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      },
+    );
   },
 };
