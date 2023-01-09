@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -18,10 +18,12 @@ import { getComments, getPost } from './post-actions';
 import styles from './post.module.css';
 
 export const Post: FC = () => {
-  const { postId } = useParams();
-  const dispatch = useAppDispatch();
   const post = useAppSelector(state => state.post.post);
   const comments = useAppSelector(state => state.post.comments);
+  const login = useAppSelector(state => state.auth.user);
+  const [textComment, setTextComment] = useState('');
+  const { postId } = useParams();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -75,10 +77,10 @@ export const Post: FC = () => {
           Debitis ducimus minus molestias omnis quidem sint ullam veritatis!
         </p>
         <p className={`${style.textGlobal} ${styles.commentTitle}`}>Comments</p>
-        <AddComments />
+        {login && (
+          <AddComments setTextComment={setTextComment} textComment={textComment} />
+        )}
         {comments.map(c => {
-          console.log(c);
-
           return (
             <Comments
               key={c.id}

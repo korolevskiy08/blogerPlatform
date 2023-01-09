@@ -10,6 +10,12 @@
     align-items: center;
 }
 
+.headerComment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .avatarBlock {
     width: 42px;
     height: 38px;

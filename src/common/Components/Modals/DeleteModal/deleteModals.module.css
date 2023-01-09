@@ -1,0 +1,30 @@
+.content {
+    width: 378px;
+    height: 228px;
+    border-radius: 2px;
+    background-color: white;
+    padding: 20px;
+}
+
+.text {
+    font-size: 16px;
+    color: #1A1718;
+    padding-bottom: 42px;
+}
+
+.buttonBlock{
+    display: flex;
+    justify-content: space-around;
+}
+
+.button {
+    background: #FCFBFB;
+    border: 2px solid #F8346B;
+    color: #F8346B
+}
+
+.button:hover {
+    background: #F8346B;
+    color: #FCFBFB;
+}
+

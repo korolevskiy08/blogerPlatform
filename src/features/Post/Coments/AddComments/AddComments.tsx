@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 
 import { useParams } from 'react-router-dom';
 
@@ -9,25 +9,31 @@ import { newComment } from '../../post-actions';
 
 import styles from './addComments.module.css';
 
-export const AddComments: FC = () => {
+type AddCommentsType = {
+  textComment: string;
+  setTextComment: (text: string) => void;
+};
+
+export const AddComments: FC<AddCommentsType> = ({ setTextComment, textComment }) => {
   const { postId } = useParams();
-  const [text, setText] = useState('');
+
   const dispatch = useAppDispatch();
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
-    setText(e.currentTarget.value);
+    setTextComment(e.currentTarget.value);
   };
 
   const sendComment = (): void => {
     if (postId) {
-      dispatch(newComment({ content: text, postId }));
+      dispatch(newComment({ content: textComment, postId }));
+      setTextComment('');
     }
   };
 
   return (
     <div>
       <input
-        value={text}
+        value={textComment}
         onChange={onChangeHandler}
         type="text"
         className={styles.input}
@@ -37,9 +43,9 @@ export const AddComments: FC = () => {
           Cancel
         </Button>
         <Button
-          disabled={text.length === 0}
+          disabled={textComment.length === 0}
           styleButton={
-            text.length === 0
+            textComment.length === 0
               ? `${style.button} ${styles.disabledButton}`
               : `${style.button} ${styles.sendButton}`
           }
