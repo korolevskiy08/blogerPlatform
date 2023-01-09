@@ -83,7 +83,7 @@ export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }
               }
               onclick={editCommentContent}
             >
-              Send a comment
+              Edit comment
             </Button>
           </div>
         </div>
