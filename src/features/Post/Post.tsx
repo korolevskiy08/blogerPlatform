@@ -24,8 +24,6 @@ export const Post: FC = () => {
   const comments = useAppSelector(state => state.post.comments);
   const navigate = useNavigate();
 
-  console.log(comments);
-
   useEffect(() => {
     if (postId) {
       dispatch(getPost(postId));

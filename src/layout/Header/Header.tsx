@@ -13,10 +13,12 @@ import styles from './Header.module.css';
 export const Header: FC = () => {
   const userData = useAppSelector(state => state.auth.user);
 
+  console.log(userData);
+
   return (
     <header className={styles.header}>
       <p className={styles.title}>Blogger Platform</p>
-      {userData === undefined ? (
+      {userData === null ? (
         <div className={styles.signIn}>
           <SignIn />
           <NavLink
@@ -30,8 +32,8 @@ export const Header: FC = () => {
         <div className={styles.signIn}>
           <p className={`${style.textGlobal} ${styles.signInText}`}>{userData.login}</p>
           <LoginOut className={styles.iconLogOut} />
-          <NavLink to="#" className={style.textGlobal}>
-            login out
+          <NavLink to="#" className={`${style.textGlobal} ${styles.signInText}`}>
+            Login out
           </NavLink>
         </div>
       )}
