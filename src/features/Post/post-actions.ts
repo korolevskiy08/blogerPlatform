@@ -31,12 +31,25 @@ export const getComments = createAsyncThunk(
 );
 
 export const newComment = createAsyncThunk(
-  'post, newPost',
+  'post/newPost',
   async (data: DataNewComment, { rejectWithValue }) => {
     try {
       const res = await postAPI.newComment(data);
 
       return res;
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
+
+export const deleteComment = createAsyncThunk(
+  'post/deleteComment',
+  async (commentId: string, { rejectWithValue }) => {
+    try {
+      await postAPI.deleteComment(commentId);
+
+      return { commentId };
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }

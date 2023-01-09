@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { ItemPostType } from '../Posts/posts-api';
 
-import { getComments, getPost, newComment } from './post-actions';
+import { deleteComment, getComments, getPost, newComment } from './post-actions';
 import { CommentType } from './postType';
 
 const slice = createSlice({
@@ -26,6 +26,15 @@ const slice = createSlice({
     builder.addCase(newComment.fulfilled, (state, action) => {
       state.status = 'succeeded';
       state.comments.push({ ...action.payload!.data });
+    });
+    builder.addCase(deleteComment.fulfilled, (state, action) => {
+      return {
+        ...state,
+        status: 'succeeded',
+        error: null,
+
+        comments: state.comments.filter(el => el.id !== action.payload!.commentId),
+      };
     });
     builder.addMatcher(
       action => action.type.endsWith('pending'),

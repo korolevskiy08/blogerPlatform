@@ -20,4 +20,11 @@ export const postAPI = {
       },
     );
   },
+  deleteComment(commentsId: string) {
+    return instance.delete(`comments/${commentsId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    });
+  },
 };

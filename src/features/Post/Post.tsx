@@ -13,7 +13,7 @@ import { Path } from '../../common/Routes';
 import style from '../../layout/global.module.css';
 
 import { AddComments } from './Coments/AddComments/AddComments';
-import { Comments } from './Coments/Comments/Comments';
+import { Comments } from './Coments/CommentsItem/Comments';
 import { getComments, getPost } from './post-actions';
 import styles from './post.module.css';
 
@@ -87,6 +87,7 @@ export const Post: FC = () => {
               userLogin={c.userLogin}
               createdAt={c.createdAt}
               content={c.content}
+              id={c.id}
             />
           );
         })}

@@ -2,9 +2,11 @@ import React, { FC, useState } from 'react';
 
 import { DeleteModal } from '../../../../common/Components/Modals/DeleteModal/DeleteModal';
 import { Settings } from '../../../../common/Components/Settings/Settings';
+import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import avatar from '../../../../common/images/Gull_portrait_ca_usa.jpg';
 import style from '../../../../layout/global.module.css';
+import { deleteComment } from '../../post-actions';
 
 import styles from './comments.module.css';
 
@@ -12,11 +14,17 @@ type CommentsType = {
   userLogin: string;
   createdAt: string;
   content: string;
+  id: string;
 };
 
-export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt }) => {
+export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const currentUser = useAppSelector(state => state.auth.user?.login);
+  const dispatch = useAppDispatch();
+
+  const removeComment = (): void => {
+    dispatch(deleteComment(id));
+  };
 
   return (
     <div className={styles.container}>
@@ -39,7 +47,7 @@ export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt }) =>
       <DeleteModal
         isOpen={openDeleteModal}
         onClose={() => setOpenDeleteModal(false)}
-        deleteItem={() => {}}
+        deleteItem={removeComment}
         textModals="Are you sure you want to delete comment?"
         title="Delete Comment"
       />
