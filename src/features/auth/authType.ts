@@ -13,3 +13,9 @@ export type UserType = {
   login: string;
   userId: string;
 };
+
+export type SignUpType = {
+  username: string;
+  email: string;
+  password: string;
+};

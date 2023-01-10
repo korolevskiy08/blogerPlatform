@@ -4,4 +4,6 @@ export enum Path {
   Blog = '/Blog/:blogId',
   Post = '/Post/:postId',
   SignIn = '/SignIn',
+  Register = '/Register',
+  Congratulation = '/Congratulation',
 }

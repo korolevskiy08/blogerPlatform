@@ -1,3 +1,10 @@
+.signUp {
+    width: 378px;
+    height: 492px;
+    background: #FFFFFF;
+    padding: 0 24px 0 24px;
+}
+
 .title {
     font-weight: 500;
     font-size: 20px;
@@ -5,43 +12,27 @@
     padding-top: 10px;
 }
 
-.signIn {
-    width: 378px;
-    height: 420px;
-    background: #FFFFFF;
-    padding: 0 24px 0 24px;
-}
-
 .text {
     color: #737067;
     margin: 0;
 }
 
-.userName {
-    margin-bottom: 24px;
-}
-
-.signIn input {
+.signUp input {
     border: none;
     width: 100%;
     border-bottom: 1px solid #DEDBDC;
+    margin-bottom: 27px;
 }
 
 .button {
-    margin-top: 72px;
+    margin-top: 17px;
     width: 100%;
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;
 }
 
-.haveAccount {
-    font-size: 16px;
-    color: #737067;
-    text-align: center;
-}
-
-.signUp {
+.signIn {
     font-weight: 500;
     color: #F8346B;
     text-align: center;
@@ -49,3 +40,10 @@
     justify-content: center;
 }
 
+.already {
+    font-size: 16px;
+    color: #797476;
+    padding: 18px 0 12px 0;
+    display: flex;
+    justify-content: center;
+}

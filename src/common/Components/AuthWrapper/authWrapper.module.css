@@ -1,0 +1,15 @@
+.container {
+    padding: 72px 95px 0 105px;
+    height: 85vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rafiki {
+    width: 632px;
+    height: 470px;
+}
+
+.rafiki img {
+    width: 100%;
+}
