@@ -14,7 +14,7 @@ import style from '../../layout/global.module.css';
 
 import { AddComments } from './Coments/AddComments/AddComments';
 import { Comments } from './Coments/CommentsItem/Comments';
-import { getComments, getPost } from './post-actions';
+import { getComments, getPost, newComment } from './post-actions';
 import styles from './post.module.css';
 
 export const Post: FC = () => {
@@ -36,6 +36,17 @@ export const Post: FC = () => {
   const navigatePosts = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
     navigate(Path.Posts);
+  };
+
+  const changeComment = (text: string): void => {
+    setTextComment(text);
+  };
+
+  const sendComment = (): void => {
+    if (postId) {
+      dispatch(newComment({ content: textComment, postId }));
+      setTextComment('');
+    }
   };
 
   return (
@@ -66,7 +77,7 @@ export const Post: FC = () => {
         </div>
         <p className={`textGlobal ${styles.postName}`}>{post.title}</p>
         <p className={`${style.textGlobal} ${styles.postDate}`}>
-          {/* {`${post.createdAt.slice(0, 10)}`} */}
+          ${post.createdAt.slice(0, 10)}
         </p>
         <div className={styles.postImg}>
           <img src={imgPost} alt="post img" />
@@ -78,7 +89,12 @@ export const Post: FC = () => {
         </p>
         <p className={`${style.textGlobal} ${styles.commentTitle}`}>Comments</p>
         {login && (
-          <AddComments setTextComment={setTextComment} textComment={textComment} />
+          <AddComments
+            sendComment={sendComment}
+            changeComment={changeComment}
+            textComment={textComment}
+            cancel={() => {}}
+          />
         )}
         {comments.map(c => {
           return (

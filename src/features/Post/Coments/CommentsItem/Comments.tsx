@@ -1,8 +1,7 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { Button } from '../../../../common/Components/Button/Button';
 import { DeleteModal } from '../../../../common/Components/Modals/DeleteModal/DeleteModal';
 import { Settings } from '../../../../common/Components/Settings/Settings';
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
@@ -10,6 +9,7 @@ import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import avatar from '../../../../common/images/Gull_portrait_ca_usa.jpg';
 import style from '../../../../layout/global.module.css';
 import { deleteComment, editComment } from '../../post-actions';
+import { AddComments } from '../AddComments/AddComments';
 
 import styles from './comments.module.css';
 
@@ -32,8 +32,8 @@ export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }
     dispatch(deleteComment(id));
   };
 
-  const onChangeTextComment = (e: ChangeEvent<HTMLInputElement>): void => {
-    setCurrentComment(e.currentTarget.value);
+  const onChangeTextComment = (text: string): void => {
+    setCurrentComment(text);
   };
 
   const editCommentContent = (): void => {
@@ -63,29 +63,13 @@ export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }
         ) : null}
       </div>
       {editMode ? (
-        <div>
-          <input
-            type="text"
-            value={currentComment}
-            onChange={onChangeTextComment}
-            className={styles.input}
+        <div className={styles.editMode}>
+          <AddComments
+            textComment={currentComment}
+            sendComment={editCommentContent}
+            changeComment={onChangeTextComment}
+            cancel={() => setEditMode(false)}
           />
-          <div className={styles.buttonGroup}>
-            <Button styleButton={styles.cancelButton} onclick={() => setEditMode(false)}>
-              Cancel
-            </Button>
-            <Button
-              disabled={currentComment.length === 0}
-              styleButton={
-                currentComment.length === 0
-                  ? `${style.button} ${styles.disabledButton}`
-                  : `${style.button} ${styles.sendButton}`
-              }
-              onclick={editCommentContent}
-            >
-              Edit comment
-            </Button>
-          </div>
         </div>
       ) : (
         <p className={`${style.textGlobal} ${styles.textComment}`}>{content}</p>

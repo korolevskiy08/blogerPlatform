@@ -1,32 +1,29 @@
 import React, { ChangeEvent, FC } from 'react';
 
-import { useParams } from 'react-router-dom';
-
 import { Button } from '../../../../common/Components/Button/Button';
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import style from '../../../../layout/global.module.css';
-import { newComment } from '../../post-actions';
 
 import styles from './addComments.module.css';
 
 type AddCommentsType = {
   textComment: string;
-  setTextComment: (text: string) => void;
+  sendComment: () => void;
+  changeComment: (text: string) => void;
+  cancel: () => void;
 };
 
-export const AddComments: FC<AddCommentsType> = ({ setTextComment, textComment }) => {
-  const { postId } = useParams();
-  const dispatch = useAppDispatch();
-
+export const AddComments: FC<AddCommentsType> = ({
+  textComment,
+  sendComment,
+  changeComment,
+  cancel,
+}) => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
-    setTextComment(e.currentTarget.value);
+    changeComment(e.currentTarget.value);
   };
 
-  const sendComment = (): void => {
-    if (postId) {
-      dispatch(newComment({ content: textComment, postId }));
-      setTextComment('');
-    }
+  const onClickHandler = (): void => {
+    cancel();
   };
 
   return (
@@ -38,7 +35,7 @@ export const AddComments: FC<AddCommentsType> = ({ setTextComment, textComment }
         className={styles.input}
       />
       <div className={styles.buttonGroup}>
-        <Button styleButton={styles.cancelButton} onclick={() => {}}>
+        <Button styleButton={styles.cancelButton} onclick={onClickHandler}>
           Cancel
         </Button>
         <Button
