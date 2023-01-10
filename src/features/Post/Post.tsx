@@ -77,7 +77,7 @@ export const Post: FC = () => {
         </div>
         <p className={`textGlobal ${styles.postName}`}>{post.title}</p>
         <p className={`${style.textGlobal} ${styles.postDate}`}>
-          ${post.createdAt.slice(0, 10)}
+          {/* {`${post.createdAt.slice(0, 10)}`} */}
         </p>
         <div className={styles.postImg}>
           <img src={imgPost} alt="post img" />

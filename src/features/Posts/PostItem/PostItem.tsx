@@ -40,7 +40,9 @@ export const PostItem: FC<PostType> = ({ name, content, createdAt, id }) => {
           >
             <h3 className={`${style.textGlobal} ${styles.titlePost}`}>{name}</h3>
             <p className={`${style.textGlobal} ${styles.descriptionText}`}>{content}</p>
-            <p className={`${style.textGlobal} ${styles.date}`}>{createdAt}</p>
+            <p className={`${style.textGlobal} ${styles.date}`}>
+              {createdAt.slice(0, 10)}
+            </p>
           </div>
         </div>
       </div>
