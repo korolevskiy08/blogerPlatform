@@ -6,4 +6,5 @@ export enum Path {
   SignIn = '/SignIn',
   Register = '/Register',
   Congratulation = '/Congratulation',
+  LinkExpired = '/LinkExpired',
 }
