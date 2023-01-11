@@ -15,7 +15,13 @@ export type UserType = {
 };
 
 export type SignUpType = {
-  username: string;
+  login: string;
   email: string;
   password: string;
+};
+
+export type SignUpErrorType = {
+  login?: string;
+  email?: string;
+  password?: string;
 };

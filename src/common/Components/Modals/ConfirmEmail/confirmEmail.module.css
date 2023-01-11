@@ -1,0 +1,23 @@
+.content {
+    width: 378px;
+    height: 228px;
+    border-radius: 2px;
+    background-color: white;
+    padding: 20px;
+}
+
+.text {
+    font-size: 16px;
+    color: #1A1718;
+    padding-bottom: 42px;
+}
+
+.buttonBlock{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+
+}
+
