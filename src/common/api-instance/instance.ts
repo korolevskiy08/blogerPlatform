@@ -14,7 +14,7 @@ instance.interceptors.response.use(
     const originalRequest = error.config;
     const statusCode = 401;
 
-    if (error.response.status === statusCode) {
+    if (error.response.status === statusCode && error.config && !error.config._isRetry) {
       try {
         const response = await authApi.refreshToken();
 
