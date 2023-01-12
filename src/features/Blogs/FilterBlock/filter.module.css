@@ -21,3 +21,14 @@
     top: 140px;
 }
 
+@media screen and (max-width: 1310px){
+    .inputSearch {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 1310px){
+    .inputSearch {
+        width: 250px;
+    }
+}

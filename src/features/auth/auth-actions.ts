@@ -41,3 +41,12 @@ export const signUp = createAsyncThunk(
     }
   },
 );
+
+export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
+  try {
+    await authApi.logout();
+    localStorage.removeItem('accessToken');
+  } catch (e) {
+    if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+  }
+});

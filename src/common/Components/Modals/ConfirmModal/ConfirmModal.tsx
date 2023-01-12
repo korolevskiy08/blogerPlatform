@@ -4,7 +4,7 @@ import style from '../../../../layout/global.module.css';
 import { Button } from '../../Button/Button';
 import { BasicModal } from '../BasicModal/BasicModal';
 
-import styles from './confirmEmail.module.css';
+import styles from './confirmModal.module.css';
 
 type ConfirmEmailType = {
   isOpen: boolean;
@@ -14,7 +14,7 @@ type ConfirmEmailType = {
   title: string;
 };
 
-export const ConfirmEmail: FC<ConfirmEmailType> = ({
+export const ConfirmModal: FC<ConfirmEmailType> = ({
   isOpen,
   onClickHandler,
   title,

@@ -14,10 +14,16 @@ export const authApi = {
     });
   },
   signUp(data: SignUpType) {
-    const message = `<div style='padding: 15px'>
-    To finish registration please follow the link below:
-     <a href='https://bloger-platform-fue1y84ij-korolevskiy08.vercel.app/#/Congratulation/$token$'> complete registration</a></div>`;
+    // const message = `<div style='padding: 15px'>
+    // To finish registration please follow the link below:
+    //  <a href='https://bloger-platform-fue1y84ij-korolevskiy08.vercel.app/#/Congratulation/$token$'>
+    //   complete registration
+    //   </a>
+    //   </div>`;
 
-    return instance.post('auth/registration', { data, message });
+    return instance.post('auth/registration', data);
+  },
+  logout() {
+    return instance.post('auth/logout');
   },
 };

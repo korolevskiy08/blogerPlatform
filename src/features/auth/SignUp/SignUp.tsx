@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import { AuthWrapper } from '../../../common/Components/AuthWrapper/AuthWrapper';
 import { Button } from '../../../common/Components/Button/Button';
-import { ConfirmEmail } from '../../../common/Components/Modals/ConfirmEmail/ConfirmEmail';
+import { ConfirmModal } from '../../../common/Components/Modals/ConfirmModal/ConfirmModal';
 import { validateSignUp } from '../../../common/function/validateSignUp';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { Path } from '../../../common/Routes';
@@ -79,7 +79,7 @@ export const SignUp: FC = () => {
           </NavLink>
         </form>
       </div>
-      <ConfirmEmail
+      <ConfirmModal
         isOpen={openConfirmModal}
         onClose={() => setOpenConfirmModal(false)}
         onClickHandler={() => setOpenConfirmModal(false)}
