@@ -1,5 +1,6 @@
 import { instance } from '../../common/api-instance/instance';
 
+import 'dotenv/config';
 import { AuthType, SignUpType } from './authType';
 
 export const authApi = {
@@ -21,7 +22,7 @@ export const authApi = {
 
     return instance.post('auth/registration', {
       ...data,
-      link: process.env['LINK '],
+      link: process.env.LINK,
     });
   },
   logout() {
