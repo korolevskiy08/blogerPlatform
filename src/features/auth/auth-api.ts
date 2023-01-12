@@ -14,9 +14,14 @@ export const authApi = {
     });
   },
   signUp(data: SignUpType) {
+    // const message = `To finish registration please follow the link below:
+    //  <a href='https://bloger-platform-fue1y84ij-korolevskiy08.vercel.app/#/Congratulation/$token$'>
+    //   complete registration
+    //   </a>`;
+
     return instance.post('auth/registration', {
       ...data,
-      link: process.env.LINK,
+      link: process.env['LINK '],
     });
   },
   logout() {
