@@ -18,6 +18,7 @@ instance.interceptors.response.use(
       try {
         const response = await authApi.refreshToken();
 
+        console.log(response);
         localStorage.setItem('accessToken', response.data.accessToken);
 
         return instance.request(originalRequest);
