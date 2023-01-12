@@ -26,4 +26,7 @@ export const authApi = {
   logout() {
     return instance.post('auth/logout');
   },
+  refreshToken() {
+    return instance.post('auth/refresh-token', {}, { withCredentials: true });
+  },
 };

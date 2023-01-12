@@ -50,3 +50,14 @@ export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValu
     if (axios.isAxiosError(e)) return rejectWithValue(e.message);
   }
 });
+
+// export const refreshToken = createAsyncThunk(
+//   'auth/refreshToken',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       await authApi.refreshToken();
+//     } catch (e) {
+//       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+//     }
+//   },
+// );
