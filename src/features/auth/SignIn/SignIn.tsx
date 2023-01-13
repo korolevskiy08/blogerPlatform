@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from 'react';
 
-import { Alert, Snackbar } from '@mui/material';
 import { useFormik } from 'formik';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { AuthWrapper } from '../../../common/Components/AuthWrapper/AuthWrapper';
 import { Button } from '../../../common/Components/Button/Button';
+import { ErrorSnackBar } from '../../../common/Components/SnackBar/SnackBar';
 import { validateSignIn } from '../../../common/function/validateSignIn';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
@@ -26,14 +26,6 @@ export const SignIn: FC = () => {
   useEffect(() => {
     setOpen(true);
   }, [auth.error]);
-
-  const handleClose = (event: React.SyntheticEvent | Event, reason?: string): void => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   const formik = useFormik({
     initialValues: {
@@ -96,21 +88,7 @@ export const SignIn: FC = () => {
             Sign Up
           </NavLink>
         </form>
-        {auth.error && (
-          <Snackbar
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }}
-            open={open}
-            autoHideDuration={6000}
-            onClose={handleClose}
-          >
-            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-              {auth.error}
-            </Alert>
-          </Snackbar>
-        )}
+        <ErrorSnackBar error={auth.error} open={open} setOpen={() => setOpen(false)} />
       </div>
     </AuthWrapper>
   );

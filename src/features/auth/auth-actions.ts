@@ -37,7 +37,9 @@ export const signUp = createAsyncThunk(
     try {
       await authApi.signUp(params);
     } catch (e) {
-      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+      if (axios.isAxiosError(e)) {
+        return rejectWithValue(e.message);
+      }
     }
   },
 );
