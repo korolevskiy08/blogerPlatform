@@ -27,7 +27,6 @@ export const SignUp: FC = () => {
     } as SignUpType,
     validate: values => validateSignUp(values),
     onSubmit: values => {
-      console.log(values);
       dispatch(
         signUp({
           login: values.login,
