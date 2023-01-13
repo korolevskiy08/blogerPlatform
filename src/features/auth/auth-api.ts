@@ -21,7 +21,7 @@ export const authApi = {
 
     return instance.post('auth/registration', {
       ...data,
-      link: process.env['LINK '],
+      link: process.env.LINK || 'http://localhost:3000',
     });
   },
   logout() {
