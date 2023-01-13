@@ -58,22 +58,20 @@ export const SignIn: FC = () => {
             className={`${style.textGlobal} ${styles.userName}`}
             type="text"
           />
-          {formik.touched.loginOrEmail
-            ? formik.errors.loginOrEmail && (
-                <div style={{ color: 'red' }}>{formik.errors.loginOrEmail}</div>
-              )
-            : null}
+          <div className={styles.error}>
+            {formik.touched.loginOrEmail &&
+              formik.errors.loginOrEmail &&
+              formik.errors.loginOrEmail}
+          </div>
           <p className={`${style.textGlobal} ${styles.text}`}>Password</p>
           <input
             {...formik.getFieldProps('password')}
             className={style.textGlobal}
             type="password"
           />
-          {formik.touched.password
-            ? formik.errors.password && (
-                <div style={{ color: 'red' }}>{formik.errors.password}</div>
-              )
-            : null}
+          <div className={styles.error}>
+            {formik.touched.password && formik.errors.password && formik.errors.password}
+          </div>
           <Button
             type="submit"
             styleButton={`${style.button} ${styles.button}`}

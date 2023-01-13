@@ -17,8 +17,10 @@
     margin: 0;
 }
 
-.userName {
-    margin-bottom: 24px;
+.error {
+    color: red;
+    height: 22px;
+    padding-bottom: 20px;
 }
 
 .signIn input {
@@ -28,7 +30,7 @@
 }
 
 .button {
-    margin-top: 72px;
+    margin-top: 20px;
     width: 100%;
     font-weight: 600;
     font-size: 14px;

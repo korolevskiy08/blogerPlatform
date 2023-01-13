@@ -21,7 +21,11 @@
     border: none;
     width: 100%;
     border-bottom: 1px solid #DEDBDC;
-    margin-bottom: 27px;
+}
+
+.error {
+    color: red;
+    height: 22px;
 }
 
 .button {

@@ -62,33 +62,27 @@ export const SignUp: FC = () => {
             className={style.textGlobal}
             {...formik.getFieldProps('login')}
           />
-          {formik.touched.login
-            ? formik.errors.login && (
-                <div style={{ color: 'red' }}>{formik.errors.login}</div>
-              )
-            : null}
+          <div className={styles.error}>
+            {formik.touched.login && formik.errors.login && formik.errors.login}
+          </div>
           <p className={`${style.textGlobal} ${styles.text}`}>Email</p>
           <input
             type="text"
             className={style.textGlobal}
             {...formik.getFieldProps('email')}
           />
-          {formik.touched.email
-            ? formik.errors.email && (
-                <div style={{ color: 'red' }}>{formik.errors.email}</div>
-              )
-            : null}
+          <div className={styles.error}>
+            {formik.touched.email && formik.errors.email && formik.errors.email}
+          </div>
           <p className={`${style.textGlobal} ${styles.text}`}>Password</p>
           <input
             type="password"
             className={style.textGlobal}
             {...formik.getFieldProps('password')}
           />
-          {formik.touched.password
-            ? formik.errors.password && (
-                <div style={{ color: 'red' }}>{formik.errors.password}</div>
-              )
-            : null}
+          <div className={styles.error}>
+            {formik.touched.password && formik.errors.password && formik.errors.password}
+          </div>
           <p className={`${style.textGlobal} ${styles.text}`}>
             The link has been sent by email. If you don’t receive an email, send link
             again
