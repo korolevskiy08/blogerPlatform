@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
+import { Alert, Snackbar } from '@mui/material';
 import { useFormik } from 'formik';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ import { AuthWrapper } from '../../../common/Components/AuthWrapper/AuthWrapper'
 import { Button } from '../../../common/Components/Button/Button';
 import { validateSignIn } from '../../../common/function/validateSignIn';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { Path } from '../../../common/Routes';
 import style from '../../../layout/global.module.css';
 import { signIn } from '../auth-actions';
@@ -15,8 +17,23 @@ import { AuthType } from '../authType';
 import styles from './signIn.module.css';
 
 export const SignIn: FC = () => {
+  const [open, setOpen] = React.useState(true);
+  const auth = useAppSelector(state => state.auth);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setOpen(true);
+  }, [auth.error]);
+
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string): void => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -30,11 +47,13 @@ export const SignIn: FC = () => {
           loginOrEmail: values.loginOrEmail,
           password: values.password,
         }),
-      ).then(() => {
-        navigate(Path.Blogs);
-      });
+      );
     },
   });
+
+  if (auth.user) {
+    navigate(Path.Blogs);
+  }
 
   return (
     <AuthWrapper>
@@ -47,22 +66,22 @@ export const SignIn: FC = () => {
             className={`${style.textGlobal} ${styles.userName}`}
             type="text"
           />
-          {/* {formik.touched.loginOrEmail */}
-          {/*  ? formik.errors.loginOrEmail && ( */}
-          {/*      <div style={{ color: 'red' }}>{formik.errors.loginOrEmail}</div> */}
-          {/*    ) */}
-          {/*  : null} */}
+          {formik.touched.loginOrEmail
+            ? formik.errors.loginOrEmail && (
+                <div style={{ color: 'red' }}>{formik.errors.loginOrEmail}</div>
+              )
+            : null}
           <p className={`${style.textGlobal} ${styles.text}`}>Password</p>
           <input
             {...formik.getFieldProps('password')}
             className={style.textGlobal}
             type="password"
           />
-          {/* {formik.touched.password */}
-          {/*  ? formik.errors.password && ( */}
-          {/*      <div style={{ color: 'red' }}>{formik.errors.password}</div> */}
-          {/*    ) */}
-          {/*  : null} */}
+          {formik.touched.password
+            ? formik.errors.password && (
+                <div style={{ color: 'red' }}>{formik.errors.password}</div>
+              )
+            : null}
           <Button
             type="submit"
             styleButton={`${style.button} ${styles.button}`}
@@ -77,6 +96,21 @@ export const SignIn: FC = () => {
             Sign Up
           </NavLink>
         </form>
+        {auth.error && (
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+          >
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+              {auth.error}
+            </Alert>
+          </Snackbar>
+        )}
       </div>
     </AuthWrapper>
   );

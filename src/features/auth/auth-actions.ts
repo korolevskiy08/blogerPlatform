@@ -7,9 +7,9 @@ import { AuthType, SignUpType } from './authType';
 export const signIn = createAsyncThunk(
   'auth/login',
   async (params: AuthType, { rejectWithValue, dispatch }) => {
-    const res = await authApi.login(params);
-
     try {
+      const res = await authApi.login(params);
+
       localStorage.setItem('accessToken', res.data.accessToken);
       dispatch(userData());
     } catch (e) {
