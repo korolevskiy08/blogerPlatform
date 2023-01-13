@@ -16,7 +16,7 @@ export const authApi = {
   signUp(data: SignUpType) {
     return instance.post('auth/registration', {
       ...data,
-      link: process.env.LINK || 'http://localhost:3000/#',
+      link: process.env.LINK || 'https://bloger-platform.vercel.app',
     });
   },
   logout() {
