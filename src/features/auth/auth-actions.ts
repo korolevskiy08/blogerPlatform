@@ -61,6 +61,7 @@ export const registrationConfirmation = createAsyncThunk(
 
       console.log(res);
     } catch (e) {
+      console.log(e);
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }
   },

@@ -5,13 +5,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../../common/Components/Button/Button';
 import { Wrapper } from '../../../common/Components/Wrapper/Wrapper';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import bro from '../../../common/images/bro.png';
+import linkExpired from '../../../common/images/linkExpired.png';
 import style from '../../../layout/global.module.css';
 import { registrationConfirmation } from '../auth-actions';
 
 import styles from './congratulation.module.css';
 
 export const Congratulation: FC = () => {
+  const error = useAppSelector(state => state.auth.error);
   const dispatch = useAppDispatch();
   const params = useLocation();
   const navigate = useNavigate();
@@ -28,13 +31,31 @@ export const Congratulation: FC = () => {
   return (
     <Wrapper showNavigation={false}>
       <div className={styles.container}>
-        <h2 className={`${style.textGlobal} ${styles.title}`}>
-          Congratulations! Your email has been confirmed
-        </h2>
-        <Button styleButton={style.button} onclick={navigateSignIn}>
-          Sign In
-        </Button>
-        <img src={bro} alt="bro" />
+        {error === null ? (
+          <>
+            <h2 className={`${style.textGlobal} ${styles.title}`}>
+              Congratulations! Your email has been confirmed
+            </h2>
+            <Button styleButton={style.button} onclick={navigateSignIn}>
+              Sign In
+            </Button>
+            <img src={bro} alt="bro" />
+          </>
+        ) : (
+          <>
+            <h2 className={`${style.textGlobal} ${styles.title}`}>
+              Email verification link expired
+            </h2>
+            <p className={`${style.textGlobal} ${styles.text}`}>
+              Looks like the verification link has expired. Not to worry, we can send the
+              link again
+            </p>
+            <Button styleButton={`${style.button} ${styles.button}`} onclick={() => {}}>
+              Resend verification link
+            </Button>
+            <img src={linkExpired} alt="linkExpired" />
+          </>
+        )}
       </div>
     </Wrapper>
   );
