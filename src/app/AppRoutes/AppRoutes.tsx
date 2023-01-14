@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Path } from '../../common/Routes';
-import { Congratulation } from '../../features/auth/Congratulation/Congratulation';
+import { ConfirmEmail } from '../../features/auth/ConfirmEmail/ConfirmEmail';
 import { SignIn } from '../../features/auth/SignIn/SignIn';
 import { SignUp } from '../../features/auth/SignUp/SignUp';
 import { Blog } from '../../features/Blog/Blog';
@@ -21,7 +21,7 @@ export const AppRoutes: FC = () => {
       <Route path={Path.Post} element={<Post />} />
       <Route path={Path.SignIn} element={<SignIn />} />
       <Route path={Path.Register} element={<SignUp />} />
-      <Route path={Path.ConfirmEmail} element={<Congratulation />} />
+      <Route path={Path.ConfirmEmail} element={<ConfirmEmail />} />
     </Routes>
   );
 };

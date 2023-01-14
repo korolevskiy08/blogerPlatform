@@ -26,6 +26,6 @@ export const authApi = {
     return instance.post('auth/refresh-token', {}, { withCredentials: true });
   },
   registrationConfirmation(code: CodeType) {
-    return instance.post('auth/registration-confirmation', { code });
+    return instance.post('auth/registration-confirmation', code);
   },
 };
