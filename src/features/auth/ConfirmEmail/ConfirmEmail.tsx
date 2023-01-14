@@ -39,7 +39,7 @@ export const ConfirmEmail: FC = () => {
         ) : (
           <div>
             {auth.error === null ? (
-              <>
+              <div className={styles.expiredContainer}>
                 <h2 className={`${style.textGlobal} ${styles.title}`}>
                   Congratulations! Your email has been confirmed
                 </h2>
@@ -47,7 +47,7 @@ export const ConfirmEmail: FC = () => {
                   Sign In
                 </Button>
                 <img src={bro} alt="bro" />
-              </>
+              </div>
             ) : (
               <div className={styles.expiredContainer}>
                 <h2 className={`${style.textGlobal} ${styles.titleExpired}`}>
