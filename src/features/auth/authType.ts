@@ -25,3 +25,7 @@ export type SignUpErrorType = {
   email?: string;
   password?: string;
 };
+
+export type CodeType = {
+  code: string;
+};

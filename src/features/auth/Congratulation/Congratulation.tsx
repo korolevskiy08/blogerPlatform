@@ -1,20 +1,29 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Button } from '../../../common/Components/Button/Button';
 import { Wrapper } from '../../../common/Components/Wrapper/Wrapper';
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import bro from '../../../common/images/bro.png';
 import style from '../../../layout/global.module.css';
+import { registrationConfirmation } from '../auth-actions';
 
 import styles from './congratulation.module.css';
 
 export const Congratulation: FC = () => {
+  const dispatch = useAppDispatch();
+  const params = useLocation();
   const navigate = useNavigate();
+  const min = 6;
 
   const navigateSignIn = (): void => {
     navigate('/SignIn');
   };
+
+  useEffect(() => {
+    dispatch(registrationConfirmation({ code: params.search.slice(min) }));
+  }, []);
 
   return (
     <Wrapper showNavigation={false}>

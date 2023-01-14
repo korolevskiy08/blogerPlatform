@@ -19,7 +19,7 @@ const slice = createSlice({
     });
     builder.addCase(getBlog.fulfilled, (state, action) => {
       state.status = 'succeeded';
-      state.blog = action.payload.data;
+      state.blog = action.payload!.data;
     });
     builder.addCase(getBlog.rejected, state => {
       state.status = 'failed';

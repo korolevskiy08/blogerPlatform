@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { authApi } from './auth-api';
-import { AuthType, SignUpType } from './authType';
+import { AuthType, CodeType, SignUpType } from './authType';
 
 export const signIn = createAsyncThunk(
   'auth/login',
@@ -52,6 +52,19 @@ export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValu
     if (axios.isAxiosError(e)) return rejectWithValue(e.message);
   }
 });
+
+export const registrationConfirmation = createAsyncThunk(
+  'auth/registrationConfirmation',
+  async (code: CodeType, { rejectWithValue }) => {
+    try {
+      const res = await authApi.registrationConfirmation(code);
+
+      console.log(res);
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
 
 export const refreshToken = createAsyncThunk(
   'auth/refreshToken',

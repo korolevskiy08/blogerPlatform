@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Path } from '../../common/Routes';
 import { Congratulation } from '../../features/auth/Congratulation/Congratulation';
-import { LinkExpired } from '../../features/auth/LinkExpired/LinkExpired';
 import { SignIn } from '../../features/auth/SignIn/SignIn';
 import { SignUp } from '../../features/auth/SignUp/SignUp';
 import { Blog } from '../../features/Blog/Blog';
@@ -22,8 +21,7 @@ export const AppRoutes: FC = () => {
       <Route path={Path.Post} element={<Post />} />
       <Route path={Path.SignIn} element={<SignIn />} />
       <Route path={Path.Register} element={<SignUp />} />
-      <Route path={Path.Congratulation} element={<Congratulation />} />
-      <Route path={Path.LinkExpired} element={<LinkExpired />} />
+      <Route path={Path.ConfirmEmail} element={<Congratulation />} />
     </Routes>
   );
 };

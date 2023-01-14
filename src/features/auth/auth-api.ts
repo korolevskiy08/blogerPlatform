@@ -1,6 +1,6 @@
 import { instance } from '../../common/api-instance/instance';
 
-import { AuthType, SignUpType } from './authType';
+import { AuthType, CodeType, SignUpType } from './authType';
 
 export const authApi = {
   login(params: AuthType) {
@@ -20,9 +20,12 @@ export const authApi = {
     });
   },
   logout() {
-    return instance.post('auth/logout');
+    return instance.post('auth/logout', {}, { withCredentials: true });
   },
   refreshToken() {
     return instance.post('auth/refresh-token', {}, { withCredentials: true });
+  },
+  registrationConfirmation(code: CodeType) {
+    return instance.post('auth/registration-confirmation', { code });
   },
 };

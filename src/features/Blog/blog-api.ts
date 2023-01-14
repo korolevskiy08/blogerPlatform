@@ -1,16 +1,11 @@
 import { instance } from '../../common/api-instance/instance';
-import { NewBlogType } from '../Blogs/blogs-api';
+import { PostsBlogType } from '../Blogs/blogType';
 
 export const blogAPI = {
   getBlog(id: string) {
     return instance.get(`blogs/${id}`);
   },
-  editBlog({ data, id }: EditBlogType) {
-    return instance.put<NewBlogType>(`blogs/${id}`, data);
+  getPostsBlog(blogId: string) {
+    return instance.get<PostsBlogType>(`blogs/${blogId}/posts`);
   },
-};
-
-export type EditBlogType = {
-  data: NewBlogType;
-  id: string;
 };

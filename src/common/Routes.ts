@@ -5,6 +5,5 @@ export enum Path {
   Post = '/Post/:postId',
   SignIn = '/SignIn',
   Register = '/Register',
-  Congratulation = '/Congratulation/confirm-email',
-  LinkExpired = '/LinkExpired',
+  ConfirmEmail = '/confirm-email',
 }
