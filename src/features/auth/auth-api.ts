@@ -22,14 +22,14 @@ export const authApi = {
   signUp(data: SignUpType) {
     return instance.post('auth/registration', {
       ...data,
-      link: 'http://localhost:3000/#',
+      link: process.env.REACT_APP_LINK || 'http://localhost:3000',
     });
   },
   logout() {
-    return instance.post('auth/logout');
+    return instance.post('auth/logout', {});
   },
   refreshToken() {
-    return instance.post('auth/refresh-token');
+    return instance.post('auth/refresh-token', {});
   },
   registrationConfirmation(code: CodeType) {
     return instance.post('auth/registration-confirmation', code);
