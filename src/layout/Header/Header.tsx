@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
@@ -14,10 +14,13 @@ import styles from './Header.module.css';
 
 export const Header: FC = () => {
   const userData = useAppSelector(state => state.auth.user);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const logOut = (): void => {
-    dispatch(logout());
+    dispatch(logout()).then(() => {
+      navigate(Path.SignIn);
+    });
   };
 
   return (

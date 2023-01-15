@@ -7,23 +7,29 @@ export const authApi = {
     return instance.post('auth/login', params);
   },
   me() {
+    const token = localStorage.getItem('accessToken');
+
+    if (!token) {
+      return Promise.resolve({ data: null });
+    }
+
     return instance.get('auth/me', {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        Authorization: `Bearer ${token}`,
       },
     });
   },
   signUp(data: SignUpType) {
     return instance.post('auth/registration', {
       ...data,
-      link: process.env.REACT_APP_LINK || 'http://localhost:3000',
+      link: 'http://localhost:3000/#',
     });
   },
   logout() {
-    return instance.post('auth/logout', {}, { withCredentials: true });
+    return instance.post('auth/logout');
   },
   refreshToken() {
-    return instance.post('auth/refresh-token', {}, { withCredentials: true });
+    return instance.post('auth/refresh-token');
   },
   registrationConfirmation(code: CodeType) {
     return instance.post('auth/registration-confirmation', code);

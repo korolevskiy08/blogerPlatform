@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { Status } from '../Post/post-slice';
 
-import { userData } from './auth-actions';
+import { logout, userData } from './auth-actions';
 import { UserType } from './authType';
 
 const slice = createSlice({
@@ -16,6 +16,9 @@ const slice = createSlice({
   extraReducers: builder => {
     builder.addCase(userData.fulfilled, (state, action) => {
       state.user = action.payload!.res.data;
+    });
+    builder.addCase(logout.fulfilled, state => {
+      state.user = null;
     });
     builder.addMatcher(
       action => action.type.endsWith('pending'),

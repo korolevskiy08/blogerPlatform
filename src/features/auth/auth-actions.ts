@@ -66,14 +66,3 @@ export const registrationConfirmation = createAsyncThunk(
     }
   },
 );
-
-export const refreshToken = createAsyncThunk(
-  'auth/refreshToken',
-  async (_, { rejectWithValue }) => {
-    try {
-      await authApi.refreshToken();
-    } catch (e) {
-      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
-    }
-  },
-);

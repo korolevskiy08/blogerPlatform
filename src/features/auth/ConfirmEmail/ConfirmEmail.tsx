@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { CircularProgress } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -15,6 +15,7 @@ import { registrationConfirmation } from '../auth-actions';
 import styles from './confirmEmail.module.css';
 
 export const ConfirmEmail: FC = () => {
+  const [status, setStatus] = useState<boolean>();
   const auth = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
   const params = useLocation();
@@ -26,7 +27,17 @@ export const ConfirmEmail: FC = () => {
   };
 
   useEffect(() => {
-    dispatch(registrationConfirmation({ code: params.search.slice(min) }));
+    dispatch(registrationConfirmation({ code: params.search.slice(min) })).then(
+      (res: any) => {
+        const status = 400;
+
+        if (res.status !== status) {
+          setStatus(false);
+        } else {
+          setStatus(true);
+        }
+      },
+    );
   }, []);
 
   return (
@@ -38,7 +49,7 @@ export const ConfirmEmail: FC = () => {
           </div>
         ) : (
           <div>
-            {auth.error === null ? (
+            {status ? (
               <div className={styles.expiredContainer}>
                 <h2 className={`${style.textGlobal} ${styles.title}`}>
                   Congratulations! Your email has been confirmed
