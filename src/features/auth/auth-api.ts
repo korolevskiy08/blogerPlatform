@@ -20,10 +20,10 @@ export const authApi = {
     });
   },
   logout() {
-    return instance.post('auth/logout', {}, { withCredentials: true });
+    return instance.post('auth/logout', {});
   },
   refreshToken() {
-    return instance.post('auth/refresh-token', {}, { withCredentials: true });
+    return instance.post('auth/refresh-token', {});
   },
   registrationConfirmation(code: CodeType) {
     return instance.post('auth/registration-confirmation', code);
