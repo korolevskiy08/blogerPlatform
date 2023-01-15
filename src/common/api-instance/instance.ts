@@ -25,7 +25,7 @@ instance.interceptors.response.use(
 
         return instance.request(originalRequest);
       } catch (e) {
-        console.log('не авторизован');
+        console.log('Не авторизован');
       }
     }
     throw error;
