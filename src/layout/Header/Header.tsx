@@ -17,6 +17,10 @@ export const Header: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const navigateSettings = (): void => {
+    navigate(Path.ProfileSettings);
+  };
+
   const logOut = (): void => {
     dispatch(logout()).then(() => {
       navigate(Path.SignIn);
@@ -38,7 +42,13 @@ export const Header: FC = () => {
         </div>
       ) : (
         <div className={styles.signIn}>
-          <p className={`${style.textGlobal} ${styles.signInText}`}>{userData.login}</p>
+          <p
+            role="presentation"
+            onClick={navigateSettings}
+            className={`${style.textGlobal} ${styles.signInText}`}
+          >
+            {userData.login}
+          </p>
           <LoginOut className={styles.iconLogOut} />
           <NavLink
             onClick={logOut}

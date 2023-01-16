@@ -6,4 +6,6 @@ export enum Path {
   SignIn = '/SignIn',
   Register = '/Register',
   ConfirmEmail = '/confirm-email',
+  ProfileSettings = '/Profile-settings',
+  Devices = '/Devices',
 }

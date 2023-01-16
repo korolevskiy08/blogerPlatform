@@ -1,0 +1,26 @@
+.settingsList {
+    margin: 0;
+    padding: 0;
+
+    border-bottom: 1px solid #DEDBDC;
+}
+
+.itemList {
+    width: 55px;
+    margin-bottom: 8px;
+}
+
+.link {
+    font-weight: 600;
+    line-height: 20px;
+    color: black;
+
+}
+
+.link:hover {
+    color: #F8346B;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #F8346B;
+}
+
+

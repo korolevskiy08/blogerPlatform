@@ -10,6 +10,8 @@ import { Blog } from '../../features/Blog/Blog';
 import { Blogs } from '../../features/Blogs/Blogs';
 import { Post } from '../../features/Post/Post';
 import { Posts } from '../../features/Posts/Posts';
+import { Devices } from '../../features/profileSettings/Devices/Devices';
+import { ProfileSettings } from '../../features/profileSettings/ProfileSettings';
 
 export const AppRoutes: FC = () => {
   return (
@@ -22,6 +24,8 @@ export const AppRoutes: FC = () => {
       <Route path={Path.SignIn} element={<SignIn />} />
       <Route path={Path.Register} element={<SignUp />} />
       <Route path={Path.ConfirmEmail} element={<ConfirmEmail />} />
+      <Route path={Path.ProfileSettings} element={<ProfileSettings />} />
+      <Route path={Path.ProfileSettings} element={<Devices />} />
     </Routes>
   );
 };
