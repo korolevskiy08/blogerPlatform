@@ -5,3 +5,23 @@
 
     padding-top: 42px;
 }
+
+.title {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.thisDevices {
+    width: 100%;
+    margin-bottom: 30px;
+
+    background-color: white;
+
+    display: flex;
+}
+
+.thisDevicesInfo {
+    width: 100%;
+    background-color: white;
+    margin-bottom: 30px;
+}

@@ -7,17 +7,7 @@ export const authApi = {
     return instance.post('auth/login', params);
   },
   me() {
-    const token = localStorage.getItem('accessToken');
-
-    if (!token) {
-      return Promise.resolve({ data: null });
-    }
-
-    return instance.get('auth/me', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    return instance.get('auth/me');
   },
   signUp(data: SignUpType) {
     return instance.post('auth/registration', {
