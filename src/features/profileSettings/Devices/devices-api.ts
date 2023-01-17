@@ -4,4 +4,7 @@ export const devicesAPI = {
   getDevices() {
     return instance.get('security/devices');
   },
+  terminateSessions() {
+    return instance.delete('security/devices');
+  },
 };

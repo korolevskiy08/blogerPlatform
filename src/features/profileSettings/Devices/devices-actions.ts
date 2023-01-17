@@ -17,3 +17,16 @@ export const getDevices = createAsyncThunk(
     }
   },
 );
+
+export const terminateSessions = createAsyncThunk(
+  'auth/terminateSessions',
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      await devicesAPI.terminateSessions();
+
+      dispatch(getDevices());
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
