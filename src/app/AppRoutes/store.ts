@@ -7,6 +7,7 @@ import { blogSlice } from '../../features/Blog/blog-slice';
 import { blogsSlice } from '../../features/Blogs/blogs-slice';
 import { postSlice } from '../../features/Post/post-slice';
 import { postsSlice } from '../../features/Posts/posts-slice';
+import { devicesSlice } from '../../features/profileSettings/Devices/diveces-slice';
 
 const rootReducer = combineReducers({
   blogs: blogsSlice,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   posts: postsSlice,
   post: postSlice,
   auth: authSlice,
+  devices: devicesSlice,
 });
 
 export const store = configureStore({

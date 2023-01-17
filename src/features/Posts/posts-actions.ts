@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 import { AppRootStateType } from '../../app/AppRoutes/store';
 
@@ -14,7 +15,7 @@ export const getPosts = createAsyncThunk(
 
       return res;
     } catch (e) {
-      return rejectWithValue(null);
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }
   },
 );
