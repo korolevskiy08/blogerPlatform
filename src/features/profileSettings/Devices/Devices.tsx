@@ -40,9 +40,10 @@ export const Devices: FC = () => {
             <li key={d.deviceId} className={styles.device}>
               <ThisDevices
                 ip={d.ip}
-                title={d.title}
                 deviceId={d.deviceId}
                 lastActiveDate={d.lastActiveDate}
+                browser={d.title}
+                icon={d.icon}
               />
             </li>
           );

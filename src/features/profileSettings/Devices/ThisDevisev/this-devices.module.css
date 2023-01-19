@@ -7,14 +7,41 @@
 .thisDevices {
     width: 100%;
     margin-bottom: 12px;
+    padding: 18px 24px 0 24px;
 
     background-color: white;
 
     display: flex;
 }
 
+.thisDevices img {
+    padding-right: 12px;
+}
+
+.titleBrowser {
+    font-weight: 600;
+    font-size: 16px;
+    padding-bottom: 13px;
+}
+
 .thisDevicesInfo {
     width: 100%;
     background-color: white;
     margin-bottom: 30px;
+}
+
+.ip {
+    font-size: 12px;
+}
+
+.loginOut {
+    display: flex;
+    width: 105px;
+    align-items: center;
+    flex-direction: row;
+}
+
+.loginOut img {
+    width: 18px;
+    height: 18px;
 }
