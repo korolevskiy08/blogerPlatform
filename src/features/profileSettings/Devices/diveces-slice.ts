@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import Chrome from '../../../common/icons/chrome.svg';
 import Edge from '../../../common/icons/edge.svg';
@@ -9,16 +9,44 @@ import Yandex from '../../../common/icons/yandex.svg';
 import { Status } from '../../Blog/blog-slice';
 
 import { getDevices } from './devices-actions';
-import { DevicesItemType, DeviceType } from './devices-types';
+import { CurrentDevice, DevicesItemType, DeviceType } from './devices-types';
 
 const slice = createSlice({
   name: 'devices',
   initialState: {
     status: 'idle' as Status,
     devices: [] as DeviceType[],
+    device: {} as CurrentDevice,
     error: null as null | string,
   },
-  reducers: {},
+  reducers: {
+    getCurrentDevice(state, action: PayloadAction<{ browser: string }>) {
+      let browser: string = '';
+      const iconsDevices = { Chrome, Firefox, Iphone, Edge, Safari, Yandex };
+
+      if (/Edg/i.test(action.payload.browser)) {
+        browser = 'Edge';
+      } else if (/Firefox/.test(action.payload.browser)) {
+        browser = 'Firefox';
+      } else if (/Chrome/i.test(action.payload.browser)) {
+        browser = 'Chrome';
+      } else if (/Iphone/i.test(action.payload.browser)) {
+        browser = 'Iphone';
+      } else if (/YaBrowser/i.test(action.payload.browser)) {
+        browser = 'Yandex Browser';
+      } else if (/^((?!chrome|android).)*Safari/i.test(action.payload.browser)) {
+        browser = 'Safari';
+      }
+
+      return {
+        ...state,
+        device: {
+          browser,
+          icon: iconsDevices[browser as keyof typeof iconsDevices] || null,
+        },
+      };
+    },
+  },
   extraReducers: builder => {
     builder.addCase(getDevices.fulfilled, (state, action) => {
       const iconsDevices = { Chrome, Firefox, Iphone, Edge, Safari, Yandex };
@@ -76,5 +104,7 @@ const slice = createSlice({
     );
   },
 });
+
+export const { getCurrentDevice } = slice.actions;
 
 export const devicesSlice = slice.reducer;

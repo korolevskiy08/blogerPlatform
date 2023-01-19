@@ -7,14 +7,17 @@ import style from '../../../layout/global.module.css';
 
 import { getDevices, terminateSessions } from './devices-actions';
 import styles from './devices.module.css';
+import { getCurrentDevice } from './diveces-slice';
 import { ThisDevices } from './ThisDevisev/ThisDevices';
 
 export const Devices: FC = () => {
   const devices = useAppSelector(state => state.devices.devices);
+  const device = useAppSelector(state => state.devices.device);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getDevices());
+    dispatch(getCurrentDevice({ browser: navigator.userAgent }));
   }, []);
 
   const terminateAllSessions = (): void => {
@@ -24,7 +27,15 @@ export const Devices: FC = () => {
   return (
     <div>
       <p className={`${style.textGlobal} ${styles.title}`}>This devices</p>
-      <div className={styles.currentDevice}>current device</div>
+      <div className={styles.currentDevice}>
+        <img src={device.icon} alt="" />
+        <div>
+          <p className={`${style.textGlobal} ${styles.currentBrowser}`}>
+            {device.browser}
+          </p>
+          <p className={`${style.textGlobal} ${styles.online}`}>Online</p>
+        </div>
+      </div>
       <div className={styles.terminateBlock}>
         <Button
           onclick={terminateAllSessions}

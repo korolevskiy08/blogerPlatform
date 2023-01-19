@@ -9,8 +9,6 @@ export const getDevices = createAsyncThunk(
     try {
       const res = await devicesAPI.getDevices();
 
-      console.log(res);
-
       return res;
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
@@ -19,11 +17,23 @@ export const getDevices = createAsyncThunk(
 );
 
 export const terminateSessions = createAsyncThunk(
-  'auth/terminateSessions',
+  'devices/terminateSessions',
   async (_, { rejectWithValue, dispatch }) => {
     try {
       await devicesAPI.terminateSessions();
 
+      dispatch(getDevices());
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
+
+export const loginOutDevice = createAsyncThunk(
+  'devices/loginOutDevice',
+  async (deviceId: string, { rejectWithValue, dispatch }) => {
+    try {
+      await devicesAPI.loginOutDevice(deviceId);
       dispatch(getDevices());
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);

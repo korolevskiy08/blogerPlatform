@@ -7,4 +7,7 @@ export const devicesAPI = {
   terminateSessions() {
     return instance.delete('security/devices');
   },
+  loginOutDevice(deviceId: string) {
+    return instance.delete(`security/devices/${deviceId}`);
+  },
 };

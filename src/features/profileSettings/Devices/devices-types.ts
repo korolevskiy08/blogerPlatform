@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export type DevicesItemType = {
   ip: string;
   title: string;
@@ -14,7 +12,7 @@ export type DeviceType = {
   icon: any;
 };
 
-export type ImageDevices = {
-  name: string;
-  img: ReactNode;
+export type CurrentDevice = {
+  browser: string;
+  icon: any;
 };

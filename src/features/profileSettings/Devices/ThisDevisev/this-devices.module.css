@@ -7,21 +7,23 @@
 .thisDevices {
     width: 100%;
     margin-bottom: 12px;
-    padding: 18px 24px 0 24px;
 
     background-color: white;
 
     display: flex;
 }
 
-.thisDevices img {
-    padding-right: 12px;
+.browserImg {
+    width: 36px;
+    height: 36px;
+
+    padding: 24px 24px;
 }
 
 .titleBrowser {
     font-weight: 600;
     font-size: 16px;
-    padding-bottom: 13px;
+    padding: 18px 0 13px 0;
 }
 
 .thisDevicesInfo {
@@ -35,13 +37,17 @@
 }
 
 .loginOut {
+    cursor: pointer;
     display: flex;
-    width: 105px;
+    width: 120px;
     align-items: center;
     flex-direction: row;
+    padding-right: 24px;
 }
 
-.loginOut img {
+.loginOutImg {
     width: 18px;
     height: 18px;
+
+    padding-right: 15px;
 }
