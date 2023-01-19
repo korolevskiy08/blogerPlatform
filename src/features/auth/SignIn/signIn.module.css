@@ -2,14 +2,14 @@
     font-weight: 500;
     font-size: 20px;
     text-align: center;
-    padding-top: 10px;
+    padding-bottom: 31px;
 }
 
 .signIn {
     width: 378px;
     height: 420px;
     background: #FFFFFF;
-    padding: 0 24px 0 24px;
+    padding: 29px 24px 0 24px;
 }
 
 .text {
@@ -35,12 +35,14 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 20px;
+    margin-bottom: 18px;
 }
 
 .haveAccount {
     font-size: 16px;
     color: #737067;
     text-align: center;
+    margin-bottom: 12px;
 }
 
 .signUp {
