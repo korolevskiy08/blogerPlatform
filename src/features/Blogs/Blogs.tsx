@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { CircularProgress } from '@mui/material';
 
@@ -10,8 +10,8 @@ import style from '../../layout/global.module.css';
 
 import BlogItem from './BlogItem/BlogItem';
 import { getBlogs } from './blogs-actions';
-import { BlogType } from './blogs-api';
-import { setFilterBlogs } from './blogs-slice';
+// import { setFetching } from './blogs-slice';
+import { setFetching } from './blogs-slice';
 import styles from './Blogs.module.css';
 import { FilterBlock } from './FilterBlock/FilterBlock';
 
@@ -19,26 +19,13 @@ export const Blogs: FC = () => {
   const dispatch = useAppDispatch();
   const blogs = useAppSelector(state => state.blogs);
 
-  const [currentBlogs, setCurrentBlogs] = useState<BlogType[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [fetching, setFetching] = useState(true);
-  const [totalCount, setTotalCount] = useState(0);
   const num = 100;
 
   useEffect(() => {
-    if (fetching) {
-      dispatch(setFilterBlogs({ pageNumber: currentPage }));
-      dispatch(getBlogs())
-        .then((res: any) => {
-          setCurrentBlogs([...currentBlogs, ...res.payload.data.items]);
-          setCurrentPage(prevState => prevState + 1);
-          setTotalCount(res.payload.data.totalCount);
-        })
-        .finally(() => {
-          setFetching(false);
-        });
+    if (blogs.params.fetching) {
+      dispatch(getBlogs());
     }
-  }, [fetching]);
+  }, [blogs.params.fetching]);
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
@@ -46,16 +33,17 @@ export const Blogs: FC = () => {
     return () => {
       document.removeEventListener('scroll', scrollHandler);
     };
-  }, [totalCount]);
+  }, [blogs.params.totalCount, blogs.blogs.length]);
 
   const scrollHandler = (e: any): void => {
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
         num &&
-      currentBlogs.length < totalCount
+      blogs.blogs.length < blogs.params.totalCount
     ) {
-      setFetching(true);
+      dispatch(setFetching({ isFetching: false }));
+      // dispatch(getBlogs());
     }
   };
 
@@ -66,7 +54,7 @@ export const Blogs: FC = () => {
           <TitleComponent title="Blogs" />
           <FilterBlock searchNameTerm={blogs.params.searchNameTerm} />
           <div>
-            {currentBlogs.map(el => {
+            {blogs.blogs.map(el => {
               return (
                 <BlogItem
                   name={el.name}

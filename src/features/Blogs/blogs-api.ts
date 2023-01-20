@@ -2,10 +2,7 @@ import { instance } from '../../common/api-instance/instance';
 
 export const blogsAPI = {
   getBlogs(params: BlogsParamType) {
-    return instance.get('blogs', { params });
-  },
-  removeBlog(id: string) {
-    return instance.delete(`blogs/${id}`);
+    return instance.get<BlogType>('blogs', { params });
   },
 };
 
@@ -17,7 +14,7 @@ export type BlogsParamType = {
   sortDirection?: string;
 };
 
-export type BlogType = {
+export type BlogItemType = {
   createdAt: string;
   id: string;
   name: string;
@@ -25,8 +22,10 @@ export type BlogType = {
   description: string;
 };
 
-export type NewBlogType = {
-  name: string;
-  description: string;
-  websiteUrl: string;
+export type BlogType = {
+  pagesCount: number;
+  page: number;
+  pageSize: number;
+  totalCount: number;
+  items: BlogItemType[];
 };

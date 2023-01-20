@@ -4,7 +4,7 @@ import { AuthType, CodeType, SignUpType } from './authType';
 
 export const authApi = {
   login(params: AuthType) {
-    return instance.post('auth/login', params);
+    return instance.post<ResponseLoginType>('auth/login', params);
   },
   me() {
     return instance.get('auth/me');
@@ -24,4 +24,8 @@ export const authApi = {
   registrationConfirmation(code: CodeType) {
     return instance.post('auth/registration-confirmation', code);
   },
+};
+
+export type ResponseLoginType = {
+  accessToken: string;
 };

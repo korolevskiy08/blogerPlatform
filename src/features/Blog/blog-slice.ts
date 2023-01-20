@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { BlogType } from '../Blogs/blogs-api';
+import { BlogItemType } from '../Blogs/blogs-api';
 
 import { getBlog } from './blog-actions';
 
@@ -8,7 +8,7 @@ const slice = createSlice({
   name: 'blog',
   initialState: {
     status: 'idle' as Status,
-    blog: {} as BlogType,
+    blog: {} as BlogItemType,
     error: null as null | string,
   },
   reducers: {},

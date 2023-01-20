@@ -30,10 +30,8 @@ instance.interceptors.response.use(
       !flag &&
       !error.config._isRetry
     ) {
-      console.log('error.config._isRetry', error.config._isRetry);
       originalRequest._isRetry = true;
       flag = true;
-      console.log('originalRequest._isRetry', originalRequest._isRetry);
       try {
         const response = await authApi.refreshToken();
 
