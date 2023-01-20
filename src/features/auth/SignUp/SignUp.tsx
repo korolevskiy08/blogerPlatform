@@ -7,9 +7,11 @@ import { AuthWrapper } from '../../../common/Components/AuthWrapper/AuthWrapper'
 import { Button } from '../../../common/Components/Button/Button';
 import { ConfirmModal } from '../../../common/Components/Modals/ConfirmModal/ConfirmModal';
 import { ErrorSnackBar } from '../../../common/Components/SnackBar/SnackBar';
+import { ShowPassword } from '../../../common/function/showPassword';
 import { validateSignUp } from '../../../common/function/validateSignUp';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import Eye from '../../../common/icons/showPassword.svg';
 import { Path } from '../../../common/Routes';
 import style from '../../../layout/global.module.css';
 import { signUp } from '../auth-actions';
@@ -18,6 +20,8 @@ import { SignUpType } from '../authType';
 import styles from './signUp.module.css';
 
 export const SignUp: FC = () => {
+  const { show, setShowPassword } = ShowPassword();
+
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [open, setOpen] = React.useState(true);
   const auth = useAppSelector(state => state.auth);
@@ -75,15 +79,26 @@ export const SignUp: FC = () => {
             {formik.touched.email && formik.errors.email && formik.errors.email}
           </div>
           <p className={`${style.textGlobal} ${styles.text}`}>Password</p>
-          <input
-            type="password"
-            className={style.textGlobal}
-            {...formik.getFieldProps('password')}
-          />
-          <div className={styles.error}>
-            {formik.touched.password && formik.errors.password && formik.errors.password}
+          <div>
+            <input
+              type={show ? 'password' : 'text'}
+              className={style.textGlobal}
+              {...formik.getFieldProps('password')}
+            />
+            <img
+              role="presentation"
+              onClick={setShowPassword}
+              className={styles.eye}
+              src={Eye}
+              alt="eye"
+            />
+            <div className={styles.error}>
+              {formik.touched.password &&
+                formik.errors.password &&
+                formik.errors.password}
+            </div>
           </div>
-          <p className={`${style.textGlobal} ${styles.text}`}>
+          <p className={`${style.textGlobal} ${styles.textLinEmail}`}>
             The link has been sent by email. If you don’t receive an email, send link
             again
           </p>

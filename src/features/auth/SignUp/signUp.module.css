@@ -9,23 +9,35 @@
     font-weight: 500;
     font-size: 20px;
     text-align: center;
-    padding-top: 10px;
+    padding: 29px 0 0 0;
 }
 
 .text {
     color: #737067;
-    margin: 0;
+    padding-top: 24px;
 }
 
 .signUp input {
+    position: absolute;
     border: none;
-    width: 100%;
+    width: 330px;
     border-bottom: 1px solid #DEDBDC;
+    margin-bottom: 24px;
 }
 
 .error {
     color: red;
     height: 22px;
+}
+
+.eye {
+    cursor: pointer;
+    position: relative;
+    left: 300px;
+}
+
+.textLinEmail {
+    color: #737067;
 }
 
 .button {
