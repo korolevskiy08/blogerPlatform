@@ -6,9 +6,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthWrapper } from '../../../common/Components/AuthWrapper/AuthWrapper';
 import { Button } from '../../../common/Components/Button/Button';
 import { ErrorSnackBar } from '../../../common/Components/SnackBar/SnackBar';
+import { ShowPassword } from '../../../common/function/showPassword';
 import { validateSignIn } from '../../../common/function/validateSignIn';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import Eye from '../../../common/icons/showPassword.svg';
 import { Path } from '../../../common/Routes';
 import style from '../../../layout/global.module.css';
 import { signIn } from '../auth-actions';
@@ -18,6 +20,8 @@ import styles from './signIn.module.css';
 
 export const SignIn: FC = () => {
   const [open, setOpen] = React.useState(true);
+  const { show, setShowPassword } = ShowPassword();
+
   const auth = useAppSelector(state => state.auth);
 
   const dispatch = useAppDispatch();
@@ -64,14 +68,24 @@ export const SignIn: FC = () => {
               formik.errors.loginOrEmail}
           </div>
           <p className={`${style.textGlobal} ${styles.text}`}>Password</p>
-          <input
-            {...formik.getFieldProps('password')}
-            className={style.textGlobal}
-            type="password"
-          />
+          <div>
+            <input
+              {...formik.getFieldProps('password')}
+              className={style.textGlobal}
+              type={show ? 'password' : 'text'}
+            />
+            <img
+              role="presentation"
+              onClick={setShowPassword}
+              className={styles.eye}
+              src={Eye}
+              alt="eye"
+            />
+          </div>
           <div className={styles.error}>
             {formik.touched.password && formik.errors.password && formik.errors.password}
           </div>
+          <p className={`${style.textGlobal} ${styles.forgot}`}>Forgot Password</p>
           <Button
             type="submit"
             styleButton={`${style.button} ${styles.button}`}

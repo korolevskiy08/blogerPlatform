@@ -20,13 +20,28 @@
 .error {
     color: red;
     height: 22px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 .signIn input {
+    position: absolute;
+
     border: none;
-    width: 100%;
+    width: 330px;
     border-bottom: 1px solid #DEDBDC;
+}
+
+.eye {
+    cursor: pointer;
+    position: relative;
+    left: 300px;
+}
+
+.forgot {
+    cursor: pointer;
+    font-size: 16px;
+    color: #797476;
+    text-align: right;
 }
 
 .button {
