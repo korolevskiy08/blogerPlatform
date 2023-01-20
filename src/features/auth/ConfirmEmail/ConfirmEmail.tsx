@@ -49,7 +49,7 @@ export const ConfirmEmail: FC = () => {
           </div>
         ) : (
           <div>
-            {status ? (
+            {!status ? (
               <div className={styles.expiredContainer}>
                 <h2 className={`${style.textGlobal} ${styles.title}`}>
                   Congratulations! Your email has been confirmed
