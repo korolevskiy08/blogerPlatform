@@ -4,23 +4,17 @@ import axios from 'axios';
 import { AppRootStateType } from '../../app/AppRoutes/store';
 
 import { blogsAPI } from './blogs-api';
-import { setBlogs, setFetching } from './blogs-slice';
 
 export const getBlogs = createAsyncThunk(
   'blogs/getBlogs',
-  async (_, { rejectWithValue, getState, dispatch }) => {
-    const params = getState() as AppRootStateType;
+  async (_, { rejectWithValue, getState }) => {
+    const { params } = (getState() as AppRootStateType).blogs;
+    const nextPageNumber = params.page + 1;
 
-    console.log(params.blogs.params);
-    if (params.blogs.params.fetching) {
-      return;
-    }
-    dispatch(setFetching({ isFetching: true }));
+    if (params.fetching || nextPageNumber > params.pagesCount)
+      return rejectWithValue('Already fetching');
     try {
-      const res = await blogsAPI.getBlogs(params.blogs.params);
-
-      console.log(res.data.items);
-      dispatch(setBlogs(res.data));
+      const res = await blogsAPI.getBlogs({ ...params, pageNumber: nextPageNumber });
 
       return res;
     } catch (e) {

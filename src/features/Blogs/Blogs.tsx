@@ -10,8 +10,6 @@ import style from '../../layout/global.module.css';
 
 import BlogItem from './BlogItem/BlogItem';
 import { getBlogs } from './blogs-actions';
-// import { setFetching } from './blogs-slice';
-import { setFetching } from './blogs-slice';
 import styles from './Blogs.module.css';
 import { FilterBlock } from './FilterBlock/FilterBlock';
 
@@ -22,28 +20,20 @@ export const Blogs: FC = () => {
   const num = 100;
 
   useEffect(() => {
-    if (blogs.params.fetching) {
-      dispatch(getBlogs());
-    }
-  }, [blogs.params.fetching]);
-
-  useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
 
     return () => {
       document.removeEventListener('scroll', scrollHandler);
     };
-  }, [blogs.params.totalCount, blogs.blogs.length]);
+  }, [blogs.blogs.length, dispatch]);
 
   const scrollHandler = (e: any): void => {
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
-        num &&
-      blogs.blogs.length < blogs.params.totalCount
+      num
     ) {
-      dispatch(setFetching({ isFetching: false }));
-      // dispatch(getBlogs());
+      dispatch(getBlogs());
     }
   };
 
