@@ -29,7 +29,7 @@ export const ConfirmEmail: FC = () => {
   useEffect(() => {
     dispatch(registrationConfirmation({ code: params.search.slice(min) })).then(
       (res: any) => {
-        const status = 400;
+        const status = 401;
 
         if (res.status !== status) {
           setStatus(false);
