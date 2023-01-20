@@ -31,6 +31,7 @@ export const ConfirmEmail: FC = () => {
       (res: any) => {
         const status = 400;
 
+        console.log(res);
         if (res.status !== status) {
           setStatus(false);
         } else {
@@ -43,42 +44,41 @@ export const ConfirmEmail: FC = () => {
   return (
     <Wrapper showNavigation={false}>
       <div className={styles.container}>
-        {auth.status === 'loading' ? (
+        {auth.status === 'loading' && (
           <div className={style.loader}>
             <CircularProgress color="inherit" />
           </div>
-        ) : (
-          <div>
-            {status ? (
-              <div className={styles.expiredContainer}>
-                <h2 className={`${style.textGlobal} ${styles.title}`}>
-                  Congratulations! Your email has been confirmed
-                </h2>
-                <Button styleButton={style.button} onclick={navigateSignIn}>
-                  Sign In
-                </Button>
-                <img src={bro} alt="bro" />
-              </div>
-            ) : (
-              <div className={styles.expiredContainer}>
-                <h2 className={`${style.textGlobal} ${styles.titleExpired}`}>
-                  Email verification link expired
-                </h2>
-                <p className={`${style.textGlobal} ${styles.text}`}>
-                  Looks like the verification link has expired. Not to worry, we can send
-                  the link again
-                </p>
-                <Button
-                  styleButton={`${style.button} ${styles.buttonResend}`}
-                  onclick={() => {}}
-                >
-                  Resend verification link
-                </Button>
-                <img src={linkExpired} alt="linkExpired" />
-              </div>
-            )}
-          </div>
         )}
+        <div>
+          {status ? (
+            <div className={styles.expiredContainer}>
+              <h2 className={`${style.textGlobal} ${styles.title}`}>
+                Congratulations! Your email has been confirmed
+              </h2>
+              <Button styleButton={style.button} onclick={navigateSignIn}>
+                Sign In
+              </Button>
+              <img src={bro} alt="bro" />
+            </div>
+          ) : (
+            <div className={styles.expiredContainer}>
+              <h2 className={`${style.textGlobal} ${styles.titleExpired}`}>
+                Email verification link expired
+              </h2>
+              <p className={`${style.textGlobal} ${styles.text}`}>
+                Looks like the verification link has expired. Not to worry, we can send
+                the link again
+              </p>
+              <Button
+                styleButton={`${style.button} ${styles.buttonResend}`}
+                onclick={() => {}}
+              >
+                Resend verification link
+              </Button>
+              <img src={linkExpired} alt="linkExpired" />
+            </div>
+          )}
+        </div>
       </div>
     </Wrapper>
   );
