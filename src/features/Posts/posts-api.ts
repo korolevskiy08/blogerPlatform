@@ -2,7 +2,7 @@ import { instance } from '../../common/api-instance/instance';
 
 export const postsAPI = {
   getPosts(params: PostsParamType) {
-    return instance.get('posts', { params });
+    return instance.get<PostType>('posts', { params });
   },
 };
 
@@ -21,4 +21,12 @@ export type ItemPostType = {
   id: string;
   shortDescription: string;
   title: string;
+};
+
+export type PostType = {
+  pagesCount: number;
+  page: number;
+  pageSize: number;
+  totalCount: number;
+  items: ItemPostType[];
 };

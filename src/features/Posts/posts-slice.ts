@@ -12,10 +12,13 @@ const slice = createSlice({
     posts: [] as ItemPostType[],
     error: null as null | string,
     params: {
-      pageNumber: 1,
       pageSize: 10,
+      pageNumber: 1,
       sortBy: 'createdAt' as SortByType,
       sortDirection: 'desc' as SortDirectionType,
+      pagesCount: 1,
+      page: 0,
+      fetching: false,
     },
   },
   reducers: {
@@ -28,7 +31,6 @@ const slice = createSlice({
         sortDirection?: SortDirectionType;
       }>,
     ) {
-      state.params.pageNumber = action.payload.pageNumber || state.params.pageNumber;
       state.params.pageSize = action.payload.pageSize || state.params.pageSize;
       state.params.sortBy = action.payload.sortBy || state.params.sortBy;
       state.params.sortDirection =
@@ -37,9 +39,10 @@ const slice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(getPosts.fulfilled, (state, action) => {
-      state.status = 'succeeded';
-      state.error = null;
-      state.posts = action.payload!.data.items;
+      state.posts = [...state.posts, ...action.payload!.data.items];
+      state.params.pagesCount = action.payload!.data.pagesCount;
+      state.params.page = action.payload!.data.page;
+      state.params.fetching = false;
     });
     builder.addMatcher(
       action => action.type.endsWith('pending'),

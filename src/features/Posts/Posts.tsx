@@ -11,7 +11,6 @@ import style from '../../layout/global.module.css';
 
 import { PostItem } from './PostItem/PostItem';
 import { getPosts } from './posts-actions';
-import { ItemPostType } from './posts-api';
 import { setFilterPosts } from './posts-slice';
 import styles from './posts.module.css';
 
@@ -19,43 +18,24 @@ export const Posts: FC = () => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector(state => state.posts);
 
-  const [currentPosts, setCurrentPosts] = useState<ItemPostType[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [fetching, setFetching] = useState(true);
-  const [totalCount, setTotalCount] = useState(0);
   const num = 100;
 
   useEffect(() => {
-    if (fetching) {
-      dispatch(setFilterPosts({ pageNumber: currentPage }));
-      dispatch(getPosts())
-        .then((res: any) => {
-          setCurrentPosts([...currentPosts, ...res.payload.data.items]);
-          setCurrentPage(prevState => prevState + 1);
-          setTotalCount(res.payload.data.totalCount);
-        })
-        .finally(() => {
-          setFetching(false);
-        });
-    }
-  }, [fetching]);
-
-  useEffect(() => {
+    dispatch(getPosts());
     document.addEventListener('scroll', scrollHandler);
 
     return () => {
       document.removeEventListener('scroll', scrollHandler);
     };
-  }, [totalCount]);
+  }, [posts.posts.length, dispatch]);
 
   const scrollHandler = (e: any): void => {
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
-        num &&
-      currentPosts.length < totalCount
+      num
     ) {
-      setFetching(true);
+      dispatch(getPosts());
     }
   };
 
@@ -92,11 +72,10 @@ export const Posts: FC = () => {
             />
           </div>
           <ul className={styles.postContainer}>
-            {currentPosts.map(el => {
+            {posts.posts.map(el => {
               return (
                 <li key={el.id}>
                   <PostItem
-                    key={el.id}
                     id={el.id}
                     name={el.title}
                     content={el.content}

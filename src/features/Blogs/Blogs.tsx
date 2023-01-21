@@ -43,16 +43,18 @@ export const Blogs: FC = () => {
         <div className={styles.container}>
           <TitleComponent title="Blogs" />
           <FilterBlock searchNameTerm={blogs.params.searchNameTerm} />
-          <div>
+          <ul>
             {blogs.blogs.map(el => {
               return (
-                <BlogItem
-                  name={el.name}
-                  key={el.id}
-                  id={el.id}
-                  websiteUrl={el.websiteUrl}
-                  description={el.description}
-                />
+                <li key={el.id}>
+                  <BlogItem
+                    name={el.name}
+                    key={el.id}
+                    id={el.id}
+                    websiteUrl={el.websiteUrl}
+                    description={el.description}
+                  />
+                </li>
               );
             })}
             {blogs.status === 'loading' && (
@@ -60,7 +62,7 @@ export const Blogs: FC = () => {
                 <CircularProgress color="inherit" />
               </div>
             )}
-          </div>
+          </ul>
         </div>
       </div>
     </Wrapper>
