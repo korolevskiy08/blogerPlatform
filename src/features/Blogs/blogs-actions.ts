@@ -14,7 +14,10 @@ export const getBlogs = createAsyncThunk(
     if (params.fetching || nextPageNumber > params.pagesCount)
       return rejectWithValue('Already fetching');
     try {
-      const res = await blogsAPI.getBlogs({ ...params, pageNumber: nextPageNumber });
+      const res = await blogsAPI.getBlogs({
+        ...params,
+        pageNumber: nextPageNumber,
+      });
 
       return res;
     } catch (e) {

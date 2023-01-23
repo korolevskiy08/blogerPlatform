@@ -1,5 +1,5 @@
 import { instance } from '../../common/api-instance/instance';
-import { PostsBlogType } from '../Blogs/blogType';
+import { PostsBlogType } from '../Blogs/blogsType';
 
 export const blogAPI = {
   getBlog(id: string) {

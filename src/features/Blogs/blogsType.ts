@@ -15,3 +15,7 @@ export type PostsBlogType = {
   totalCount: number;
   items: PostItem[];
 };
+
+export type paramsType = {
+  searchNameTerm?: string;
+};

@@ -1,8 +1,13 @@
 import { instance } from '../../common/api-instance/instance';
 
+import { PostsBlogType } from './blogsType';
+
 export const blogsAPI = {
   getBlogs(params: BlogsParamType) {
     return instance.get<BlogType>('blogs', { params });
+  },
+  getBlogPosts(blogId: string) {
+    return instance.get<PostsBlogType>(`blogs/${blogId}/posts`);
   },
 };
 
