@@ -27,6 +27,10 @@ export const SignIn: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const navigateForgot = (): void => {
+    navigate(Path.ForgotPassword);
+  };
+
   useEffect(() => {
     setOpen(true);
   }, [auth.error]);
@@ -85,7 +89,13 @@ export const SignIn: FC = () => {
           <div className={styles.error}>
             {formik.touched.password && formik.errors.password && formik.errors.password}
           </div>
-          <p className={`${style.textGlobal} ${styles.forgot}`}>Forgot Password</p>
+          <p
+            role="presentation"
+            onClick={navigateForgot}
+            className={`${style.textGlobal} ${styles.forgot}`}
+          >
+            Forgot Password
+          </p>
           <Button
             type="submit"
             styleButton={`${style.button} ${styles.button}`}

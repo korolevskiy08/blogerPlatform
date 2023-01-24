@@ -3,6 +3,16 @@ export type AuthType = {
   password: string;
 };
 
+export type ForgotPasswordType = {
+  recoveryCode: string;
+  newPassword: string;
+};
+
+export type ForgotPasswordFormType = {
+  recoveryCode?: string;
+  newPassword?: string;
+};
+
 export type SignInFormType = {
   loginOrEmail?: string;
   password?: string;
