@@ -8,4 +8,5 @@ export enum Path {
   ConfirmEmail = '/confirm-email',
   ProfileSettings = '/Profile-settings',
   Devices = '/Devices',
+  ForgotPassword = '/ForgotPassword',
 }

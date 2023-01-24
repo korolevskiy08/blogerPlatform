@@ -56,7 +56,7 @@ export const SignUp: FC = () => {
   }, [auth.error]);
 
   return (
-    <AuthWrapper>
+    <AuthWrapper showImage>
       <div className={styles.signUp}>
         <form onSubmit={formik.handleSubmit}>
           <h2 className={`${style.textGlobal} ${styles.title}`}>Sign Up</h2>

@@ -52,7 +52,7 @@ export const SignIn: FC = () => {
   }
 
   return (
-    <AuthWrapper>
+    <AuthWrapper showImage>
       <div className={styles.signIn}>
         <form onSubmit={formik.handleSubmit}>
           <h2 className={`${style.textGlobal} ${styles.title}`}>Sign In</h2>

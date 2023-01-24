@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Path } from '../../common/Routes';
 import { ConfirmEmail } from '../../features/auth/ConfirmEmail/ConfirmEmail';
+import { ForgotPassword } from '../../features/auth/ForgotPassword/ForgotPassword';
 import { SignIn } from '../../features/auth/SignIn/SignIn';
 import { SignUp } from '../../features/auth/SignUp/SignUp';
 import { Blog } from '../../features/Blog/Blog';
@@ -26,6 +27,7 @@ export const AppRoutes: FC = () => {
       <Route path={Path.ConfirmEmail} element={<ConfirmEmail />} />
       <Route path={Path.ProfileSettings} element={<ProfileSettings />} />
       <Route path={Path.ProfileSettings} element={<Devices />} />
+      <Route path={Path.ForgotPassword} element={<ForgotPassword />} />
     </Routes>
   );
 };

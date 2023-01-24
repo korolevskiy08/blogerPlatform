@@ -8,16 +8,19 @@ import styles from './authWrapper.module.css';
 
 type AuthWrapperType = {
   children: ReactNode;
+  showImage: boolean;
 };
 
-export const AuthWrapper: FC<AuthWrapperType> = ({ children }) => {
+export const AuthWrapper: FC<AuthWrapperType> = ({ showImage, children }) => {
   return (
     <Wrapper showNavigation={false}>
       <div className={`${style.container} ${styles.container}`}>
         {children}
-        <div className={styles.rafiki}>
-          <img src={rafiki} alt="rafiki" />
-        </div>
+        {showImage && (
+          <div className={styles.rafiki}>
+            <img src={rafiki} alt="rafiki" />
+          </div>
+        )}
       </div>
     </Wrapper>
   );
