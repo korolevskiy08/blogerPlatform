@@ -1,9 +1,9 @@
-import { ForgotPasswordFormType } from '../../features/auth/authType';
+import { NewPasswordFormType } from '../../features/auth/authType';
 
-export const validateForgotPassword = (values: any): ForgotPasswordFormType => {
+export const validateNewPassword = (values: any): NewPasswordFormType => {
   const minPass = 2;
   const maxPass = 8;
-  const errors: ForgotPasswordFormType = {};
+  const errors: NewPasswordFormType = {};
 
   if (!values.newPassword) {
     errors.newPassword = 'Required';

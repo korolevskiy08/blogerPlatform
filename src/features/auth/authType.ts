@@ -4,11 +4,19 @@ export type AuthType = {
 };
 
 export type ForgotPasswordType = {
+  email: string;
+};
+
+export type ForgotPasswordFormType = {
+  email?: string;
+};
+
+export type NewPasswordType = {
   recoveryCode: string;
   newPassword: string;
 };
 
-export type ForgotPasswordFormType = {
+export type NewPasswordFormType = {
   recoveryCode?: string;
   newPassword?: string;
 };

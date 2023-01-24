@@ -5,11 +5,11 @@ import { useFormik } from 'formik';
 import { AuthWrapper } from '../../../common/Components/AuthWrapper/AuthWrapper';
 import { Button } from '../../../common/Components/Button/Button';
 import { ShowPassword } from '../../../common/function/showPassword';
-import { validateForgotPassword } from '../../../common/function/validateForgotPassword';
+import { validateNewPassword } from '../../../common/function/validateNewPassword';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { ReactComponent as Eye } from '../../../common/icons/showPassword.svg';
 import style from '../../../layout/global.module.css';
-import { ForgotPasswordType } from '../authType';
+import { NewPasswordType } from '../authType';
 
 import styles from './new-password.module.css';
 
@@ -21,8 +21,8 @@ export const NewPassword: FC = () => {
     initialValues: {
       newPassword: '',
       recoveryCode: '',
-    } as ForgotPasswordType,
-    validate: values => validateForgotPassword(values),
+    } as NewPasswordType,
+    validate: values => validateNewPassword(values),
     onSubmit: values => {
       console.log(values);
       dispatch();
