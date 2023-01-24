@@ -67,6 +67,17 @@ export const registrationConfirmation = createAsyncThunk(
   },
 );
 
+export const forgotPassword = createAsyncThunk(
+  'auth/forgotPassword',
+  async (email: string, { rejectWithValue }) => {
+    console.log(email);
+    try {
+      await authApi.passwordRecovery(email);
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
 // export const checkAuth = createAsyncThunk(
 //   'auth/checkAuth',
 //   async (_, { rejectWithValue }) => {

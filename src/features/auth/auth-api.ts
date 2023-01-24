@@ -24,6 +24,9 @@ export const authApi = {
   registrationConfirmation(code: CodeType) {
     return instance.post('auth/registration-confirmation', code);
   },
+  passwordRecovery(email: string) {
+    return instance.post('auth/password-recovery', { email });
+  },
   newPassword(data: NewPasswordType) {
     return instance.post('auth/new-password', {
       ...data,
