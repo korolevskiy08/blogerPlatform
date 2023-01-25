@@ -31,7 +31,7 @@ export const authApi = {
     });
   },
   newPassword(data: NewPasswordType) {
-    return instance.post('auth/new-password', { data });
+    return instance.post('auth/new-password', data);
   },
 };
 
