@@ -36,8 +36,15 @@ export const NewPassword: FC = () => {
     } as NewPasswordType,
     validate: values => validateNewPassword(values),
     onSubmit: values => {
-      dispatch(newPassword(values));
-      setOpenConfirmModal(true);
+      console.log(values);
+      dispatch(
+        newPassword({
+          newPassword: values.newPassword,
+          recoveryCode: values.recoveryCode,
+        }),
+      ).then(() => {
+        setOpenConfirmModal(true);
+      });
     },
   });
 
