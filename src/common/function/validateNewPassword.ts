@@ -13,7 +13,7 @@ export const validateNewPassword = (values: any): NewPasswordFormType => {
 
   if (!values.passwordConfirmation) {
     errors.passwordConfirmation = 'Required';
-  } else if (values.newPassword !== values.passwordConfirmation) {
+  } else if (values.passwordConfirmation !== values.newPassword) {
     errors.passwordConfirmation = 'Passwords do not match';
   }
 
