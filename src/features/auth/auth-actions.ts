@@ -67,7 +67,6 @@ export const registrationConfirmation = createAsyncThunk(
 export const forgotPassword = createAsyncThunk(
   'auth/forgotPassword',
   async (email: string, { rejectWithValue }) => {
-    console.log(email);
     try {
       await authApi.passwordRecovery(email);
     } catch (e) {
@@ -78,10 +77,9 @@ export const forgotPassword = createAsyncThunk(
 
 export const newPassword = createAsyncThunk(
   'auth/newPassword',
-  async (data: NewPasswordType, { rejectWithValue }) => {
-    console.log(data);
+  async (params: NewPasswordType, { rejectWithValue }) => {
     try {
-      await authApi.newPassword(data);
+      await authApi.newPassword(params);
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }

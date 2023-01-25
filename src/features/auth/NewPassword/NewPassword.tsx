@@ -36,7 +36,6 @@ export const NewPassword: FC = () => {
     } as NewPasswordType,
     validate: values => validateNewPassword(values),
     onSubmit: values => {
-      console.log(values);
       dispatch(
         newPassword({
           newPassword: values.newPassword,
