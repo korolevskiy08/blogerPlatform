@@ -59,34 +59,37 @@ export const NewPassword: FC = () => {
         <div>
           {!auth.error ? (
             <div className={styles.container}>
-              <h1 className={`${style.textGlobal} ${styles.title}`}>
-                Create New Password
-              </h1>
-              <p className={`${style.textGlobal} ${styles.text}`}>New password</p>
-              <input
-                className={formik.errors.newPassword ? styles.errorInput : styles.input}
-                type={show ? 'password' : 'text'}
-                {...formik.getFieldProps('newPassword')}
-              />
-              <Eye onClick={setShowPassword} className={styles.eye} />
-              <p className={`${style.textGlobal} ${styles.text}`}>
-                Password confirmation
-              </p>
-              <input
-                className={formik.errors.newPassword ? styles.errorInput : styles.input}
-                type={show ? 'password' : 'text'}
-                {...formik.getFieldProps('recoveryCode')}
-              />
-              <Eye onClick={setShowPassword} className={styles.eye} />
-              <p className={`${style.textGlobal} ${styles.text}`}>
-                Your password must be between 6 and 20 characters
-              </p>
-              <Button
-                className={`${style.button} ${styles.createButton}`}
-                onclick={() => {}}
-              >
-                Create new password
-              </Button>
+              <form onSubmit={formik.handleSubmit}>
+                <h1 className={`${style.textGlobal} ${styles.title}`}>
+                  Create New Password
+                </h1>
+                <p className={`${style.textGlobal} ${styles.text}`}>New password</p>
+                <input
+                  className={formik.errors.newPassword ? styles.errorInput : styles.input}
+                  type={show ? 'password' : 'text'}
+                  {...formik.getFieldProps('newPassword')}
+                />
+                <Eye onClick={setShowPassword} className={styles.eye} />
+                <p className={`${style.textGlobal} ${styles.text}`}>
+                  Password confirmation
+                </p>
+                <input
+                  className={formik.errors.newPassword ? styles.errorInput : styles.input}
+                  type={show ? 'password' : 'text'}
+                  {...formik.getFieldProps('recoveryCode')}
+                />
+                <Eye onClick={setShowPassword} className={styles.eye} />
+                <p className={`${style.textGlobal} ${styles.text}`}>
+                  Your password must be between 6 and 20 characters
+                </p>
+                <Button
+                  type="submit"
+                  className={`${style.button} ${styles.createButton}`}
+                  onclick={() => {}}
+                >
+                  Create new password
+                </Button>
+              </form>
             </div>
           ) : (
             <ExpiredEmail onclick={() => {}} />
