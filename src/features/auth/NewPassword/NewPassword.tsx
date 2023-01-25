@@ -29,7 +29,7 @@ export const NewPassword: FC = () => {
   const auth = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
   const code = useLocation();
-  const codeNum = 13;
+  const codeNum = 14;
 
   const formik = useFormik({
     initialValues: {
