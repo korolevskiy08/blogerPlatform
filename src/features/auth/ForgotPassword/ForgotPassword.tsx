@@ -18,10 +18,10 @@ import { ForgotPasswordType } from '../authType';
 import styles from './forgot-password.module.css';
 
 export const ForgotPassword: FC = () => {
-  const dispatch = useAppDispatch();
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
-  const auth = useAppSelector(state => state.auth);
   const [open, setOpen] = React.useState(true);
+  const auth = useAppSelector(state => state.auth);
+  const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -29,14 +29,9 @@ export const ForgotPassword: FC = () => {
     } as ForgotPasswordType,
     validate: values => validateForgotPass(values),
     onSubmit: values => {
-      console.log(values.email);
-      dispatch(forgotPassword(values.email))
-        .then(() => {
-          setOpenConfirmModal(true);
-        })
-        .catch(() => {
-          setOpenConfirmModal(false);
-        });
+      dispatch(forgotPassword(values.email)).then(() => {
+        setOpenConfirmModal(true);
+      });
     },
   });
 

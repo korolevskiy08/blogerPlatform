@@ -31,10 +31,7 @@ export const authApi = {
     });
   },
   newPassword(data: NewPasswordType) {
-    return instance.post('auth/new-password', {
-      ...data,
-      link: process.env.REACT_APP_LINK || 'http://localhost:3000/#',
-    });
+    return instance.post('auth/new-password', { data });
   },
 };
 

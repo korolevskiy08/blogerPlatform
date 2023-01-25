@@ -8,6 +8,7 @@ import { Wrapper } from '../../../common/Components/Wrapper/Wrapper';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import bro from '../../../common/images/bro.png';
+import { Path } from '../../../common/Routes';
 import style from '../../../layout/global.module.css';
 import { registrationConfirmation } from '../auth-actions';
 import { ExpiredEmail } from '../ExpiredEmail/ExpiredEmail';
@@ -22,7 +23,7 @@ export const ConfirmEmail: FC = () => {
   const min = 6;
 
   const navigateSignIn = (): void => {
-    navigate('/SignIn');
+    navigate(Path.SignIn);
   };
 
   useEffect(() => {
