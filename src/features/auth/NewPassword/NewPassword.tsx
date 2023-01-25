@@ -57,7 +57,7 @@ export const NewPassword: FC = () => {
         </div>
       ) : (
         <div>
-          {auth.error ? (
+          {!auth.error ? (
             <div className={styles.container}>
               <h1 className={`${style.textGlobal} ${styles.title}`}>
                 Create New Password
