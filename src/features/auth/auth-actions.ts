@@ -57,11 +57,8 @@ export const registrationConfirmation = createAsyncThunk(
   'auth/registrationConfirmation',
   async (code: CodeType, { rejectWithValue }) => {
     try {
-      const res = await authApi.registrationConfirmation(code);
-
-      console.log(res);
+      await authApi.registrationConfirmation(code);
     } catch (e) {
-      console.log(e);
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }
   },
@@ -82,6 +79,7 @@ export const forgotPassword = createAsyncThunk(
 export const newPassword = createAsyncThunk(
   'auth/newPassword',
   async (data: NewPasswordType, { rejectWithValue }) => {
+    console.log(data);
     try {
       await authApi.newPassword(data);
     } catch (e) {
