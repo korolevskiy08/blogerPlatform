@@ -84,7 +84,7 @@ export const NewPassword: FC = () => {
                 <input
                   className={formik.errors.newPassword ? styles.errorInput : styles.input}
                   type={show ? 'password' : 'text'}
-                  {...formik.getFieldProps('recoveryCode')}
+                  {...formik.getFieldProps('passwordConfirmation')}
                 />
                 <Eye onClick={setShowPassword} className={styles.eye} />
                 <p className={`${style.textGlobal} ${styles.text}`}>
