@@ -11,13 +11,18 @@ export type ForgotPasswordFormType = {
   email?: string;
 };
 
-export type NewPasswordType = {
+export type RequestNewPasswordType = {
+  newPassword: string;
   recoveryCode: string;
+};
+
+export type NewPasswordType = {
+  passwordConfirmation: string;
   newPassword: string;
 };
 
 export type NewPasswordFormType = {
-  recoveryCode?: string;
+  passwordConfirmation?: string;
   newPassword?: string;
 };
 

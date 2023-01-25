@@ -1,6 +1,6 @@
 import { instance } from '../../common/api-instance/instance';
 
-import { AuthType, CodeType, NewPasswordType, SignUpType } from './authType';
+import { AuthType, CodeType, RequestNewPasswordType, SignUpType } from './authType';
 
 export const authApi = {
   login(params: AuthType) {
@@ -30,7 +30,7 @@ export const authApi = {
       link: process.env.REACT_APP_LINK || 'http://localhost:3000/#',
     });
   },
-  newPassword(data: NewPasswordType) {
+  newPassword(data: RequestNewPasswordType) {
     console.log(data);
 
     return instance.post('auth/new-password', { data });

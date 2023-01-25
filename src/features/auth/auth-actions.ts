@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { authApi } from './auth-api';
-import { AuthType, CodeType, NewPasswordType, SignUpType } from './authType';
+import { AuthType, CodeType, RequestNewPasswordType, SignUpType } from './authType';
 
 export const signIn = createAsyncThunk(
   'auth/login',
@@ -77,7 +77,7 @@ export const forgotPassword = createAsyncThunk(
 
 export const newPassword = createAsyncThunk(
   'auth/newPassword',
-  async (params: NewPasswordType, { rejectWithValue }) => {
+  async (params: RequestNewPasswordType, { rejectWithValue }) => {
     try {
       await authApi.newPassword(params);
     } catch (e) {

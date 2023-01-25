@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 
 import { CircularProgress } from '@mui/material';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { AuthWrapper } from '../../../common/Components/AuthWrapper/AuthWrapper';
 import { Button } from '../../../common/Components/Button/Button';
@@ -28,18 +28,20 @@ export const NewPassword: FC = () => {
   const navigate = useNavigate();
   const auth = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
+  const code = useLocation();
+  const codeNum = 13;
 
   const formik = useFormik({
     initialValues: {
       newPassword: '',
-      recoveryCode: '',
+      passwordConfirmation: '',
     } as NewPasswordType,
     validate: values => validateNewPassword(values),
     onSubmit: values => {
       dispatch(
         newPassword({
           newPassword: values.newPassword,
-          recoveryCode: values.recoveryCode,
+          recoveryCode: code.search.slice(codeNum),
         }),
       ).then(() => {
         setOpenConfirmModal(true);
