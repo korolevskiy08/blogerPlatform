@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { CircularProgress } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -8,14 +8,13 @@ import { Wrapper } from '../../../common/Components/Wrapper/Wrapper';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import bro from '../../../common/images/bro.png';
-import linkExpired from '../../../common/images/linkExpired.png';
 import style from '../../../layout/global.module.css';
 import { registrationConfirmation } from '../auth-actions';
+import { ExpiredEmail } from '../ExpiredEmail/ExpiredEmail';
 
-import styles from './confirmEmail.module.css';
+import styles from './confirm-email.module.css';
 
 export const ConfirmEmail: FC = () => {
-  const [status, setStatus] = useState<boolean>();
   const auth = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
   const params = useLocation();
@@ -27,17 +26,7 @@ export const ConfirmEmail: FC = () => {
   };
 
   useEffect(() => {
-    dispatch(registrationConfirmation({ code: params.search.slice(min) })).then(
-      (res: any) => {
-        const status = 400;
-
-        if (res.status !== status) {
-          setStatus(false);
-        } else {
-          setStatus(true);
-        }
-      },
-    );
+    dispatch(registrationConfirmation({ code: params.search.slice(min) }));
   }, []);
 
   return (
@@ -49,7 +38,7 @@ export const ConfirmEmail: FC = () => {
           </div>
         ) : (
           <div>
-            {!status ? (
+            {!auth.error ? (
               <div className={styles.expiredContainer}>
                 <h2 className={`${style.textGlobal} ${styles.title}`}>
                   Congratulations! Your email has been confirmed
@@ -60,22 +49,7 @@ export const ConfirmEmail: FC = () => {
                 <img src={bro} alt="bro" />
               </div>
             ) : (
-              <div className={styles.expiredContainer}>
-                <h2 className={`${style.textGlobal} ${styles.titleExpired}`}>
-                  Email verification link expired
-                </h2>
-                <p className={`${style.textGlobal} ${styles.text}`}>
-                  Looks like the verification link has expired. Not to worry, we can send
-                  the link again
-                </p>
-                <Button
-                  styleButton={`${style.button} ${styles.buttonResend}`}
-                  onclick={() => {}}
-                >
-                  Resend verification link
-                </Button>
-                <img src={linkExpired} alt="linkExpired" />
-              </div>
+              <ExpiredEmail onclick={() => {}} />
             )}
           </div>
         )}

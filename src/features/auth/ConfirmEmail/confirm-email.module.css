@@ -19,21 +19,5 @@
     height: 300px;
 }
 
-.expiredContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-}
 
-.titleExpired {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    padding: 65px 0 24px 0;
-}
-
-.buttonResend {
-    width: 212px;
-    margin-bottom: 31px;
-}

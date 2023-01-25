@@ -25,7 +25,10 @@ export const authApi = {
     return instance.post('auth/registration-confirmation', code);
   },
   passwordRecovery(email: string) {
-    return instance.post('auth/password-recovery', { email });
+    return instance.post('auth/password-recovery', {
+      email,
+      link: process.env.REACT_APP_LINK || 'http://localhost:3000/#',
+    });
   },
   newPassword(data: NewPasswordType) {
     return instance.post('auth/new-password', {
