@@ -6,8 +6,8 @@ export const postsAPI = {
   },
 };
 
-type PostsParamType = {
-  pageNumber?: number;
+export type PostsParamType = {
+  pageNumber: number;
   pageSize?: number;
   sortBy?: string;
   sortDirection?: string;

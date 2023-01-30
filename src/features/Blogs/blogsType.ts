@@ -1,3 +1,5 @@
+import { SortByType, SortDirectionType } from './blogs-slice';
+
 export type PostItem = {
   id: string;
   title: string;
@@ -16,6 +18,9 @@ export type PostsBlogType = {
   items: PostItem[];
 };
 
-export type paramsType = {
-  searchNameTerm?: string;
+export type paramsPostType = {
+  pageNumber?: number;
+  pageSize?: number;
+  sortBy?: SortByType;
+  sortDirection?: SortDirectionType;
 };

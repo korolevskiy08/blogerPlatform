@@ -11,7 +11,6 @@ import style from '../../styles/global.module.css';
 
 import { PostItem } from './PostItem/PostItem';
 import { getPosts } from './posts-actions';
-import { clearPostsArray, setFilterPosts } from './posts-slice';
 import styles from './posts.module.css';
 
 export const Posts: FC = () => {
@@ -21,8 +20,12 @@ export const Posts: FC = () => {
   const num = 100;
 
   useEffect(() => {
-    dispatch(getPosts());
+    dispatch(getPosts({}));
   }, []);
+
+  useEffect(() => {
+    console.log(posts.posts.map(el => el.id));
+  }, [posts.posts]);
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
@@ -38,7 +41,7 @@ export const Posts: FC = () => {
         (e.target.documentElement.scrollTop + window.innerHeight) <
       num
     ) {
-      dispatch(getPosts());
+      dispatch(getPosts({}));
     }
   };
 
@@ -46,20 +49,14 @@ export const Posts: FC = () => {
     {
       id: 1,
       value: 'New blogs first',
-      filterItems: () => filterPosts({ sortDirection: 'asc' }),
+      filterItems: () => dispatch(getPosts({ sortDirection: 'asc', pageNumber: 0 })),
     },
     {
       id: 2,
       value: 'Old blog first',
-      filterItems: () => filterPosts({ sortDirection: 'desc' }),
+      filterItems: () => dispatch(getPosts({ sortDirection: 'desc', pageNumber: 0 })),
     },
   ];
-
-  function filterPosts(filter: any): void {
-    dispatch(clearPostsArray());
-    dispatch(setFilterPosts(filter));
-    dispatch(getPosts());
-  }
 
   const [value, setValue] = useState(option[0]);
   const [openSelect, setOpenSelect] = useState(false);

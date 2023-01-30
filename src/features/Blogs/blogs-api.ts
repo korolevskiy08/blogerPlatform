@@ -2,7 +2,7 @@ import { instance } from '../../common/api-instance/instance';
 
 export const blogsAPI = {
   getBlogs(params: BlogsParamType) {
-    return instance.get<BlogType>('blogger/blogs', { params });
+    return instance.get<BlogType>('blogs', { params });
   },
 };
 
