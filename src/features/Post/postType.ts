@@ -33,3 +33,8 @@ export type UpdateCommentType = {
   commentId: string;
   content: string;
 };
+
+export type ResponseLikeStatusType = {
+  likeStatus: 'Like' | 'Dislike' | 'None';
+  commentId: string;
+};

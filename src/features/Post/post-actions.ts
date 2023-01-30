@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { postAPI } from './post-api';
-import { DataNewComment } from './postType';
+import { DataNewComment, ResponseLikeStatusType } from './postType';
 
 export const getPost = createAsyncThunk(
   'post/getPost',
@@ -65,6 +65,19 @@ export const editComment = createAsyncThunk(
     try {
       await postAPI.updateComment({ commentId: param.commentId, content: param.content });
       dispatch(getComments(param.postId));
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
+
+export const likeStatus = createAsyncThunk(
+  'post/likeStatus',
+  async (data: ResponseLikeStatusType, { rejectWithValue }) => {
+    try {
+      const res = await postAPI.like(data);
+
+      console.log(res);
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }

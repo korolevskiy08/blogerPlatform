@@ -36,6 +36,12 @@ const slice = createSlice({
       state.params.sortDirection =
         action.payload.sortDirection || state.params.sortDirection;
     },
+    filterPosts(state, action: PayloadAction<{ items: ItemPostType[] }>) {
+      state.posts = action.payload.items;
+    },
+    clearPostsArray(state) {
+      state.posts = [];
+    },
   },
   extraReducers: builder => {
     builder.addCase(getPosts.fulfilled, (state, action) => {
@@ -70,6 +76,6 @@ const slice = createSlice({
 
 export const postsSlice = slice.reducer;
 
-export const { setFilterPosts } = slice.actions;
+export const { setFilterPosts, filterPosts, clearPostsArray } = slice.actions;
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';

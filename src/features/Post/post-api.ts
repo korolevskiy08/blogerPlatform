@@ -1,6 +1,6 @@
 import { instance } from '../../common/api-instance/instance';
 
-import { DataNewComment, UpdateCommentType } from './postType';
+import { DataNewComment, ResponseLikeStatusType, UpdateCommentType } from './postType';
 
 export const postAPI = {
   getPost(id: string) {
@@ -31,6 +31,19 @@ export const postAPI = {
     return instance.put(
       `comments/${commentId}`,
       { content },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      },
+    );
+  },
+  like(data: ResponseLikeStatusType) {
+    console.log({ likeStatus: data.likeStatus });
+
+    return instance.put(
+      `comments/${data.commentId}/like-status`,
+      { likeStatus: data.likeStatus },
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,

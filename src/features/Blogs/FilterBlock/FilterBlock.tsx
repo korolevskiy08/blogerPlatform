@@ -6,7 +6,7 @@ import { useDebounce } from '../../../common/hooks/useDebounce';
 import { ReactComponent as SearchSvg } from '../../../common/icons/Search.svg';
 import style from '../../../layout/global.module.css';
 import { getBlogs } from '../blogs-actions';
-import { setFilterBlogs } from '../blogs-slice';
+import { clearArray, setFilterBlogs } from '../blogs-slice';
 
 import styles from './filter.module.css';
 
@@ -24,31 +24,33 @@ export const FilterBlock: FC<FilterBlockType> = ({ searchNameTerm }) => {
     setSearchText(e.currentTarget.value);
   };
 
-  const filterBlogsFirst = (): void => {
-    dispatch(setFilterBlogs({ sortDirection: 'desc', sortBy: 'createdAt' }));
-    dispatch(getBlogs());
-  };
-
-  const filterBlogsOld = (): void => {
-    dispatch(setFilterBlogs({ sortDirection: 'asc', sortBy: 'createdAt' }));
-    dispatch(getBlogs());
-  };
-
-  const filterAlphabetOrder = (): void => {
-    dispatch(setFilterBlogs({ sortDirection: 'asc' }));
-    dispatch(getBlogs());
-  };
-
-  const filterReverseAlphabetOrder = (): void => {
-    dispatch(setFilterBlogs({ sortDirection: 'desc' }));
+  const filterBlogs = (filters: any): void => {
+    dispatch(clearArray());
+    dispatch(setFilterBlogs(filters));
     dispatch(getBlogs());
   };
 
   const option: OptionType[] = [
-    { id: 1, value: 'New blogs first', filterItems: filterBlogsFirst },
-    { id: 2, value: 'Old blog first', filterItems: filterBlogsOld },
-    { id: 3, value: 'From A to Z', filterItems: filterAlphabetOrder },
-    { id: 4, value: 'From Z to A', filterItems: filterReverseAlphabetOrder },
+    {
+      id: 1,
+      value: 'New blogs first',
+      filterItems: () => filterBlogs({ sortDirection: 'desc', sortBy: 'createdAt' }),
+    },
+    {
+      id: 2,
+      value: 'Old blog first',
+      filterItems: () => filterBlogs({ sortDirection: 'asc', sortBy: 'createdAt' }),
+    },
+    {
+      id: 3,
+      value: 'From A to Z',
+      filterItems: () => filterBlogs({ sortDirection: 'asc' }),
+    },
+    {
+      id: 4,
+      value: 'From Z to A',
+      filterItems: () => filterBlogs({ sortDirection: 'desc' }),
+    },
   ];
 
   const [value, setValue] = useState(option[0]);

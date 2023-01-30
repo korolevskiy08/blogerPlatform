@@ -4,10 +4,11 @@ import axios from 'axios';
 import { AppRootStateType } from '../../app/AppRoutes/store';
 
 import { blogsAPI } from './blogs-api';
+import { filterBlogs } from './blogs-slice';
 
 export const getBlogs = createAsyncThunk(
   'blogs/getBlogs',
-  async (_, { rejectWithValue, getState }) => {
+  async (_, { rejectWithValue, getState, dispatch }) => {
     const { params } = (getState() as AppRootStateType).blogs;
     const nextPageNumber = params.page + 1;
 
@@ -18,6 +19,8 @@ export const getBlogs = createAsyncThunk(
         ...params,
         pageNumber: nextPageNumber,
       });
+
+      dispatch(filterBlogs({ items: res.data.items }));
 
       return res;
     } catch (e) {

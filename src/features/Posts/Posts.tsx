@@ -11,7 +11,7 @@ import style from '../../layout/global.module.css';
 
 import { PostItem } from './PostItem/PostItem';
 import { getPosts } from './posts-actions';
-import { setFilterPosts } from './posts-slice';
+import { clearPostsArray, setFilterPosts } from './posts-slice';
 import styles from './posts.module.css';
 
 export const Posts: FC = () => {
@@ -22,6 +22,9 @@ export const Posts: FC = () => {
 
   useEffect(() => {
     dispatch(getPosts());
+  }, []);
+
+  useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
 
     return () => {
@@ -40,17 +43,21 @@ export const Posts: FC = () => {
   };
 
   const option: OptionType[] = [
-    { id: 1, value: 'New blogs first', filterItems: filterAlphabetOrder },
-    { id: 2, value: 'Old blog first', filterItems: filterReverseAlphabetOrder },
+    {
+      id: 1,
+      value: 'New blogs first',
+      filterItems: () => filterPosts({ sortDirection: 'asc' }),
+    },
+    {
+      id: 2,
+      value: 'Old blog first',
+      filterItems: () => filterPosts({ sortDirection: 'desc' }),
+    },
   ];
 
-  function filterAlphabetOrder(): void {
-    dispatch(setFilterPosts({ sortDirection: 'asc' }));
-    dispatch(getPosts());
-  }
-
-  function filterReverseAlphabetOrder(): void {
-    dispatch(setFilterPosts({ sortDirection: 'desc' }));
+  function filterPosts(filter: any): void {
+    dispatch(clearPostsArray());
+    dispatch(setFilterPosts(filter));
     dispatch(getPosts());
   }
 

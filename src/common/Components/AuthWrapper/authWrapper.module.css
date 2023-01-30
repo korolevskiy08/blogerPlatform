@@ -2,7 +2,7 @@
     padding: 72px 95px 0 105px;
     height: 85vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .rafiki {
@@ -12,4 +12,10 @@
 
 .rafiki img {
     width: 100%;
+}
+
+@media screen and (max-width: 1150px){
+    .rafiki {
+        display: none;
+    }
 }

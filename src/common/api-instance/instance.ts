@@ -3,7 +3,7 @@ import axios from 'axios';
 import { authApi } from '../../features/auth/auth-api';
 
 export const instance = axios.create({
-  baseURL: 'https://node-js-express-ioc-containers.vercel.app/',
+  baseURL: 'https://blog-platform-for-guild.vercel.app/',
   withCredentials: true,
 });
 

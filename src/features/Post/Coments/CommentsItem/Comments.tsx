@@ -6,9 +6,11 @@ import { DeleteModal } from '../../../../common/Components/Modals/DeleteModal/De
 import { Settings } from '../../../../common/Components/Settings/Settings';
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { ReactComponent as Dislike } from '../../../../common/icons/dislike.svg';
+import { ReactComponent as Like } from '../../../../common/icons/like.svg';
 import avatar from '../../../../common/images/Gull_portrait_ca_usa.jpg';
 import style from '../../../../layout/global.module.css';
-import { deleteComment, editComment } from '../../post-actions';
+import { deleteComment, editComment, likeStatus } from '../../post-actions';
 import { AddComments } from '../AddComments/AddComments';
 
 import styles from './comments.module.css';
@@ -43,6 +45,10 @@ export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }
     }
   };
 
+  const like = (): void => {
+    dispatch(likeStatus({ commentId: id, likeStatus: 'Like' }));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.headerComment}>
@@ -74,6 +80,10 @@ export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }
       ) : (
         <p className={`${style.textGlobal} ${styles.textComment}`}>{content}</p>
       )}
+      <div className={styles.buttons}>
+        <Like onClick={like} className={styles.like} />
+        <Dislike className={styles.dislike} />
+      </div>
       <DeleteModal
         isOpen={openDeleteModal}
         onClose={() => setOpenDeleteModal(false)}

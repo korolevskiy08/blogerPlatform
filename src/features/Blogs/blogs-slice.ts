@@ -39,8 +39,11 @@ const slice = createSlice({
       state.params.sortDirection =
         action.payload.sortDirection || state.params.sortDirection;
     },
-    setFetching(state, action: PayloadAction<{ isFetching: boolean }>) {
-      state.params.fetching = action.payload.isFetching;
+    clearArray(state) {
+      state.blogs = [];
+    },
+    filterBlogs(state, action: PayloadAction<{ items: BlogItemType[] }>) {
+      state.blogs = action.payload.items;
     },
   },
   extraReducers: builder => {
@@ -76,7 +79,7 @@ const slice = createSlice({
 
 export const blogsSlice = slice.reducer;
 
-export const { setFilterBlogs } = slice.actions;
+export const { setFilterBlogs, filterBlogs, clearArray } = slice.actions;
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';
 export type SortByType = 'name' | 'createdAt';
