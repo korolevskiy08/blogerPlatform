@@ -32,26 +32,18 @@ a {
     color: #F8346B;
 }
 
-/*.activeLink * {*/
-/*    fill: #F8346B;*/
-/*    color: #F8346B;*/
-/*}*/
-
 .navBlock li:hover {
     border-right: 2px solid #F8346B;
 }
 
-
-@media screen and (max-width: 610px) {
+@media screen and (max-width: 390px) {
     .navBlock {
-        display: grid;
-        grid-template-columns: 48px auto;
-        transition: 300ms;
+        width: 90px;
     }
-    .navBlock:has(.left:hover) {
-        grid-template-columns: 30% auto;
+    .link {
+        display: none;
     }
-    .navBlock {
-        transition: 300ms;
+    .nav {
+        padding-left: 30px;
     }
 }

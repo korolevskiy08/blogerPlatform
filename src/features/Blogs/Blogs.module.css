@@ -15,3 +15,10 @@
 .arrowBottom {
     padding-left: 11px;
 }
+
+
+@media screen and (max-width: 390px) {
+    .blogsBlock {
+        padding: 0 10px 0 10px;
+    }
+}

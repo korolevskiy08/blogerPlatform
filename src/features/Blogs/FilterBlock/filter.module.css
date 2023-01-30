@@ -21,14 +21,28 @@
     top: 140px;
 }
 
-@media screen and (max-width: 1310px){
+@media screen and (max-width: 1310px) {
     .inputSearch {
         width: 400px;
     }
 }
 
-@media screen and (max-width: 1310px){
+@media screen and (max-width: 1310px) {
     .inputSearch {
         width: 250px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .selectBlock {
+        right: 10px;
+        top: 156px;
+    }
+    .inputSearch {
+        width: 85px;
+        padding-left: 30px;
+    }
+    .searchSvg {
+        left: 25px;
     }
 }
