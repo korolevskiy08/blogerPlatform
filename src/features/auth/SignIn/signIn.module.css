@@ -73,11 +73,11 @@
     width: 320px;
 }
 
-@media screen and (max-width: 380px){
+@media screen and (max-width: 390px){
     .inputPassword {
-        width: 265px;
+        width: 295px;
     }
     .eye {
-        left: 245px;
+        left: 275px;
     }
 }
