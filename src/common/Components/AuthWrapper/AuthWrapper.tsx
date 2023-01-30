@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 import rafiki from '../../images/rafiki.png';
 import { Wrapper } from '../Wrapper/Wrapper';
 

@@ -6,7 +6,7 @@ import { TitleComponent } from '../../common/Components/TitleComponent/TitleComp
 import { Wrapper } from '../../common/Components/Wrapper/Wrapper';
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
-import style from '../../layout/global.module.css';
+import style from '../../styles/global.module.css';
 
 import BlogItem from './BlogItem/BlogItem';
 import { getBlogs } from './blogs-actions';

@@ -3,7 +3,7 @@ import React, { FC, useEffect } from 'react';
 import { Button } from '../../../common/Components/Button/Button';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 
 import { getDevices, terminateSessions } from './devices-actions';
 import styles from './devices.module.css';

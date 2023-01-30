@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import imageBlog from '../../../common/images/Gull_portrait_ca_usa.jpg';
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 
 import styles from './blogItem.module.css';
 

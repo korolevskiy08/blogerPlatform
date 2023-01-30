@@ -4,7 +4,7 @@ import { OptionType, Select } from '../../../common/Components/Select/Select';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useDebounce } from '../../../common/hooks/useDebounce';
 import { ReactComponent as SearchSvg } from '../../../common/icons/Search.svg';
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 import { getBlogs } from '../blogs-actions';
 import { clearArray, setFilterBlogs } from '../blogs-slice';
 

@@ -14,7 +14,7 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReactComponent as Eye } from '../../../common/icons/showPassword.svg';
 import { Path } from '../../../common/Routes';
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 import { newPassword } from '../auth-actions';
 import { NewPasswordType } from '../authType';
 import { ExpiredEmail } from '../ExpiredEmail/ExpiredEmail';

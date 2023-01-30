@@ -10,7 +10,7 @@ import arrowRight from '../../common/icons/arrow_right.svg';
 import avatar from '../../common/images/images.jpg';
 import imgPost from '../../common/images/pexels-photo-268533.webp';
 import { Path } from '../../common/Routes';
-import style from '../../layout/global.module.css';
+import style from '../../styles/global.module.css';
 
 import { AddComments } from './Coments/AddComments/AddComments';
 import { Comments } from './Coments/CommentsItem/Comments';

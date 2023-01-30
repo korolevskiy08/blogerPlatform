@@ -11,7 +11,7 @@ import { validateForgotPass } from '../../../common/function/validateForgotPass'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { Path } from '../../../common/Routes';
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 import { forgotPassword } from '../auth-actions';
 import { ForgotPasswordType } from '../authType';
 

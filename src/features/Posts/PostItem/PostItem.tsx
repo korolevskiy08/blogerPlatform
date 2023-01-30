@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import avatar from '../../../common/images/images.jpg';
 import imagePost from '../../../common/images/pexels-photo-268533.webp';
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 
 import styles from './postItem.module.css';
 

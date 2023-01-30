@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 
 import styles from './titleComponent.module.css';
 

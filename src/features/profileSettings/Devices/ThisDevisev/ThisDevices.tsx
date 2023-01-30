@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import loginOut from '../../../../common/icons/loginOut.svg';
-import style from '../../../../layout/global.module.css';
+import style from '../../../../styles/global.module.css';
 import { loginOutDevice } from '../devices-actions';
 
 import styles from './this-devices.module.css';

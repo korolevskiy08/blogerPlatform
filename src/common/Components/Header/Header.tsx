@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../common/hooks/useAppSelector';
-import { ReactComponent as SignIn } from '../../common/icons/logIn.svg';
-import { ReactComponent as LoginOut } from '../../common/icons/loginOut.svg';
-import { Path } from '../../common/Routes';
-import { logout } from '../../features/auth/auth-actions';
-import style from '../global.module.css';
+import { logout } from '../../../features/auth/auth-actions';
+import style from '../../../styles/global.module.css';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { ReactComponent as SignIn } from '../../icons/logIn.svg';
+import { ReactComponent as LoginOut } from '../../icons/loginOut.svg';
+import { Path } from '../../Routes';
 
 import styles from './Header.module.css';
 

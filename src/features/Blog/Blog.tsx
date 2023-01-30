@@ -10,7 +10,7 @@ import arrowRight from '../../common/icons/arrow_right.svg';
 import imageTitle from '../../common/images/blue-ocean-28668-2560x1600.jpg';
 import avatar from '../../common/images/Gull_portrait_ca_usa.jpg';
 import { Path } from '../../common/Routes';
-import style from '../../layout/global.module.css';
+import style from '../../styles/global.module.css';
 import { PostItem } from '../Posts/PostItem/PostItem';
 
 import { getBlog, getPostsBlog } from './blog-actions';

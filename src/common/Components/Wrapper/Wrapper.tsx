@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 
-import { Header } from '../../../layout/Header/Header';
-import { Navigation } from '../../../layout/Navigation/Navigation';
+import { Header } from '../Header/Header';
+import { Navigation } from '../Navigation/Navigation';
 
 import styles from './wrapper.module.css';
 

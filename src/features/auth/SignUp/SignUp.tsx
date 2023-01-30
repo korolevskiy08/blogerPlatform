@@ -13,7 +13,7 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import Eye from '../../../common/icons/showPassword.svg';
 import { Path } from '../../../common/Routes';
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 import { signUp } from '../auth-actions';
 import { SignUpType } from '../authType';
 

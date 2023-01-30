@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 
-import style from '../../../../layout/global.module.css';
+import style from '../../../../styles/global.module.css';
 import { ReactComponent as Close } from '../../../icons/close.svg';
 
 import styles from './basicModal.module.css';

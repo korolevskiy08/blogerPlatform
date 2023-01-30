@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC } from 'react';
 
 import { Button } from '../../../../common/Components/Button/Button';
-import style from '../../../../layout/global.module.css';
+import style from '../../../../styles/global.module.css';
 
 import styles from './addComments.module.css';
 

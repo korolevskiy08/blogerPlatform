@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { Path } from '../../common/Routes';
-import style from '../global.module.css';
+import style from '../../../styles/global.module.css';
+import { Path } from '../../Routes';
 
 import styles from './settings-nav.module.css';
 

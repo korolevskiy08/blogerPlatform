@@ -9,7 +9,7 @@ import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReactComponent as Dislike } from '../../../../common/icons/dislike.svg';
 import { ReactComponent as Like } from '../../../../common/icons/like.svg';
 import avatar from '../../../../common/images/Gull_portrait_ca_usa.jpg';
-import style from '../../../../layout/global.module.css';
+import style from '../../../../styles/global.module.css';
 import { deleteComment, editComment, likeStatus } from '../../post-actions';
 import { AddComments } from '../AddComments/AddComments';
 

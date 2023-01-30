@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 import { ReactComponent as ArrowBottom } from '../../icons/arrowBottom.svg';
 import { ReactComponent as ArrowTop } from '../../icons/arrowTop.svg';
 

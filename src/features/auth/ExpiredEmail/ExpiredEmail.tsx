@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Button } from '../../../common/Components/Button/Button';
 import linkExpired from '../../../common/images/linkExpired.png';
-import style from '../../../layout/global.module.css';
+import style from '../../../styles/global.module.css';
 
 import styles from './expired-email.module.css';
 
