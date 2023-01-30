@@ -63,3 +63,12 @@
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 390px){
+    .signUp input {
+        width: 300px;
+    }
+    .eye {
+        left: 275px;
+    }
+}
