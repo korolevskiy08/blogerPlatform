@@ -30,7 +30,7 @@ export const Header: FC = () => {
   return (
     <header className={styles.header}>
       <p className={styles.title}>Blogger Platform</p>
-      {userData === null ? (
+      {userData === null || userData === undefined ? (
         <div className={styles.signIn}>
           <SignIn />
           <NavLink
@@ -47,7 +47,7 @@ export const Header: FC = () => {
             onClick={navigateSettings}
             className={`${style.textGlobal} ${styles.signInText}`}
           >
-            {userData.login}
+            {userData.login ? userData.login : ''}
           </p>
           <LoginOut className={styles.iconLogOut} />
           <NavLink

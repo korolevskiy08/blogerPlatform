@@ -16,7 +16,6 @@ import { FilterBlock } from './FilterBlock/FilterBlock';
 export const Blogs: FC = () => {
   const dispatch = useAppDispatch();
   const blogs = useAppSelector(state => state.blogs);
-
   const num = 100;
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export const Blogs: FC = () => {
         (e.target.documentElement.scrollTop + window.innerHeight) <
       num
     ) {
-      dispatch(getBlogs());
+      dispatch(getBlogs({}));
     }
   };
 

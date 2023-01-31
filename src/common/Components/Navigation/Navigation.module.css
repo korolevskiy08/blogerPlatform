@@ -40,10 +40,13 @@ a {
     .navBlock {
         width: 90px;
     }
-    .link {
-        display: none;
-    }
     .nav {
         padding-left: 30px;
+    }
+}
+
+@media screen and (max-width: 565px) {
+    .link {
+        display: none;
     }
 }

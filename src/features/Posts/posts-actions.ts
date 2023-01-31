@@ -12,19 +12,13 @@ export const getPosts = createAsyncThunk(
     if (param.pageNumber === 0) dispatch(clearPostsArray());
     const params = { ...(getState() as AppRootStateType).posts.params, ...param };
 
-    console.log('fetching', params.fetching);
-
-    // param || (getState() as AppRootStateType).posts.params;
     const nextPageNumber = params.pageNumber + 1;
 
     if (params.fetching || nextPageNumber > params.pagesCount)
       return rejectWithValue('Already fetching');
     dispatch(setIsFetching({ isFetching: true }));
     try {
-      console.log('try');
       const res = await postsAPI.getPosts({ ...params, pageNumber: nextPageNumber });
-
-      // dispatch(filterPosts({ items: res.data.items }));
 
       return { ...res, params: { ...params, pageNumber: nextPageNumber } };
     } catch (e) {

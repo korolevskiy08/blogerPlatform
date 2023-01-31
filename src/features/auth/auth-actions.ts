@@ -10,6 +10,7 @@ export const signIn = createAsyncThunk(
     try {
       const res = await authApi.login(params);
 
+      // instance.defaults.headers.common.Authorization = `Bearer ${res.data.accessToken}`;
       localStorage.setItem('accessToken', res.data.accessToken);
       dispatch(userData());
     } catch (e) {
@@ -85,15 +86,3 @@ export const newPassword = createAsyncThunk(
     }
   },
 );
-// export const checkAuth = createAsyncThunk(
-//   'auth/checkAuth',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const res = await authApi.refreshToken();
-//
-//       localStorage.setItem('accessToken', res.data.accessToken);
-//     } catch (e) {
-//       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
-//     }
-//   },
-// );

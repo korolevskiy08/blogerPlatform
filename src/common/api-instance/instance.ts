@@ -1,47 +1,44 @@
 import axios from 'axios';
 
-import { authApi } from '../../features/auth/auth-api';
-
 export const instance = axios.create({
   baseURL: 'https://blog-platform-for-guild.vercel.app/',
   withCredentials: true,
 });
 
-instance.interceptors.request.use(config => {
+instance.interceptors.request.use(async config => {
   /* eslint-disable no-param-reassign */
-  config.headers!.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
+  const token = localStorage.getItem('accessToken');
+
+  // const isTokenExpired = checkIsTokenExpired(token)
+  // if isTokenExpired request('refresh-token)
+  // ..
+
+  config.headers!.Authorization = `Bearer ${token}`;
 
   return config;
 });
 
-let flag = false;
+let refresh = false;
 
 instance.interceptors.response.use(
-  config => {
-    return config;
-  },
+  resp => resp,
   async error => {
-    const originalRequest = error.config;
+    const statusNumberFailed = 401;
 
-    if (
-      // eslint-disable-next-line no-magic-numbers
-      error.response.status === 401 &&
-      error.config &&
-      !flag &&
-      !error.config._isRetry
-    ) {
-      originalRequest._isRetry = true;
-      flag = true;
-      try {
-        const response = await authApi.refreshToken();
+    if (error.response.status === statusNumberFailed && !refresh) {
+      refresh = true;
+      const response = await instance.post('auth/refresh-token', {}, {});
+      const statusNumberSuccess = 200;
 
+      if (response.status === statusNumberSuccess) {
         localStorage.setItem('accessToken', response.data.accessToken);
+        // instance.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;
+        //
+        // error.config.authorization = `Bearer ${response.data.accessToken}`;
 
-        return instance.request(originalRequest);
-      } catch (e) {
-        console.log('НЕ АВТОРИЗОВАН');
+        return instance.request(error.config);
       }
     }
-    throw error;
+    refresh = false;
   },
 );

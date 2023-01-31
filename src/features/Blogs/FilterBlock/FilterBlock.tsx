@@ -6,7 +6,6 @@ import { useDebounce } from '../../../common/hooks/useDebounce';
 import { ReactComponent as SearchSvg } from '../../../common/icons/Search.svg';
 import style from '../../../styles/global.module.css';
 import { getBlogs } from '../blogs-actions';
-import { clearArray, setFilterBlogs } from '../blogs-slice';
 
 import styles from './filter.module.css';
 
@@ -24,32 +23,34 @@ export const FilterBlock: FC<FilterBlockType> = ({ searchNameTerm }) => {
     setSearchText(e.currentTarget.value);
   };
 
-  const filterBlogs = (filters: any): void => {
-    dispatch(clearArray());
-    dispatch(setFilterBlogs(filters));
-    dispatch(getBlogs());
-  };
+  useEffect(() => {
+    dispatch(getBlogs({}));
+  }, [dispatch]);
 
   const option: OptionType[] = [
     {
       id: 1,
       value: 'New blogs first',
-      filterItems: () => filterBlogs({ sortDirection: 'desc', sortBy: 'createdAt' }),
+      filterItems: () => {
+        dispatch(getBlogs({ sortDirection: 'desc', sortBy: 'createdAt', pageNumber: 0 }));
+      },
     },
     {
       id: 2,
       value: 'Old blog first',
-      filterItems: () => filterBlogs({ sortDirection: 'asc', sortBy: 'createdAt' }),
+      filterItems: () => {
+        dispatch(getBlogs({ sortDirection: 'asc', sortBy: 'createdAt', pageNumber: 0 }));
+      },
     },
     {
       id: 3,
       value: 'From A to Z',
-      filterItems: () => filterBlogs({ sortDirection: 'asc' }),
+      filterItems: () => dispatch(getBlogs({ sortDirection: 'asc', pageNumber: 0 })),
     },
     {
       id: 4,
       value: 'From Z to A',
-      filterItems: () => filterBlogs({ sortDirection: 'desc' }),
+      filterItems: () => dispatch(getBlogs({ sortDirection: 'desc', pageNumber: 0 })),
     },
   ];
 
@@ -61,8 +62,7 @@ export const FilterBlock: FC<FilterBlockType> = ({ searchNameTerm }) => {
   }, [searchNameTerm]);
 
   useEffect(() => {
-    dispatch(setFilterBlogs({ searchNameTerm: debounceText }));
-    dispatch(getBlogs());
+    dispatch(getBlogs({ searchNameTerm: searchText }));
   }, [debounceText]);
 
   return (

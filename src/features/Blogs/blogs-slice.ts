@@ -11,10 +11,10 @@ const slice = createSlice({
     error: null as null | string,
     params: {
       searchNameTerm: '',
-      pageNumber: 1,
+      pageNumber: 0,
       pageSize: 10,
-      sortBy: 'createdAt' as SortByType,
-      sortDirection: 'desc' as SortDirectionType,
+      sortBy: 'createdAt',
+      sortDirection: 'desc',
       pagesCount: 1,
       page: 0,
       fetching: false,
@@ -22,35 +22,18 @@ const slice = createSlice({
   },
 
   reducers: {
-    setFilterBlogs(
-      state,
-      action: PayloadAction<{
-        searchNameTerm?: string;
-        pageNumber?: number;
-        pageSize?: number;
-        sortBy?: SortByType;
-        sortDirection?: SortDirectionType;
-      }>,
-    ) {
-      state.params.searchNameTerm =
-        action.payload.searchNameTerm || state.params.searchNameTerm;
-      state.params.pageSize = action.payload.pageSize || state.params.pageSize;
-      state.params.sortBy = action.payload.sortBy || state.params.sortBy;
-      state.params.sortDirection =
-        action.payload.sortDirection || state.params.sortDirection;
+    setIsFetchingBlogs(state, action: PayloadAction<{ isFetching: boolean }>) {
+      state.params.fetching = action.payload.isFetching;
     },
     clearArray(state) {
       state.blogs = [];
-    },
-    filterBlogs(state, action: PayloadAction<{ items: BlogItemType[] }>) {
-      state.blogs = action.payload.items;
     },
   },
   extraReducers: builder => {
     builder.addCase(getBlogs.fulfilled, (state, action) => {
       state.blogs = [...state.blogs, ...action.payload!.data.items];
+      state.params = { ...state.params, ...action.payload!.params };
       state.params.pagesCount = action.payload!.data.pagesCount;
-      state.params.page = action.payload!.data.page;
       state.params.fetching = false;
     });
     builder.addMatcher(
@@ -79,7 +62,7 @@ const slice = createSlice({
 
 export const blogsSlice = slice.reducer;
 
-export const { setFilterBlogs, filterBlogs, clearArray } = slice.actions;
+export const { setIsFetchingBlogs, clearArray } = slice.actions;
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';
 export type SortByType = 'name' | 'createdAt';

@@ -12,7 +12,7 @@ const App: FC = () => {
 
   useEffect(() => {
     dispatch(userData());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

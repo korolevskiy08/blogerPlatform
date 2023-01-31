@@ -24,10 +24,6 @@ export const Posts: FC = () => {
   }, []);
 
   useEffect(() => {
-    console.log(posts.posts.map(el => el.id));
-  }, [posts.posts]);
-
-  useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
 
     return () => {

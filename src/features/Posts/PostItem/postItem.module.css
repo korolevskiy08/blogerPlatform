@@ -11,7 +11,7 @@
 }
 
 .imgPost img {
-    width: 100%;
+    max-width: 100%;
     height: 100%;
 }
 
@@ -54,4 +54,8 @@
     line-height: 16px;
     color: #636262;
     letter-spacing: 0.02em;
+}
+
+@media screen and (max-width: 390px) {
+
 }

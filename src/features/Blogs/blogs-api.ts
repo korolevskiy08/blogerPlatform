@@ -8,7 +8,7 @@ export const blogsAPI = {
 
 export type BlogsParamType = {
   searchNameTerm?: string;
-  pageNumber?: number;
+  pageNumber: number;
   pageSize?: number;
   sortBy?: string;
   sortDirection?: string;
