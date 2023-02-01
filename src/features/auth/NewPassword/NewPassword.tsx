@@ -14,7 +14,6 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReactComponent as Eye } from '../../../common/icons/showPassword.svg';
 import { Path } from '../../../common/Routes';
-import style from '../../../styles/global.module.css';
 import { newPassword } from '../auth-actions';
 import { NewPasswordType } from '../authType';
 import { ExpiredEmail } from '../ExpiredEmail/ExpiredEmail';
@@ -60,7 +59,7 @@ export const NewPassword: FC = () => {
   return (
     <AuthWrapper showImage={false}>
       {auth.status === 'loading' ? (
-        <div className={style.loader}>
+        <div className="loader">
           <CircularProgress color="inherit" />
         </div>
       ) : (
@@ -68,33 +67,25 @@ export const NewPassword: FC = () => {
           {!auth.error ? (
             <div className={styles.container}>
               <form onSubmit={formik.handleSubmit}>
-                <h1 className={`${style.textGlobal} ${styles.title}`}>
-                  Create New Password
-                </h1>
-                <p className={`${style.textGlobal} ${styles.text}`}>New password</p>
+                <h1 className={styles.title}>Create New Password</h1>
+                <p className={styles.text}>New password</p>
                 <input
                   className={formik.errors.newPassword ? styles.errorInput : styles.input}
                   type={show ? 'password' : 'text'}
                   {...formik.getFieldProps('newPassword')}
                 />
                 <Eye onClick={setShowPassword} className={styles.eye} />
-                <p className={`${style.textGlobal} ${styles.text}`}>
-                  Password confirmation
-                </p>
+                <p className={styles.text}>Password confirmation</p>
                 <input
                   className={formik.errors.newPassword ? styles.errorInput : styles.input}
                   type={show ? 'password' : 'text'}
                   {...formik.getFieldProps('passwordConfirmation')}
                 />
                 <Eye onClick={setShowPassword} className={styles.eye} />
-                <p className={`${style.textGlobal} ${styles.text}`}>
+                <p className={styles.text}>
                   Your password must be between 6 and 20 characters
                 </p>
-                <Button
-                  type="submit"
-                  className={`${style.button} ${styles.createButton}`}
-                  onclick={() => {}}
-                >
+                <Button type="submit" className={styles.createButton} onclick={() => {}}>
                   Create new password
                 </Button>
               </form>

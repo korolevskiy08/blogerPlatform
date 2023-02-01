@@ -22,11 +22,13 @@ export const signIn = createAsyncThunk(
 export const userData = createAsyncThunk(
   'auth/userData',
   async (_, { rejectWithValue }) => {
-    const res = await authApi.me();
-
     try {
+      console.log('TRY');
+      const res = await authApi.me();
+
       return { res };
     } catch (e) {
+      console.log('catch', e);
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }
   },

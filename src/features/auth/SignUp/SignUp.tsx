@@ -13,7 +13,6 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import Eye from '../../../common/icons/showPassword.svg';
 import { Path } from '../../../common/Routes';
-import style from '../../../styles/global.module.css';
 import { signUp } from '../auth-actions';
 import { SignUpType } from '../authType';
 
@@ -59,30 +58,21 @@ export const SignUp: FC = () => {
     <AuthWrapper showImage>
       <div className={styles.signUp}>
         <form onSubmit={formik.handleSubmit}>
-          <h2 className={`${style.textGlobal} ${styles.title}`}>Sign Up</h2>
-          <p className={`${style.textGlobal} ${styles.text}`}>Username</p>
-          <input
-            type="text"
-            className={style.textGlobal}
-            {...formik.getFieldProps('login')}
-          />
+          <h2 className={styles.title}>Sign Up</h2>
+          <p className={styles.text}>Username</p>
+          <input type="text" {...formik.getFieldProps('login')} />
           <div className={styles.error}>
             {formik.touched.login && formik.errors.login && formik.errors.login}
           </div>
-          <p className={`${style.textGlobal} ${styles.text}`}>Email</p>
-          <input
-            type="text"
-            className={style.textGlobal}
-            {...formik.getFieldProps('email')}
-          />
+          <p className={styles.text}>Email</p>
+          <input type="text" {...formik.getFieldProps('email')} />
           <div className={styles.error}>
             {formik.touched.email && formik.errors.email && formik.errors.email}
           </div>
-          <p className={`${style.textGlobal} ${styles.text}`}>Password</p>
+          <p className={styles.text}>Password</p>
           <div>
             <input
               type={show ? 'password' : 'text'}
-              className={style.textGlobal}
               {...formik.getFieldProps('password')}
             />
             <img
@@ -98,21 +88,17 @@ export const SignUp: FC = () => {
                 formik.errors.password}
             </div>
           </div>
-          <p className={`${style.textGlobal} ${styles.textLinEmail}`}>
+          <p className={styles.textLinEmail}>
             The link has been sent by email. If you don’t receive an email, send link
             again
           </p>
-          <Button
-            type="submit"
-            styleButton={`${style.button} ${styles.button}`}
-            onclick={() => {}}
-          >
+          <Button type="submit" styleButton={styles.button} onclick={() => {}}>
             Sign Up
           </Button>
-          <NavLink to="#" className={`${style.textGlobal} ${styles.already}`}>
+          <NavLink to="#" className={styles.already}>
             Already a member?
           </NavLink>
-          <NavLink to={Path.SignIn} className={`${style.textGlobal} ${styles.signIn}`}>
+          <NavLink to={Path.SignIn} className={styles.signIn}>
             Sign In
           </NavLink>
         </form>

@@ -38,3 +38,28 @@ export type ResponseLikeStatusType = {
   likeStatus: 'Like' | 'Dislike' | 'None';
   commentId: string;
 };
+
+export type LikeStatusType = 'Like' | 'Dislike' | 'None';
+
+// comments
+
+export type ItemCommentType = {
+  id: string;
+  content: string;
+  userId: string;
+  userLogin: string;
+  createdAt: string;
+  likesInfo: {
+    likesCount: number;
+    dislikesCount: number;
+    myStatus: string;
+  };
+};
+
+export type CommentsType = {
+  pagesCount: number;
+  page: number;
+  pageSize: number;
+  totalCount: number;
+  items: ItemCommentType[];
+};

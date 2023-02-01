@@ -12,7 +12,6 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import Eye from '../../../common/icons/showPassword.svg';
 import { Path } from '../../../common/Routes';
-import style from '../../../styles/global.module.css';
 import { signIn } from '../auth-actions';
 import { AuthType } from '../authType';
 
@@ -59,12 +58,12 @@ export const SignIn: FC = () => {
     <AuthWrapper showImage>
       <div className={styles.signIn}>
         <form onSubmit={formik.handleSubmit}>
-          <h2 className={`${style.textGlobal} ${styles.title}`}>Sign In</h2>
-          <p className={`${style.textGlobal} ${styles.text}`}>Email or Username</p>
+          <h2 className={styles.title}>Sign In</h2>
+          <p className={styles.text}>Email or Username</p>
           <div className={styles.inputPassword}>
             <input
               {...formik.getFieldProps('loginOrEmail')}
-              className={`${style.textGlobal} ${styles.userName}`}
+              className={styles.userName}
               type="text"
             />
           </div>
@@ -73,11 +72,10 @@ export const SignIn: FC = () => {
               formik.errors.loginOrEmail &&
               formik.errors.loginOrEmail}
           </div>
-          <p className={`${style.textGlobal} ${styles.text}`}>Password</p>
+          <p className={styles.text}>Password</p>
           <div className={styles.inputPassword}>
             <input
               {...formik.getFieldProps('password')}
-              className={style.textGlobal}
               type={show ? 'password' : 'text'}
             />
             <img
@@ -91,24 +89,14 @@ export const SignIn: FC = () => {
           <div className={styles.error}>
             {formik.touched.password && formik.errors.password && formik.errors.password}
           </div>
-          <p
-            role="presentation"
-            onClick={navigateForgot}
-            className={`${style.textGlobal} ${styles.forgot}`}
-          >
+          <p role="presentation" onClick={navigateForgot} className={styles.forgot}>
             Forgot Password
           </p>
-          <Button
-            type="submit"
-            styleButton={`${style.button} ${styles.button}`}
-            onclick={() => {}}
-          >
+          <Button type="submit" styleButton={styles.button} onclick={() => {}}>
             Sign In
           </Button>
-          <p className={`${style.textGlobal} ${styles.haveAccount}`}>
-            Don’t have an account?
-          </p>
-          <NavLink to={Path.Register} className={`${style.textGlobal} ${styles.signUp}`}>
+          <p className={styles.haveAccount}>Don’t have an account?</p>
+          <NavLink to={Path.Register} className={styles.signUp}>
             Sign Up
           </NavLink>
         </form>

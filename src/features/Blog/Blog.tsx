@@ -10,7 +10,6 @@ import arrowRight from '../../common/icons/arrow_right.svg';
 import imageTitle from '../../common/images/blue-ocean-28668-2560x1600.jpg';
 import avatar from '../../common/images/Gull_portrait_ca_usa.jpg';
 import { Path } from '../../common/Routes';
-import style from '../../styles/global.module.css';
 import { PostItem } from '../Posts/PostItem/PostItem';
 
 import { getBlog, getPostsBlog } from './blog-actions';
@@ -22,13 +21,12 @@ export const Blog: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  console.log(blog.posts);
   useEffect(() => {
     if (blogId) {
       dispatch(getBlog(blogId));
       dispatch(getPostsBlog(blogId));
     }
-  }, []);
+  }, [blogId, dispatch]);
 
   const navigateBlogs = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
@@ -40,15 +38,15 @@ export const Blog: FC = () => {
       <div className={styles.blogBlock}>
         <div className={styles.containerBlog}>
           <div className={styles.titleBlock}>
-            <p className={style.textGlobal} role="presentation" onClick={navigateBlogs}>
+            <p className={styles.titleBlog} role="presentation" onClick={navigateBlogs}>
               Blogs
             </p>
             <img src={arrowRight} alt="arrowRight" />
-            <h3 className={style.textGlobal}>{blog.blog.name}</h3>
+            <h3>{blog.blog.name}</h3>
           </div>
           <div className={styles.backBlogs} role="presentation" onClick={navigateBlogs}>
             <img src={arrowLeft} alt="arrowLeft" />
-            <p className={`textGlobal ${styles.backBlogsText}`}>Back to blogs</p>
+            <p className={styles.backBlogsText}>Back to blogs</p>
           </div>
           <img className={styles.avatarBlog} src={imageTitle} alt="imageTitle" />
           <div className={styles.blog}>
@@ -56,24 +54,16 @@ export const Blog: FC = () => {
               <img src={avatar} alt="avatar" />
             </div>
             <div>
-              <h3 className={`${style.textGlobal} ${styles.titleBlog}`}>
-                {blog.blog.name}
-              </h3>
+              <h3 className={styles.titleBlog}>{blog.blog.name}</h3>
               <div className={styles.dateBlock}>
-                <span className={`textGlobal ${styles.creationDataText}`}>
-                  creation date blog:
-                </span>
-                <span className={`textGlobal ${styles.creationData}`}>
-                  {blog.blog.createdAt}
-                </span>
+                <span className={styles.creationDataText}>creation date blog:</span>
+                <span className={styles.creationData}>{blog.blog.createdAt}</span>
               </div>
-              <span className={`textGlobal ${styles.websiteText}`}>website: </span>
-              <span className="textGlobal">
+              <span className={styles.websiteText}>website: </span>
+              <span>
                 <a href={blog.blog.websiteUrl}>{blog.blog.websiteUrl}</a>
               </span>
-              <p className={`${style.textGlobal} ${styles.description}`}>
-                {blog.blog.description}
-              </p>
+              <p className={styles.description}>{blog.blog.description}</p>
             </div>
           </div>
           {blog.posts.map(el => {

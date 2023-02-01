@@ -3,7 +3,6 @@ import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import imageBlog from '../../../common/images/Gull_portrait_ca_usa.jpg';
-import style from '../../../styles/global.module.css';
 
 import styles from './blogItem.module.css';
 
@@ -29,17 +28,13 @@ const BlogItem: FC<BlogType> = ({ name, id, websiteUrl, description }) => {
           <img src={imageBlog} alt="avatar" />
         </div>
         <div className={styles.descriptionBlock}>
-          <h3
-            onClick={navigateBlogItem}
-            role="presentation"
-            className={`${style.textGlobal} ${styles.titleBlog}`}
-          >
+          <h3 onClick={navigateBlogItem} role="presentation" className={styles.titleBlog}>
             {name}
           </h3>
-          <p className={`${style.textGlobal} ${styles.webSite}`}>
+          <p className={styles.webSite}>
             Website: <a href={websiteUrl}>{websiteUrl}</a>
           </p>
-          <p className={style.textGlobal}>{description}</p>
+          <p>{description}</p>
         </div>
       </div>
     </div>

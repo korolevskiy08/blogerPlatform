@@ -4,6 +4,7 @@
 
 .titleBlock {
     display: flex;
+    align-items: baseline;
     padding-top: 29px;
     border: none;
     border-bottom: 1px solid #DEDBDC;

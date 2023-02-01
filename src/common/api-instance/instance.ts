@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+import { setUserData } from '../../features/auth/auth-slice';
+import { useAppDispatch } from '../hooks/useAppDispatch';
+
 export const instance = axios.create({
   baseURL: 'https://blog-platform-for-guild.vercel.app/',
   withCredentials: true,
@@ -32,6 +35,11 @@ instance.interceptors.response.use(
 
       if (response.status === statusNumberSuccess) {
         localStorage.setItem('accessToken', response.data.accessToken);
+        const dispatch = useAppDispatch();
+        const res = await instance.get('auth/me');
+
+        dispatch(setUserData(res.data));
+        console.log('res', res);
         // instance.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;
         //
         // error.config.authorization = `Bearer ${response.data.accessToken}`;

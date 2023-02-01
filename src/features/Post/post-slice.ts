@@ -3,14 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ItemPostType } from '../Posts/posts-api';
 
 import { deleteComment, getComments, getPost, newComment } from './post-actions';
-import { CommentType } from './postType';
+import { ItemCommentType } from './postType';
 
 const slice = createSlice({
   name: 'post',
   initialState: {
     status: 'idle' as Status,
     post: {} as ItemPostType,
-    comments: [] as CommentType[],
+    comments: [] as ItemCommentType[],
     error: null as null | string,
   },
   reducers: {},
@@ -20,6 +20,7 @@ const slice = createSlice({
       state.post = action.payload.data;
     });
     builder.addCase(getComments.fulfilled, (state, action) => {
+      console.log(action.payload!.data);
       state.status = 'succeeded';
       state.comments = action.payload!.data.items;
     });

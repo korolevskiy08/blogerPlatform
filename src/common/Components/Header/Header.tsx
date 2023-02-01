@@ -3,7 +3,6 @@ import React, { FC } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { logout } from '../../../features/auth/auth-actions';
-import style from '../../../styles/global.module.css';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ReactComponent as SignIn } from '../../icons/logIn.svg';
@@ -33,28 +32,17 @@ export const Header: FC = () => {
       {userData === null || userData === undefined ? (
         <div className={styles.signIn}>
           <SignIn />
-          <NavLink
-            to={Path.SignIn}
-            className={`${style.textGlobal} ${styles.signInText}`}
-          >
+          <NavLink to={Path.SignIn} className={styles.signInText}>
             Sign In
           </NavLink>
         </div>
       ) : (
         <div className={styles.signIn}>
-          <p
-            role="presentation"
-            onClick={navigateSettings}
-            className={`${style.textGlobal} ${styles.signInText}`}
-          >
+          <p role="presentation" onClick={navigateSettings} className={styles.signInText}>
             {userData.login ? userData.login : ''}
           </p>
           <LoginOut className={styles.iconLogOut} />
-          <NavLink
-            onClick={logOut}
-            to="#"
-            className={`${style.textGlobal} ${styles.signInText}`}
-          >
+          <NavLink onClick={logOut} to="#" className={styles.signInText}>
             Login out
           </NavLink>
         </div>

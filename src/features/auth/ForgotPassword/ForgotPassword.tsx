@@ -11,7 +11,6 @@ import { validateForgotPass } from '../../../common/function/validateForgotPass'
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { Path } from '../../../common/Routes';
-import style from '../../../styles/global.module.css';
 import { forgotPassword } from '../auth-actions';
 import { ForgotPasswordType } from '../authType';
 
@@ -39,25 +38,21 @@ export const ForgotPassword: FC = () => {
     <AuthWrapper showImage={false}>
       <div className={styles.container}>
         <form onSubmit={formik.handleSubmit}>
-          <h1 className={`${style.textGlobal} ${styles.title}`}>Forgot Password</h1>
-          <p className={`${style.textGlobal} ${styles.text}`}>Email</p>
+          <h1 className={styles.title}>Forgot Password</h1>
+          <p className={styles.text}>Email</p>
           <input
             className={formik.errors.email ? styles.errorInput : styles.input}
             type="text"
             {...formik.getFieldProps('email')}
           />
-          <p className={`${style.textGlobal} ${styles.text}`}>
+          <p className={styles.text}>
             Enter your email address and we will send you further instructions{' '}
           </p>
-          <Button
-            type="submit"
-            className={`${style.button} ${styles.buttonSend}`}
-            onclick={() => {}}
-          >
+          <Button type="submit" className={styles.buttonSend} onclick={() => {}}>
             Send Instructions
           </Button>
         </form>
-        <NavLink className={`${style.textGlobal} ${styles.backSignIn}`} to={Path.SignIn}>
+        <NavLink className={styles.backSignIn} to={Path.SignIn}>
           Back to Sign In
         </NavLink>
       </div>

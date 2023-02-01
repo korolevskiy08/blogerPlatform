@@ -4,7 +4,6 @@ import { OptionType, Select } from '../../../common/Components/Select/Select';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useDebounce } from '../../../common/hooks/useDebounce';
 import { ReactComponent as SearchSvg } from '../../../common/icons/Search.svg';
-import style from '../../../styles/global.module.css';
 import { getBlogs } from '../blogs-actions';
 
 import styles from './filter.module.css';
@@ -73,7 +72,7 @@ export const FilterBlock: FC<FilterBlockType> = ({ searchNameTerm }) => {
         onChange={inputChangeHandler}
         placeholder="Search"
         type="text"
-        className={`${style.textGlobal} ${styles.inputSearch}`}
+        className={styles.inputSearch}
       />
       <div className={styles.selectBlock}>
         <Select

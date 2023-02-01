@@ -3,7 +3,6 @@ import React, { FC, useEffect } from 'react';
 import { Button } from '../../../common/Components/Button/Button';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import style from '../../../styles/global.module.css';
 
 import { getDevices, terminateSessions } from './devices-actions';
 import styles from './devices.module.css';
@@ -18,7 +17,7 @@ export const Devices: FC = () => {
   useEffect(() => {
     dispatch(getDevices());
     dispatch(getCurrentDevice({ browser: navigator.userAgent }));
-  }, []);
+  }, [dispatch]);
 
   const terminateAllSessions = (): void => {
     dispatch(terminateSessions());
@@ -26,25 +25,20 @@ export const Devices: FC = () => {
 
   return (
     <div>
-      <p className={`${style.textGlobal} ${styles.title}`}>This devices</p>
+      <p className={styles.title}>This devices</p>
       <div className={styles.currentDevice}>
         <img src={device.icon} alt="" />
         <div>
-          <p className={`${style.textGlobal} ${styles.currentBrowser}`}>
-            {device.browser}
-          </p>
-          <p className={`${style.textGlobal} ${styles.online}`}>Online</p>
+          <p className={styles.currentBrowser}>{device.browser}</p>
+          <p className={styles.online}>Online</p>
         </div>
       </div>
       <div className={styles.terminateBlock}>
-        <Button
-          onclick={terminateAllSessions}
-          className={`${style.button} ${styles.terminateButton}`}
-        >
+        <Button onclick={terminateAllSessions} className={styles.terminateButton}>
           Terminate all other session
         </Button>
       </div>
-      <p className={`${style.textGlobal} ${styles.activeTitle}`}>Active session</p>
+      <p className={styles.activeTitle}>Active session</p>
       <ul className={styles.devicesList}>
         {devices.map(d => {
           return (

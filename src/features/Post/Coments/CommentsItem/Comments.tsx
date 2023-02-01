@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { Button } from '../../../../common/Components/Button/Button';
 import { DeleteModal } from '../../../../common/Components/Modals/DeleteModal/DeleteModal';
 import { Settings } from '../../../../common/Components/Settings/Settings';
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
@@ -9,8 +10,8 @@ import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReactComponent as Dislike } from '../../../../common/icons/dislike.svg';
 import { ReactComponent as Like } from '../../../../common/icons/like.svg';
 import avatar from '../../../../common/images/Gull_portrait_ca_usa.jpg';
-import style from '../../../../styles/global.module.css';
-import { deleteComment, editComment, likeStatus } from '../../post-actions';
+import { deleteComment, editComment, getComments, likeStatus } from '../../post-actions';
+import { LikeStatusType } from '../../postType';
 import { AddComments } from '../AddComments/AddComments';
 
 import styles from './comments.module.css';
@@ -20,9 +21,20 @@ type CommentsType = {
   createdAt: string;
   content: string;
   id: string;
+  currentLike: number;
+  currentDislike: number;
+  likeInfo: string;
 };
 
-export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }) => {
+export const Comments: FC<CommentsType> = ({
+  userLogin,
+  content,
+  createdAt,
+  id,
+  currentLike,
+  currentDislike,
+  likeInfo,
+}) => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [currentComment, setCurrentComment] = useState(content);
@@ -45,8 +57,18 @@ export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }
     }
   };
 
-  const like = (): void => {
-    dispatch(likeStatus({ commentId: id, likeStatus: 'Like' }));
+  const like = (status: LikeStatusType): void => {
+    dispatch(likeStatus({ commentId: id, likeStatus: status }));
+    if (postId) {
+      dispatch(getComments(postId));
+    }
+  };
+
+  const disLike = (status: LikeStatusType): void => {
+    dispatch(likeStatus({ commentId: id, likeStatus: status }));
+    if (postId) {
+      dispatch(getComments(postId));
+    }
   };
 
   return (
@@ -56,9 +78,10 @@ export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }
           <div className={styles.avatarBlock}>
             <img src={avatar} alt="avatar" />
           </div>
-          <p className={`${style.textGlobal} ${styles.nameProfile}`}>{userLogin}</p>
-          <p className={`${style.textGlobal} ${styles.dateComment}`}>
-            {createdAt.slice(0, 10)}
+          <p className={styles.nameProfile}>{userLogin}</p>
+          <p className={styles.dateComment}>
+            {/* {createdAt.slice(0, 10)} */}
+            {createdAt}
           </p>
         </div>
         {currentUser === userLogin ? (
@@ -78,11 +101,26 @@ export const Comments: FC<CommentsType> = ({ userLogin, content, createdAt, id }
           />
         </div>
       ) : (
-        <p className={`${style.textGlobal} ${styles.textComment}`}>{content}</p>
+        <p className={styles.textComment}>{content}</p>
       )}
       <div className={styles.buttons}>
-        <Like onClick={like} className={styles.like} />
-        <Dislike className={styles.dislike} />
+        <Button
+          disabled={likeInfo === 'Like'}
+          className={styles.button}
+          onclick={() => like('Like')}
+        >
+          <Like className={likeInfo === 'Like' ? styles.like : ''} />
+        </Button>
+        <span className={styles.likeInfoText}>{currentLike}</span>
+
+        <Button
+          disabled={likeInfo === 'Dislike'}
+          className={styles.button}
+          onclick={() => disLike('Dislike')}
+        >
+          <Dislike className={likeInfo === 'Dislike' ? styles.like : ''} />
+        </Button>
+        <span className={styles.likeInfoText}>{currentDislike}</span>
       </div>
       <DeleteModal
         isOpen={openDeleteModal}

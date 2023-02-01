@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 
-import style from '../../../styles/global.module.css';
 import { ReactComponent as ArrowBottom } from '../../icons/arrowBottom.svg';
 import { ReactComponent as ArrowTop } from '../../icons/arrowTop.svg';
 
@@ -30,7 +29,7 @@ export const Select: FC<SelectType> = ({
   return (
     <div className={styles.container}>
       <div role="presentation" onClick={() => setOpenSelect()} className={styles.value}>
-        <span className={style.textGlobal}>{value.value}</span>
+        <span>{value.value}</span>
         {openSelect ? <ArrowTop /> : <ArrowBottom />}
       </div>
       {openSelect && (
@@ -45,7 +44,7 @@ export const Select: FC<SelectType> = ({
                 setOpenSelect();
                 option.filterItems();
               }}
-              className={`${style.textGlobal} ${styles.option}`}
+              className={styles.option}
             >
               {option.value}
             </li>

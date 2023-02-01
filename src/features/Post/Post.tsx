@@ -10,7 +10,6 @@ import arrowRight from '../../common/icons/arrow_right.svg';
 import avatar from '../../common/images/images.jpg';
 import imgPost from '../../common/images/pexels-photo-268533.webp';
 import { Path } from '../../common/Routes';
-import style from '../../styles/global.module.css';
 
 import { AddComments } from './Coments/AddComments/AddComments';
 import { Comments } from './Coments/CommentsItem/Comments';
@@ -20,6 +19,7 @@ import styles from './post.module.css';
 export const Post: FC = () => {
   const post = useAppSelector(state => state.post.post);
   const comments = useAppSelector(state => state.post.comments);
+
   const login = useAppSelector(state => state.auth.user);
   const [textComment, setTextComment] = useState('');
   const { postId } = useParams();
@@ -52,16 +52,12 @@ export const Post: FC = () => {
   return (
     <Wrapper showNavigation>
       <div className={styles.postBlock}>
-        <div className={style.titleBlock}>
-          <p
-            className={`${style.textGlobal} ${styles.title}`}
-            role="presentation"
-            onClick={navigatePosts}
-          >
+        <div className="titleBlock">
+          <p className={styles.title} role="presentation" onClick={navigatePosts}>
             Posts
           </p>
           <img src={arrowRight} alt="arrow right" />
-          <p className={style.textGlobal}>{post.title}</p>
+          <p>{post.title}</p>
         </div>
         <div
           className={styles.backPostsBlock}
@@ -73,21 +69,19 @@ export const Post: FC = () => {
         </div>
         <div className={styles.avatarBlock}>
           <img src={avatar} alt="avatar" />
-          <p className={`${style.textGlobal} ${styles.blogName}`}>{post.title}</p>
+          <p className={styles.blogName}>{post.title}</p>
         </div>
-        <p className={`textGlobal ${styles.postName}`}>{post.title}</p>
-        <p className={`${style.textGlobal} ${styles.postDate}`}>
-          {/* {`${post.createdAt.slice(0, 10)}`} */}
-        </p>
+        <p className={styles.postName}>{post.title}</p>
+        <p className={styles.postDate}>{/* {`${post.createdAt.slice(0, 10)}`} */}</p>
         <div className={styles.postImg}>
           <img src={imgPost} alt="post img" />
         </div>
-        <p className={`${style.textGlobal} ${styles.textPost}`}>
+        <p className={styles.textPost}>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi deleniti
           id, modi natus perspiciatis quam saepe voluptas. Aperiam, assumenda, eum?
           Debitis ducimus minus molestias omnis quidem sint ullam veritatis!
         </p>
-        <p className={`${style.textGlobal} ${styles.commentTitle}`}>Comments</p>
+        <p className={styles.commentTitle}>Comments</p>
         {login && (
           <AddComments
             sendComment={sendComment}
@@ -104,6 +98,9 @@ export const Post: FC = () => {
               createdAt={c.createdAt}
               content={c.content}
               id={c.id}
+              currentDislike={c.likesInfo.dislikesCount}
+              currentLike={c.likesInfo.likesCount}
+              likeInfo={c.likesInfo.myStatus}
             />
           );
         })}

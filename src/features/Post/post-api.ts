@@ -1,13 +1,18 @@
 import { instance } from '../../common/api-instance/instance';
 
-import { DataNewComment, ResponseLikeStatusType, UpdateCommentType } from './postType';
+import {
+  CommentsType,
+  DataNewComment,
+  ResponseLikeStatusType,
+  UpdateCommentType,
+} from './postType';
 
 export const postAPI = {
   getPost(id: string) {
     return instance.get(`posts/${id}`);
   },
   getComments(postId: string) {
-    return instance.get(`posts/${postId}/comments`);
+    return instance.get<CommentsType>(`posts/${postId}/comments`);
   },
   newComment(data: DataNewComment) {
     return instance.post(

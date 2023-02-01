@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Status } from '../Post/post-slice';
 
@@ -12,7 +12,11 @@ const slice = createSlice({
     status: 'idle' as Status,
     error: null as null | string,
   },
-  reducers: {},
+  reducers: {
+    setUserData(state, action: PayloadAction<{ userData: UserType }>) {
+      state.user = action.payload.userData;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(userData.fulfilled, (state, action) => {
       state.user = action.payload!.res.data;
@@ -43,5 +47,7 @@ const slice = createSlice({
     );
   },
 });
+
+export const { setUserData } = slice.actions;
 
 export const authSlice = slice.reducer;

@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import loginOut from '../../../../common/icons/loginOut.svg';
-import style from '../../../../styles/global.module.css';
 import { loginOutDevice } from '../devices-actions';
 
 import styles from './this-devices.module.css';
@@ -33,15 +32,13 @@ export const ThisDevices: FC<ThisDevicesType> = ({
       <div className={styles.thisDevices}>
         <img className={styles.browserImg} src={icon} alt={browser} />
         <div className={styles.thisDevicesInfo}>
-          <p className={`${style.textGlobal} ${styles.titleBrowser}`}>{browser}</p>
-          <p className={style.textGlobal}>{ip}</p>
-          <p className={`${style.textGlobal} ${styles.ip}`}>
-            {lastActiveDate.slice(0, 10)}
-          </p>
+          <p className={styles.titleBrowser}>{browser}</p>
+          <p>{ip}</p>
+          <p className={styles.ip}>{lastActiveDate.slice(0, 10)}</p>
         </div>
         <div role="presentation" onClick={logOutDevice} className={styles.loginOut}>
           <img className={styles.loginOutImg} src={loginOut} alt="login out" />
-          <p className={style.textGlobal}>login out</p>
+          <p>login out</p>
         </div>
       </div>
     </div>

@@ -56,12 +56,31 @@
     padding-left: 54px;
 }
 
-.like {
+.like * {
     cursor: pointer;
-
-    padding-right: 55px;
+    fill: #F8346B;
 }
 
 .dislike {
     cursor: pointer;
+
+    padding-left: 25px;
+}
+
+.likeInfoText {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    color: #797476;
+
+    margin-left: 7px;
+    margin-right: 15px;
+}
+
+.button {
+    background: none;
+
+    width: 15px;
+    height: 14px;
 }

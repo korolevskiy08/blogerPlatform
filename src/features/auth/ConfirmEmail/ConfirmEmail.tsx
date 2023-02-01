@@ -9,7 +9,6 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import bro from '../../../common/images/bro.png';
 import { Path } from '../../../common/Routes';
-import style from '../../../styles/global.module.css';
 import { registrationConfirmation } from '../auth-actions';
 import { ExpiredEmail } from '../ExpiredEmail/ExpiredEmail';
 
@@ -34,17 +33,17 @@ export const ConfirmEmail: FC = () => {
     <Wrapper showNavigation={false}>
       <div className={styles.container}>
         {auth.status === 'loading' ? (
-          <div className={style.loader}>
+          <div className="loader">
             <CircularProgress color="inherit" />
           </div>
         ) : (
           <div>
             {!auth.error ? (
               <div className={styles.expiredContainer}>
-                <h2 className={`${style.textGlobal} ${styles.title}`}>
+                <h2 className={styles.title}>
                   Congratulations! Your email has been confirmed
                 </h2>
-                <Button styleButton={style.button} onclick={navigateSignIn}>
+                <Button styleButton="button" onclick={navigateSignIn}>
                   Sign In
                 </Button>
                 <img src={bro} alt="bro" />
