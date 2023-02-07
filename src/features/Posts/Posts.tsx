@@ -5,23 +5,24 @@ import { CircularProgress } from '@mui/material';
 import { OptionType, Select } from '../../common/Components/Select/Select';
 import { TitleComponent } from '../../common/Components/TitleComponent/TitleComponent';
 import { Wrapper } from '../../common/Components/Wrapper/Wrapper';
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
+import { useActions } from '../../common/hooks/useActions';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import style from '../../styles/global.module.css';
 
 import { PostItem } from './PostItem/PostItem';
-import { getPosts } from './posts-actions';
 import styles from './posts.module.css';
 
+import { postsActions } from './index';
+
 export const Posts: FC = () => {
-  const dispatch = useAppDispatch();
+  const { getPosts } = useActions(postsActions);
   const posts = useAppSelector(state => state.posts);
 
   const num = 100;
 
   useEffect(() => {
-    dispatch(getPosts({}));
-  }, []);
+    getPosts({});
+  }, [getPosts]);
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
@@ -29,7 +30,7 @@ export const Posts: FC = () => {
     return () => {
       document.removeEventListener('scroll', scrollHandler);
     };
-  }, [posts.posts.length, dispatch]);
+  }, [posts.posts.length]);
 
   const scrollHandler = (e: any): void => {
     if (
@@ -37,7 +38,7 @@ export const Posts: FC = () => {
         (e.target.documentElement.scrollTop + window.innerHeight) <
       num
     ) {
-      dispatch(getPosts({}));
+      getPosts({});
     }
   };
 
@@ -45,12 +46,12 @@ export const Posts: FC = () => {
     {
       id: 1,
       value: 'New blogs first',
-      filterItems: () => dispatch(getPosts({ sortDirection: 'asc', pageNumber: 0 })),
+      filterItems: () => getPosts({ sortDirection: 'asc', pageNumber: 0 }),
     },
     {
       id: 2,
       value: 'Old blog first',
-      filterItems: () => dispatch(getPosts({ sortDirection: 'desc', pageNumber: 0 })),
+      filterItems: () => getPosts({ sortDirection: 'desc', pageNumber: 0 }),
     },
   ];
 

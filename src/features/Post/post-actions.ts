@@ -10,18 +10,18 @@ export const getPost = createAsyncThunk(
     try {
       const res = await postAPI.getPost(id);
 
-      return res;
+      return { res };
     } catch (e) {
       return rejectWithValue(null);
     }
   },
 );
 
-export const getComments = createAsyncThunk(
+export const getPostComments = createAsyncThunk(
   'post/getComments',
   async (id: string, { rejectWithValue }) => {
     try {
-      const res = await postAPI.getComments(id);
+      const res = await postAPI.getPostComments(id);
 
       return res;
     } catch (e) {
@@ -30,7 +30,7 @@ export const getComments = createAsyncThunk(
   },
 );
 
-export const newComment = createAsyncThunk(
+export const newPostComment = createAsyncThunk(
   'post/newPost',
   async (data: DataNewComment, { rejectWithValue }) => {
     try {
@@ -43,7 +43,7 @@ export const newComment = createAsyncThunk(
   },
 );
 
-export const deleteComment = createAsyncThunk(
+export const deletePostComment = createAsyncThunk(
   'post/deleteComment',
   async (commentId: string, { rejectWithValue }) => {
     try {
@@ -63,8 +63,12 @@ export const editComment = createAsyncThunk(
     { rejectWithValue, dispatch },
   ) => {
     try {
-      await postAPI.updateComment({ commentId: param.commentId, content: param.content });
-      dispatch(getComments(param.postId));
+      await postAPI.updateComment({
+        commentId: param.commentId,
+        content: param.content,
+      });
+
+      dispatch(getPostComments(param.postId));
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }
@@ -75,9 +79,7 @@ export const likeStatus = createAsyncThunk(
   'post/likeStatus',
   async (data: ResponseLikeStatusType, { rejectWithValue }) => {
     try {
-      const res = await postAPI.like(data);
-
-      console.log(res);
+      await postAPI.like(data);
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }

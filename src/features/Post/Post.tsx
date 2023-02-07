@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Wrapper } from '../../common/Components/Wrapper/Wrapper';
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
+import { useActions } from '../../common/hooks/useActions';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import arrowLeft from '../../common/icons/arrow-left.svg';
 import arrowRight from '../../common/icons/arrow_right.svg';
@@ -11,43 +11,30 @@ import avatar from '../../common/images/images.jpg';
 import imgPost from '../../common/images/pexels-photo-268533.webp';
 import { Path } from '../../common/Routes';
 
-import { AddComments } from './Coments/AddComments/AddComments';
-import { Comments } from './Coments/CommentsItem/Comments';
-import { getComments, getPost, newComment } from './post-actions';
+import { Comments } from './Coments/Comments';
 import styles from './post.module.css';
+
+import { postActions } from './index';
 
 export const Post: FC = () => {
   const post = useAppSelector(state => state.post.post);
-  const comments = useAppSelector(state => state.post.comments);
+  const { getPost } = useActions(postActions);
 
-  const login = useAppSelector(state => state.auth.user);
-  const [textComment, setTextComment] = useState('');
   const { postId } = useParams();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (postId) {
-      dispatch(getPost(postId));
-      dispatch(getComments(postId));
+      getPost(postId);
     }
-  }, []);
+  }, [getPost, postId]);
 
   const navigatePosts = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
     navigate(Path.Posts);
   };
 
-  const changeComment = (text: string): void => {
-    setTextComment(text);
-  };
-
-  const sendComment = (): void => {
-    if (postId) {
-      dispatch(newComment({ content: textComment, postId }));
-      setTextComment('');
-    }
-  };
+  if (!postId) return null;
 
   return (
     <Wrapper showNavigation>
@@ -82,28 +69,7 @@ export const Post: FC = () => {
           Debitis ducimus minus molestias omnis quidem sint ullam veritatis!
         </p>
         <p className={styles.commentTitle}>Comments</p>
-        {login && (
-          <AddComments
-            sendComment={sendComment}
-            changeComment={changeComment}
-            textComment={textComment}
-            cancel={() => {}}
-          />
-        )}
-        {comments.map(c => {
-          return (
-            <Comments
-              key={c.id}
-              userLogin={c.userLogin}
-              createdAt={c.createdAt}
-              content={c.content}
-              id={c.id}
-              currentDislike={c.likesInfo.dislikesCount}
-              currentLike={c.likesInfo.likesCount}
-              likeInfo={c.likesInfo.myStatus}
-            />
-          );
-        })}
+        <Comments postId={postId} />
       </div>
     </Wrapper>
   );

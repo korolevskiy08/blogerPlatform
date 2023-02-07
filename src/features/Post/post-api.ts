@@ -11,7 +11,7 @@ export const postAPI = {
   getPost(id: string) {
     return instance.get(`posts/${id}`);
   },
-  getComments(postId: string) {
+  getPostComments(postId: string) {
     return instance.get<CommentsType>(`posts/${postId}/comments`);
   },
   newComment(data: DataNewComment) {

@@ -2,7 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { ItemPostType } from '../Posts/posts-api';
 
-import { deleteComment, getComments, getPost, newComment } from './post-actions';
+import {
+  deletePostComment,
+  getPostComments,
+  getPost,
+  newPostComment,
+} from './post-actions';
 import { ItemCommentType } from './postType';
 
 const slice = createSlice({
@@ -17,18 +22,17 @@ const slice = createSlice({
   extraReducers: builder => {
     builder.addCase(getPost.fulfilled, (state, action) => {
       state.status = 'succeeded';
-      state.post = action.payload.data;
+      state.post = action.payload.res.data;
     });
-    builder.addCase(getComments.fulfilled, (state, action) => {
-      console.log(action.payload!.data);
+    builder.addCase(getPostComments.fulfilled, (state, action) => {
       state.status = 'succeeded';
       state.comments = action.payload!.data.items;
     });
-    builder.addCase(newComment.fulfilled, (state, action) => {
+    builder.addCase(newPostComment.fulfilled, (state, action) => {
       state.status = 'succeeded';
       state.comments.push({ ...action.payload!.data });
     });
-    builder.addCase(deleteComment.fulfilled, (state, action) => {
+    builder.addCase(deletePostComment.fulfilled, (state, action) => {
       return {
         ...state,
         status: 'succeeded',

@@ -75,40 +75,34 @@ export const newPassword = createAsyncThunk(
 
 export const userData = createAsyncThunk(
   'auth/userData',
-  async (_, { rejectWithValue, dispatch }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const res = await authApi.me();
 
       return { res };
     } catch (e) {
       if (axios.isAxiosError(e)) {
-        const errorStatus = 401;
-
-        if (e.request.status === errorStatus) {
-          dispatch(refreshToken());
-        }
-
         rejectWithValue(e.message);
       }
     }
   },
 );
 
-export const refreshToken = createAsyncThunk(
-  'auth/refreshToken',
-  async (_, { rejectWithValue, dispatch }) => {
-    try {
-      const res = await authApi.refreshToken();
-
-      localStorage.setItem('accessToken', res.data.accessToken);
-
-      const successStatus = 200;
-
-      if (res.status === successStatus) {
-        dispatch(userData());
-      }
-    } catch (e) {
-      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
-    }
-  },
-);
+// export const refreshToken = createAsyncThunk(
+//   'auth/refreshToken',
+//   async (_, { rejectWithValue, dispatch }) => {
+//     try {
+//       const res = await authApi.refreshToken();
+//
+//       localStorage.setItem('accessToken', res.data.accessToken);
+//
+//       const successStatus = 200;
+//
+//       if (res.status === successStatus) {
+//         dispatch(userData());
+//       }
+//     } catch (e) {
+//       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+//     }
+//   },
+// );

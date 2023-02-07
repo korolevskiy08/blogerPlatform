@@ -46,9 +46,11 @@ export type LikeStatusType = 'Like' | 'Dislike' | 'None';
 export type ItemCommentType = {
   id: string;
   content: string;
-  userId: string;
-  userLogin: string;
   createdAt: string;
+  commentatorInfo: {
+    userId: string;
+    userLogin: string;
+  };
   likesInfo: {
     likesCount: number;
     dislikesCount: number;
