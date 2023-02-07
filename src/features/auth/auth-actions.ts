@@ -10,25 +10,9 @@ export const signIn = createAsyncThunk(
     try {
       const res = await authApi.login(params);
 
-      // instance.defaults.headers.common.Authorization = `Bearer ${res.data.accessToken}`;
       localStorage.setItem('accessToken', res.data.accessToken);
       dispatch(userData());
     } catch (e) {
-      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
-    }
-  },
-);
-
-export const userData = createAsyncThunk(
-  'auth/userData',
-  async (_, { rejectWithValue }) => {
-    try {
-      console.log('TRY');
-      const res = await authApi.me();
-
-      return { res };
-    } catch (e) {
-      console.log('catch', e);
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }
   },
@@ -83,6 +67,46 @@ export const newPassword = createAsyncThunk(
   async (params: RequestNewPasswordType, { rejectWithValue }) => {
     try {
       await authApi.newPassword(params);
+    } catch (e) {
+      if (axios.isAxiosError(e)) return rejectWithValue(e.message);
+    }
+  },
+);
+
+export const userData = createAsyncThunk(
+  'auth/userData',
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      const res = await authApi.me();
+
+      return { res };
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        const errorStatus = 401;
+
+        if (e.request.status === errorStatus) {
+          dispatch(refreshToken());
+        }
+
+        rejectWithValue(e.message);
+      }
+    }
+  },
+);
+
+export const refreshToken = createAsyncThunk(
+  'auth/refreshToken',
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      const res = await authApi.refreshToken();
+
+      localStorage.setItem('accessToken', res.data.accessToken);
+
+      const successStatus = 200;
+
+      if (res.status === successStatus) {
+        dispatch(userData());
+      }
     } catch (e) {
       if (axios.isAxiosError(e)) return rejectWithValue(e.message);
     }

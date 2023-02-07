@@ -10,6 +10,7 @@ import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReactComponent as Dislike } from '../../../../common/icons/dislike.svg';
 import { ReactComponent as Like } from '../../../../common/icons/like.svg';
 import avatar from '../../../../common/images/Gull_portrait_ca_usa.jpg';
+import { userData } from '../../../auth/auth-actions';
 import { deleteComment, editComment, getComments, likeStatus } from '../../post-actions';
 import { LikeStatusType } from '../../postType';
 import { AddComments } from '../AddComments/AddComments';
@@ -61,6 +62,7 @@ export const Comments: FC<CommentsType> = ({
     dispatch(likeStatus({ commentId: id, likeStatus: status }));
     if (postId) {
       dispatch(getComments(postId));
+      dispatch(userData());
     }
   };
 
@@ -68,6 +70,7 @@ export const Comments: FC<CommentsType> = ({
     dispatch(likeStatus({ commentId: id, likeStatus: status }));
     if (postId) {
       dispatch(getComments(postId));
+      dispatch(userData());
     }
   };
 

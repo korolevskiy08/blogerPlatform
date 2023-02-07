@@ -8,12 +8,12 @@ import { Button } from '../../../common/Components/Button/Button';
 import { ErrorSnackBar } from '../../../common/Components/SnackBar/SnackBar';
 import { ShowPassword } from '../../../common/function/showPassword';
 import { validateSignIn } from '../../../common/function/validateSignIn';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useActions } from '../../../common/hooks/useActions';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import Eye from '../../../common/icons/showPassword.svg';
 import { Path } from '../../../common/Routes';
-import { signIn } from '../auth-actions';
 import { AuthType } from '../authType';
+import { authActions } from '../index';
 
 import styles from './signIn.module.css';
 
@@ -22,8 +22,7 @@ export const SignIn: FC = () => {
   const { show, setShowPassword } = ShowPassword();
 
   const auth = useAppSelector(state => state.auth);
-
-  const dispatch = useAppDispatch();
+  const { signIn } = useActions(authActions);
   const navigate = useNavigate();
 
   const navigateForgot = (): void => {
@@ -41,12 +40,10 @@ export const SignIn: FC = () => {
     } as AuthType,
     validate: values => validateSignIn(values),
     onSubmit: values => {
-      dispatch(
-        signIn({
-          loginOrEmail: values.loginOrEmail,
-          password: values.password,
-        }),
-      );
+      signIn({
+        loginOrEmail: values.loginOrEmail,
+        password: values.password,
+      });
     },
   });
 

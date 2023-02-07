@@ -5,18 +5,19 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Button } from '../../../common/Components/Button/Button';
 import { Wrapper } from '../../../common/Components/Wrapper/Wrapper';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useActions } from '../../../common/hooks/useActions';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import bro from '../../../common/images/bro.png';
 import { Path } from '../../../common/Routes';
-import { registrationConfirmation } from '../auth-actions';
 import { ExpiredEmail } from '../ExpiredEmail/ExpiredEmail';
+import { authActions } from '../index';
 
 import styles from './confirm-email.module.css';
 
 export const ConfirmEmail: FC = () => {
   const auth = useAppSelector(state => state.auth);
-  const dispatch = useAppDispatch();
+
+  const { registrationConfirmation } = useActions(authActions);
   const params = useLocation();
   const navigate = useNavigate();
   const min = 6;
@@ -26,7 +27,7 @@ export const ConfirmEmail: FC = () => {
   };
 
   useEffect(() => {
-    dispatch(registrationConfirmation({ code: params.search.slice(min) }));
+    registrationConfirmation({ code: params.search.slice(min) });
   }, []);
 
   return (

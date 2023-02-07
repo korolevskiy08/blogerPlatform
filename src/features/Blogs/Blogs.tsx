@@ -4,19 +4,20 @@ import { CircularProgress } from '@mui/material';
 
 import { TitleComponent } from '../../common/Components/TitleComponent/TitleComponent';
 import { Wrapper } from '../../common/Components/Wrapper/Wrapper';
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
+import { useActions } from '../../common/hooks/useActions';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import style from '../../styles/global.module.css';
 
 import BlogItem from './BlogItem/BlogItem';
-import { getBlogs } from './blogs-actions';
 import styles from './Blogs.module.css';
 import { FilterBlock } from './FilterBlock/FilterBlock';
 
+import { blogsActions } from './index';
+
 export const Blogs: FC = () => {
-  const dispatch = useAppDispatch();
   const blogs = useAppSelector(state => state.blogs);
   const num = 100;
+  const { getBlogs } = useActions(blogsActions);
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
@@ -24,7 +25,7 @@ export const Blogs: FC = () => {
     return () => {
       document.removeEventListener('scroll', scrollHandler);
     };
-  }, [blogs.blogs.length, dispatch]);
+  }, [blogs.blogs.length]);
 
   const scrollHandler = (e: any): void => {
     if (
@@ -32,7 +33,7 @@ export const Blogs: FC = () => {
         (e.target.documentElement.scrollTop + window.innerHeight) <
       num
     ) {
-      dispatch(getBlogs({}));
+      getBlogs({});
     }
   };
 
@@ -56,14 +57,14 @@ export const Blogs: FC = () => {
                 </li>
               );
             })}
-            {blogs.status === 'loading' && (
-              <div className={style.loader}>
-                <CircularProgress color="inherit" />
-              </div>
-            )}
           </ul>
         </div>
       </div>
+      {blogs.status === 'loading' && (
+        <div className={style.loader}>
+          <CircularProgress color="inherit" />
+        </div>
+      )}
     </Wrapper>
   );
 };

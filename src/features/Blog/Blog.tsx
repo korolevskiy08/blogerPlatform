@@ -3,7 +3,7 @@ import React, { FC, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Wrapper } from '../../common/Components/Wrapper/Wrapper';
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
+import { useActions } from '../../common/hooks/useActions';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import arrowLeft from '../../common/icons/arrow-left.svg';
 import arrowRight from '../../common/icons/arrow_right.svg';
@@ -12,21 +12,22 @@ import avatar from '../../common/images/Gull_portrait_ca_usa.jpg';
 import { Path } from '../../common/Routes';
 import { PostItem } from '../Posts/PostItem/PostItem';
 
-import { getBlog, getPostsBlog } from './blog-actions';
 import styles from './blog.module.css';
+
+import { blogActions } from './index';
 
 export const Blog: FC = () => {
   const { blogId } = useParams();
   const blog = useAppSelector(state => state.blog);
-  const dispatch = useAppDispatch();
+  const { getBlog, getPostsBlog } = useActions(blogActions);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (blogId) {
-      dispatch(getBlog(blogId));
-      dispatch(getPostsBlog(blogId));
+      getBlog(blogId);
+      getPostsBlog(blogId);
     }
-  }, [blogId, dispatch]);
+  }, [blogId]);
 
   const navigateBlogs = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
