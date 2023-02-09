@@ -1,3 +1,3 @@
-import * as blogActions from './blog-actions';
+import { asyncActions as blogActions } from './blog-actions';
 
 export { blogActions };

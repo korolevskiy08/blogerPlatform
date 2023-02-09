@@ -26,7 +26,7 @@ export const Comments: FC<CommentsType> = ({ postId }) => {
 
   useEffect(() => {
     getPostComments(postId);
-  }, []);
+  }, [getPostComments, postId]);
 
   const changeComment = (text: string): void => {
     setTextComment(text);
